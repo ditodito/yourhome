@@ -1,10 +1,10 @@
 <?php
 namespace frontend\controllers;
 
+use common\controllers\YourHomeController;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
-use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
@@ -13,7 +13,7 @@ use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 
-class SiteController extends Controller {
+class SiteController extends YourHomeController {
 
     public function behaviors() {
         return [
@@ -60,6 +60,11 @@ class SiteController extends Controller {
 
     public function actionContact() {
         return $this->render('contact');
+    }
+
+    public function actionChangeLanguage($lang) {
+        \Yii::$app->session->set('lang', $lang);
+        $this->redirect(\Yii::$app->request->referrer);
     }
 
 

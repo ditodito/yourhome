@@ -72,12 +72,16 @@ AppAsset::register($this);
             <?=Html::img('@web/img/logo.png', ['height' => 126, 'alt' => 'YourHome'])?>
 
             <ul class="menu">
-                <li><?=Html::a('Home', ['/site/index'])?></li>
+                <li><?=Html::a(\Yii::t('menu', 'Home'), ['/site/index'])?></li>
                 <li><?=Html::a('Rooms & Rates', ['/site/index'])?></li>
-                <li><?=Html::a('Services', ['/site/index'])?></li>
-                <li><?=Html::a('Photos', ['/site/index'])?></li>
-                <li><?=Html::a('Contacts', ['/site/contact'])?></li>
+                <li><?=Html::a(\Yii::t('menu', 'Services'), ['/site/index'])?></li>
+                <li><?=Html::a(\Yii::t('menu', 'Photos'), ['/site/index'])?></li>
+                <li><?=Html::a(\Yii::t('menu', 'Contacts'), ['/site/contact'])?></li>
             </ul>
+
+            <?=Html::a('En', ['site/change-language', 'lang' => 'en-US'])?>
+            <?=Html::a('Ge', ['site/change-language', 'lang' => 'ka-GE'])?>
+            <?=Html::a('Ru', ['site/change-language', 'lang' => 'ru-RU'])?>
         </header>
         <?= $content ?>
     </div>

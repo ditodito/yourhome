@@ -4,7 +4,7 @@ $this->title = 'YourHome :: Index';
 
 <div class="row">
     <div class="col-lg-4">
-        <h2>Access map</h2>
+        <h2>Access map <?=\Yii::t('main', 'Home')?></h2>
 
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
             dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
