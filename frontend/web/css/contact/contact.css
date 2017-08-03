@@ -1,0 +1,44 @@
+h3 {
+    font-style: italic;
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+
+h5 {
+    font-weight: bold;
+    display: inline-block;
+    border-bottom: 1px solid #a3a3a3;
+    margin: 0 0 15px 0;
+}
+
+#map {
+    height: 400px;
+}
+
+/*
+#banner {
+    height: 300px;
+    background: red;
+}
+*/
+
+div.side-info {
+    margin-top: 15px;
+}
+
+div.side-info > h5 {
+    border-bottom: none;
+}
+
+div.side-info a.more {
+    display: inline-block;
+    margin-top: 15px;
+}
+div.side-info a.more:hover {
+    text-decoration: none;
+}
+
+div.side-info img {
+    float: left;
+    margin-right: 10px;
+}

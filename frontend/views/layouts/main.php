@@ -6,6 +6,7 @@
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
+use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
@@ -79,9 +80,14 @@ AppAsset::register($this);
                 <li><?=Html::a(\Yii::t('menu', 'Contacts'), ['/site/contact'])?></li>
             </ul>
 
-            <?=Html::a('En', ['site/change-language', 'lang' => 'en-US'])?>
-            <?=Html::a('Ge', ['site/change-language', 'lang' => 'ka-GE'])?>
-            <?=Html::a('Ru', ['site/change-language', 'lang' => 'ru-RU'])?>
+            <div id="languageWrapper">
+                <?=Html::img(\Yii::getAlias('@web/img/flag_'.\Yii::$app->language.'.png'), ['height' => 16])?>
+                <select name="languages" id="languages">
+                    <option value="en-US" data-url="<?=Url::to(['site/change-language', 'lang' => 'en-US'])?>" <?php if (\Yii::$app->language == 'en-US') echo 'selected'; ?>>Eng</option>
+                    <option value="ka-GE" data-url="<?=Url::to(['site/change-language', 'lang' => 'ka-GE'])?>" <?php if (\Yii::$app->language == 'ka-GE') echo 'selected'; ?>>Geo</option>
+                    <option value="ru-RU" data-url="<?=Url::to(['site/change-language', 'lang' => 'ru-RU'])?>" <?php if (\Yii::$app->language == 'ru-RU') echo 'selected'; ?>>Rus</option>
+                </select>
+            </div>
         </header>
         <?= $content ?>
     </div>

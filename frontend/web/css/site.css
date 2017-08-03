@@ -11,7 +11,7 @@ body {
 }
 
 .wrap > .container {
-    padding: 0 15px 20px;
+    padding: 0 15px 50px;
 }
 
 .header {
@@ -19,6 +19,7 @@ body {
     box-sizing: content-box;
     border-top: 3px solid #8bc652;
     border-bottom: 1px solid red;
+    position: relative;
 }
 .header > img {
     margin-top: 22px;
@@ -46,6 +47,21 @@ body {
 }*/
 .menu > li:last-child > a {
     border-right: none;
+}
+
+#languageWrapper {
+    position: absolute;
+    top: 22px;
+    right: 0;
+}
+#languageWrapper > img {
+    margin-right: 7px;
+    position: relative;
+    top: -1px;
+}
+#languages {
+    outline: none;
+    border: 1px solid #ccc;
 }
 
 
