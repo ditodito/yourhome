@@ -1,0 +1,8 @@
+#map {
+    height: 250px;
+}
+
+.br {
+    border-left: 1px solid #81669d;
+    border-right: 1px solid #81669d;
+}

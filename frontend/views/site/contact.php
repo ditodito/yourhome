@@ -6,7 +6,7 @@ use yii\captcha\Captcha;
 
 ContactAsset::register($this);
 
-$this->title = 'YourHome :: Contacts';
+$this->title = 'YourHome :: '.\Yii::t('menu', 'Contacts');
 ?>
 
 <div class="row">
