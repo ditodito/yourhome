@@ -41,36 +41,17 @@ AppAsset::register($this);
         ['label' => 'About', 'url' => ['/site/about']],
         ['label' => 'Contact', 'url' => ['/site/contact']],
     ];
-    if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-    } else {
-        $menuItems[] = '<li>'
-            . Html::beginForm(['/site/logout'], 'post')
-            . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
-                ['class' => 'btn btn-link logout']
-            )
-            . Html::endForm()
-            . '</li>';
-    }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $menuItems,
     ]);
-    NavBar::end();*/
+    NavBar::end();
+    */
     ?>
 
     <div class="container">
-      <!--
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= Alert::widget() ?>
-      -->
-
         <header class="header">
-            <?=Html::img('@web/img/logo.png', ['height' => 126, 'alt' => 'YourHome'])?>
+            <?=Html::img('@web/img/logo.png', ['alt' => 'YourHome', 'class' => 'main-logo'])?>
 
             <ul class="menu">
                 <li><?=Html::a(\Yii::t('menu', 'Home'), ['/site/index'])?></li>
@@ -78,6 +59,7 @@ AppAsset::register($this);
                 <li><?=Html::a(\Yii::t('menu', 'Services'), ['/site/index'])?></li>
                 <li><?=Html::a(\Yii::t('menu', 'Photos'), ['/site/index'])?></li>
                 <li><?=Html::a(\Yii::t('menu', 'Contacts'), ['/site/contact'])?></li>
+                <li><?=Html::a(\Yii::t('menu', 'Our tours'), ['/site/tours'])?></li>
             </ul>
 
             <div id="languageWrapper">
@@ -95,8 +77,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-
+        <p class="pull-left">&copy; YourHome <?=date('Y')?></p>
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
 </footer>
