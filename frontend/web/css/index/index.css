@@ -1,8 +1,31 @@
+h4.title {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 0;
+}
+
 #map {
     height: 250px;
 }
 
-.br {
+div.contact-info {
+    border-left: 1px solid #81669d;
+    padding-left: 15px;
+    margin-top: 15px;
+}
+
+div.contact-info > div {
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+div.about {
     border-left: 1px solid #81669d;
     border-right: 1px solid #81669d;
+}
+
+div.more a {
+    color: #3399ff;
+    text-decoration: underline;
 }

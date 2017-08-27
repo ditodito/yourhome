@@ -74,10 +74,11 @@ AppAsset::register($this);
 
             <ul class="menu">
                 <li><?=Html::a(\Yii::t('menu', 'Home'), ['/site/index'])?></li>
-                <li><?=Html::a('Rooms & Rates', ['/site/index'])?></li>
-                <li><?=Html::a(\Yii::t('menu', 'Services'), ['/site/index'])?></li>
-                <li><?=Html::a(\Yii::t('menu', 'Photos'), ['/site/index'])?></li>
+                <li><?=Html::a(\Yii::t('menu', 'Rooms & Rates'), ['/site/index'])?></li>
+                <li><?=Html::a(\Yii::t('menu', 'Service'), ['/site/index'])?></li>
+                <li><?=Html::a(\Yii::t('menu', 'Photo Gallery'), ['/site/index'])?></li>
                 <li><?=Html::a(\Yii::t('menu', 'Contacts'), ['/site/contact'])?></li>
+                <li><?=Html::a(\Yii::t('menu', 'Our Tours'), ['/site/contact'])?></li>
             </ul>
 
             <div id="languageWrapper">
@@ -89,7 +90,7 @@ AppAsset::register($this);
                 </select>
             </div>
         </header>
-        <?= $content ?>
+        <?=$content?>
     </div>
 </div>
 
