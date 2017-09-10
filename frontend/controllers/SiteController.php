@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use common\api\actions\RoomsActions;
 use common\controllers\YourHomeController;
 use Yii;
 use yii\base\InvalidParamException;
@@ -60,7 +61,9 @@ class SiteController extends YourHomeController {
 
     public function actionRooms() {
         $this->layout = 'side';
-        return $this->render('rooms');
+        return $this->render('rooms', [
+            'rooms' => RoomsActions::getRooms()
+        ]);
     }
 
     public function actionContact() {

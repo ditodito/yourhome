@@ -1,5 +1,5 @@
 <?php
-use api\actions\RoomsActions;
+use common\api\actions\RoomsActions;
 use frontend\assets\RoomsAsset;
 use yii\helpers\Html;
 
@@ -8,30 +8,60 @@ RoomsAsset::register($this);
 $this->title = 'YourHome :: '.\Yii::t('menu', 'Rooms & Rates');
 ?>
 
-<?php for($i = 0; $i < 3; $i++): ?>
+<?php foreach($rooms as $room): ?>
     <div class="row" style="border: 1px solid #ccc; margin-bottom: 50px;">
         <div class="col-md-5">
-            <div class="room-image" style="background: red">
-                <?=Html::img(\Yii::getAlias('@web/img/test_images_rooms.jpg'), ['alt' => 'Image'])?>
+            <div class="room-image">
+                <?=Html::img(\Yii::getAlias('@web/img/rooms/'.$room->image), ['alt' => $room->name])?>
             </div>
-            <div class="room-include">Free Wifi</div>
-            <div class="room-include">Free Wifi</div>
-            <div class="room-include">Free Wifi</div>
-            <div class="room-include">Free Wifi</div>
-            <div class="room-include">Free Wifi</div>
-            <div class="room-include">Free Wifi</div>
-            <div class="room-include">Free Wifi</div>
-            <div class="room-include">Free Wifi</div>
+            <?php if ($room->free_wifi): ?>
+                <div class="room-include"><?=\Yii::t('main', 'Free')?> Wifi</div>
+            <?php endif; ?>
+            <?php if ($room->tv): ?>
+                <div class="room-include">TV</div>
+            <?php endif; ?>
+            <?php if ($room->air_conditioning): ?>
+                <div class="room-include"><?=\Yii::t('room', 'Air conditioning')?></div>
+            <?php endif; ?>
+            <?php if ($room->shared_bathroom): ?>
+                <div class="room-include"><?=\Yii::t('room', 'Shared bathroom')?></div>
+            <?php endif; ?>
+            <?php if ($room->private_bathroom): ?>
+                <div class="room-include"><?=\Yii::t('room', 'Private bathroom')?></div>
+            <?php endif; ?>
+            <?php if ($room->hairdrayer): ?>
+                <div class="room-include"><?=\Yii::t('room', 'Hairdrayer')?></div>
+            <?php endif; ?>
+            <?php if ($room->heating): ?>
+                <div class="room-include"><?=\Yii::t('room', 'Heating')?></div>
+            <?php endif; ?>
+            <?php if ($room->linen): ?>
+                <div class="room-include"><?=\Yii::t('room', 'Linen')?></div>
+            <?php endif; ?>
+            <?php if ($room->shared_kitchenette): ?>
+                <div class="room-include"><?=\Yii::t('room', 'Shared kitchenette')?></div>
+            <?php endif; ?>
+            <?php if ($room->private_kitchenette): ?>
+                <div class="room-include"><?=\Yii::t('room', 'Private kitchenette')?></div>
+            <?php endif; ?>
+            <?php if ($room->non_smoking): ?>
+                <div class="room-include"><?=\Yii::t('room', 'Non smoking')?></div>
+            <?php endif; ?>
+            <?php if ($room->toiletries): ?>
+                <div class="room-include"><?=\Yii::t('room', 'Toiletries')?></div>
+            <?php endif; ?>
+            <?php if ($room->towels): ?>
+                <div class="room-include"><?=\Yii::t('room', 'Towels')?></div>
+            <?php endif; ?>
+            <?php if ($room->slippers): ?>
+                <div class="room-include"><?=\Yii::t('room', 'Slippers')?></div>
+            <?php endif; ?>
         </div>
         <div class="col-md-7">
-            <h5 class="room-title">One Bunk Bed in Hostal Mixed Room</h5>
-            <div class="room-capacity">Max: 8</div>
-            <div class="room-description">
-                Note: Everything outside a flex container and inside a flex item is rendered as usual. Flexbox defines how flex items are laid out inside a flex container.
-                Flex items are positioned inside a flex container along a flex line. By default there is only one flex line per flex container.
-                The following example shows three flex items. They are positioned by default: along the horizontal flex line, from left to right:
-            </div>
-            <div class="room-capacity">9 E</div>
+            <h5 class="room-title"><?=$room->name?></h5>
+            <div class="room-capacity">Max: <?=$room->capacity?></div>
+            <div class="room-description"><?=$room->description?></div>
+            <div class="room-capacity"><?=$room->price?> E</div>
             <div class="room-capacity">Included 10% VAT</div>
 
             <div class="room-exclude">Not included</div>
@@ -43,4 +73,4 @@ $this->title = 'YourHome :: '.\Yii::t('menu', 'Rooms & Rates');
             <div class="room-exclude">- Payment at the hotel</div>
         </div>
     </div>
-<?php endfor; ?>
+<?php endforeach; ?>

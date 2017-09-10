@@ -1,5 +1,5 @@
 <?php
-namespace api\models\database;
+namespace common\api\models\database;
 
 use yii\db\ActiveRecord;
 
@@ -9,7 +9,7 @@ use yii\db\ActiveRecord;
  * @package api\models\database
  *
  * @property integer $id
- * @property string $title
+ * @property string $name
  * @property string $description
  * @property string $image
  * @property int $capacity
