@@ -58,7 +58,13 @@ class SiteController extends YourHomeController {
         return $this->render('index');
     }
 
+    public function actionRooms() {
+        $this->layout = 'side';
+        return $this->render('rooms');
+    }
+
     public function actionContact() {
+        $this->layout = 'side';
         return $this->render('contact');
     }
 

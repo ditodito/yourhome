@@ -7,7 +7,7 @@ IndexAsset::register($this);
 $this->title = 'YourHome :: '.\Yii::t('menu', 'Home');
 ?>
 
-<div class="row" style="margin-top: 15px;">
+<div class="row">
     <div class="col-md-4">
         <h4 class="title"><?=\Yii::t('contacts', 'Access Map')?></h4>
         <div id="map">map</div>

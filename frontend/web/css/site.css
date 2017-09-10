@@ -1,5 +1,4 @@
-html,
-body {
+html, body {
     height: 100%;
 }
 
@@ -26,21 +25,22 @@ body {
 .wrap {
     min-height: 100%;
     height: auto;
-    margin: 0 auto -60px;
     padding: 0 0 60px;
+    margin: 0 auto -60px;
 }
-
 .wrap > .container {
     padding: 0 15px 50px;
 }
 
+/* Header style begin */
 .header {
     /*height: 178px;*/
-    box-sizing: content-box;
     border-top: 3px solid #8bc652;
+    box-sizing: content-box;
     border-bottom: 1px solid red;
     position: relative;
     padding: 22px 0;
+    margin-bottom: 15px;
 }
 .header img.main-logo {
     /*margin-top: 22px;*/
@@ -73,9 +73,7 @@ body {
 }
 
 #languageWrapper {
-    position: absolute;
-    top: 15px;
-    right: 0;
+    float: right;
 }
 #languageWrapper > img {
     margin-right: 7px;
@@ -86,14 +84,43 @@ body {
     outline: none;
     border: 1px solid #ccc;
 }
+/* Header style end */
 
+/* Side style begin */
+div.side-banner {
+    width: 100%;
+    margin-bottom: 30px;
+}
+div.side-banner > img {
+    width: 100%;
+}
+div.side-info {
+    margin-bottom: 50px;
+}
+div.side-info > h5 {
+    font-weight: bold;
+}
+div.side-info a.more {
+    display: inline-block;
+    margin-top: 10px;
+}
+div.side-info a.more:hover {
+    text-decoration: none;
+}
+div.side-info img {
+    float: left;
+    margin-right: 10px;
+}
+/* Side style end */
 
+/* Footer style begin */
 .footer {
     height: 60px;
     background-color: #f5f5f5;
     border-top: 1px solid #ddd;
     padding-top: 20px;
 }
+/* Footer style end */
 
 .not-set {
     color: #c55;
@@ -182,3 +209,4 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+

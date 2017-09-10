@@ -1,0 +1,28 @@
+div.room-image {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+div.room-image > img {
+    width: 100%;
+}
+div.room-include {
+    font-weight: bold;
+    padding: 0 20px 5px;
+}
+div.room-include:last-child {
+    margin-bottom: 20px;
+}
+
+.room-title {
+    font-weight: bold;
+}
+div.room-capacity {
+    text-align: right;
+    font-weight: bold;
+}
+div.room-description {
+    margin: 15px 0;
+}
+div.room-exclude {
+    font-weight: bold;
+}

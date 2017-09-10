@@ -1,10 +1,10 @@
-h3 {
+h3.contact-title {
     font-style: italic;
     font-weight: bold;
-    margin-bottom: 40px;
+    margin: 0 10px 20px;
 }
 
-h5 {
+h5.info-title {
     font-weight: bold;
     display: inline-block;
     border-bottom: 1px solid #a3a3a3;
@@ -13,32 +13,4 @@ h5 {
 
 #map {
     height: 400px;
-}
-
-/*
-#banner {
-    height: 300px;
-    background: red;
-}
-*/
-
-div.side-info {
-    margin-top: 15px;
-}
-
-div.side-info > h5 {
-    border-bottom: none;
-}
-
-div.side-info a.more {
-    display: inline-block;
-    margin-top: 15px;
-}
-div.side-info a.more:hover {
-    text-decoration: none;
-}
-
-div.side-info img {
-    float: left;
-    margin-right: 10px;
 }
