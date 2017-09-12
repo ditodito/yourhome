@@ -13,7 +13,7 @@ class RoomsRow implements \JsonSerializable {
     protected $air_conditioning;
     protected $shared_bathroom;
     protected $private_bathroom;
-    protected $hairdrayer;
+    protected $hairdryer;
     protected $heating;
     protected $linen;
     protected $shared_kitchenette;
@@ -35,7 +35,7 @@ class RoomsRow implements \JsonSerializable {
         $this->air_conditioning = $row['air_conditioning'];
         $this->shared_bathroom = $row['shared_bathroom'];
         $this->private_bathroom = $row['private_bathroom'];
-        $this->hairdrayer = $row['hairdrayer'];
+        $this->hairdryer = $row['hairdrayer'];
         $this->heating = $row['heating'];
         $this->linen = $row['linen'];
         $this->shared_kitchenette = $row['shared_kitchenette'];
@@ -82,8 +82,8 @@ class RoomsRow implements \JsonSerializable {
             case 'private_bathroom':
                 return $this->private_bathroom;
                 break;
-            case 'hairdrayer':
-                return $this->hairdrayer;
+            case 'hairdryer':
+                return $this->hairdryer;
                 break;
             case 'heating':
                 return $this->heating;

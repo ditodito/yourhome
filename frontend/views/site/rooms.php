@@ -28,7 +28,7 @@ $this->title = 'YourHome :: '.\Yii::t('menu', 'Rooms & Rates');
             <?php if ($room->private_bathroom): ?>
                 <div class="room-include"><?=\Yii::t('rooms', 'Private bathroom')?></div>
             <?php endif; ?>
-            <?php if ($room->hairdrayer): ?>
+            <?php if ($room->hairdryer): ?>
                 <div class="room-include"><?=\Yii::t('rooms', 'Hairdryer')?></div>
             <?php endif; ?>
             <?php if ($room->heating): ?>
