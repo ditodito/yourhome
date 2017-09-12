@@ -1,14 +1,14 @@
 h3.contact-title {
     font-style: italic;
     font-weight: bold;
-    margin: 0 10px 20px;
+    margin: 0 0 20px 0;
 }
 
 h5.info-title {
     font-weight: bold;
     display: inline-block;
     border-bottom: 1px solid #a3a3a3;
-    margin: 0 0 15px 0;
+    margin: 0 0 10px 0;
 }
 
 #map {

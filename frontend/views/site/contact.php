@@ -10,29 +10,35 @@ $this->title = 'YourHome :: '.\Yii::t('menu', 'Contacts');
 ?>
 
 <div class="row">
-    <h3 class="contact-title">Contact</h3>
-
-    <div class="col-md-6">
-        <h5 class="info-title">Address:</h5>
-        <div>95 Mikheili Tsinamdzghvrishvili Street 0164 Tbilisi Georgia</div>
-
-        <h5 class="info-title" style="margin-top: 80px;">General information:</h5>
-        <div>95 Mikheili Tsinamdzghvrishvili Street 0164 Tbilisi</div>
-        <div>95 Mikheili Tsinamdzghvrishvili Street 0164 Tbilisi</div>
-        <div>95 Mikheili Tsinamdzghvrishvili Street 0164 Tbilisi</div>
-        <div>95 Mikheili Tsinamdzghvrishvili Street 0164 Tbilisi</div>
-
-        <h5 class="info-title" style="margin-top: 80px;">Access map</h5>
-        <div id="map">map</div>
+    <div class="col-md-12">
+        <h3 class="contact-title"><?=\Yii::t('menu', 'Contacts')?></h3>
     </div>
     <div class="col-md-6">
-        <h5>Standart</h5>
+        <h5 class="info-title"><?=\Yii::t('contacts', 'Address')?>:</h5>
+        <div style="margin-bottom: 30px;"><?=\Yii::t('contacts', '{0} Mikheili Tsinamdzghvrishvili Street, {1} Tbilisi, Georgia', [95, 0164])?></div>
+
+        <h5 class="info-title"><?=\Yii::t('contacts', 'Metro')?>:</h5>
+        <div style="margin-bottom: 30px;"><?=\Yii::t('contacts', 'Line I, Station Marjanishvili. Open hours - 06:00-24:00 (6am-12am)')?></div>
+
+        <h5 class="info-title"><?=\Yii::t('contacts', 'Bus')?>:</h5>
+        <div style="margin-bottom: 30px;">N122, <?=\Yii::t('contacts', 'Station Tsinamdzghvrishvili')?></div>
+
+        <h5 class="info-title"><?=\Yii::t('contacts', 'General information')?>:</h5>
+        <div>(+995 5) 558 48 28 88 (English)</div>
+        <div>(+995 5) 577 53 72 12 (Russian/Hebrew)</div>
+        <div>(+995 5) 577 54 75 75 (German)</div>
+
+        <h5 class="info-title" style="margin-top: 50px;"><?=\Yii::t('contacts', 'Access Map')?></h5>
+        <div id="map"></div>
+    </div>
+    <div class="col-md-6">
+        <h5 class="info-title">Standard</h5>
         <p>
-            Tel / Fax:<br />
+            <?=\Yii::t('contacts', 'Tel')?> / <?=\Yii::t('contacts', 'Fax')?>:<br />
             (+995 32) 221-00-00 (Georgian)
         </p>
         <p>
-            Mail:<br />
+            <?=\Yii::t('contacts', 'E-mail')?>:<br />
             yourhome@gmail.com
         </p>
     </div>

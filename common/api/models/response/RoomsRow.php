@@ -25,8 +25,8 @@ class RoomsRow implements \JsonSerializable {
 
     public function __construct($row) {
         $this->id = $row['id'];
-        $this->name = $row['name'];
-        $this->description = $row['description'];
+        $this->name = \Yii::t('rooms', $row['name']);
+        $this->description = \Yii::t('rooms', $row['description']);
         $this->image = $row['image'];
         $this->capacity = $row['capacity'];
         $this->price = $row['price'];
