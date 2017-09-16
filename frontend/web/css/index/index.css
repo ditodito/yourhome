@@ -1,4 +1,4 @@
-h4.title {
+.title {
     font-size: 14px;
     font-weight: bold;
     margin-top: 0;
@@ -13,14 +13,17 @@ div.contact-info {
     padding-left: 15px;
     margin-top: 15px;
 }
+
 div.contact-info > div {
     font-size: 13px;
     margin-bottom: 20px;
 }
+
 div.about {
     border-left: 1px solid #81669d;
     border-right: 1px solid #81669d;
 }
+
 div.more a {
     color: #3399ff;
     text-decoration: underline;

@@ -8,7 +8,7 @@ $this->title = 'YourHome :: '.\Yii::t('menu', 'Home');
 ?>
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4 form-group">
         <h4 class="title"><?=\Yii::t('contacts', 'Access Map')?></h4>
         <div id="map"></div>
 
@@ -29,7 +29,7 @@ $this->title = 'YourHome :: '.\Yii::t('menu', 'Home');
             <div>yourhometbilisi@yahoo.com</div>
         </div>
     </div>
-    <div class="col-md-5 about">
+    <div class="col-md-5 form-group about">
         <h4 class="title"><?=\Yii::t('main', 'About Hotel')?></h4>
 
         <?php if (\Yii::$app->language == 'ka-GE'): ?>
@@ -76,7 +76,7 @@ $this->title = 'YourHome :: '.\Yii::t('menu', 'Home');
             <p>The Hotel "Your Home" welcomes you!</p>
         <?php endif; ?>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-3 form-group">
         <h4 class="title"><?=\Yii::t('main', 'Facilities')?></h4>
         <div><?=\Yii::t('main', 'Free')?> WiFi</div>
         <div><?=\Yii::t('main', 'Free private parking')?></div>

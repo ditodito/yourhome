@@ -36,11 +36,8 @@ html, body {
 .header {
     /*height: 178px;*/
     border-top: 3px solid #8bc652;
-    box-sizing: content-box;
-    border-bottom: 1px solid red;
-    position: relative;
+    dposition: relative;
     padding: 22px 0;
-    margin-bottom: 15px;
 }
 .header img.main-logo {
     /*margin-top: 22px;*/
@@ -49,7 +46,7 @@ html, body {
     list-style-type: none;
     display: inline-block;
     background: #f3f3f3;
-    position: absolute;
+    dposition: absolute;
     bottom: 22px;
     padding: 15px 0;
     margin: 0 0 0 60px;
@@ -83,6 +80,13 @@ html, body {
 #languages {
     outline: none;
     border: 1px solid #ccc;
+}
+
+div.header-img {
+    height: 340px;
+    background: url('../img/header.jpg') center no-repeat;
+    background-size: cover;
+    margin-top: 22px;
 }
 /* Header style end */
 

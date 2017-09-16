@@ -25,4 +25,5 @@ use yii\helpers\Url;
             </select>
         </div>
     </div>
+    <div class="header-img"></div>
 </header>

@@ -28,22 +28,20 @@ AppAsset::register($this);
 <body>
 <body>
 <?php $this->beginBody(); ?>
-
     <div class="wrap">
         <?php include('blocks/header.php'); ?>
 
         <div class="container">
             <div class="row">
-                <div class="col-md-9">
+                <div class="col-md-9 form-group">
                     <?=$content?>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 form-group">
                     <?php include('blocks/side.php'); ?>
                 </div>
             </div>
         </div>
     </div>
-
     <?php include('blocks/footer.php'); ?>
 <?php $this->endBody(); ?>
 </body>

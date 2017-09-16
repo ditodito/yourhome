@@ -1,7 +1,11 @@
-h3.contact-title {
+.page-title {
     font-style: italic;
     font-weight: bold;
     margin: 0 0 20px 0;
+}
+
+.info-wrapper {
+    margin-bottom: 30px;
 }
 
 h5.info-title {
