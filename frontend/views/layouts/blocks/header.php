@@ -4,8 +4,8 @@ use yii\helpers\Url;
 ?>
 
 <header class="header">
-    <div class="container">
-        <?=Html::img('@web/img/logo.png', ['height' => 126, 'alt' => 'YourHome'])?>
+    <div class="container" style="position: relative;">
+        <?=Html::img('@web/img/logo.png', ['class' => 'logo', 'alt' => 'YourHome'])?>
 
         <ul class="menu">
             <li><?=Html::a(\Yii::t('menu', 'Home'), ['/site/index'])?></li>

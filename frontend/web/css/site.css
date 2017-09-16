@@ -3,22 +3,26 @@ html, body {
 }
 
 @media screen and (min-width: 1200px) {
-    .header img.main-logo {
+    /*.header img.main-logo {
         height: 126px;
     }
 
     .menu {
         display: block;
-    }
+    }*/
 }
 
 @media screen and (max-width: 1200px) {
-    .header img.main-logo {
-        height: 50px;
+    .logo {
+        height: 50px !important;
     }
 
     .menu {
         display: none !important;
+    }
+
+    div.header-img {
+        height: 150px !important;
     }
 }
 
@@ -34,20 +38,18 @@ html, body {
 
 /* Header style begin */
 .header {
-    /*height: 178px;*/
     border-top: 3px solid #8bc652;
-    dposition: relative;
     padding: 22px 0;
 }
-.header img.main-logo {
-    /*margin-top: 22px;*/
+.logo {
+    height: 126px;
 }
 .menu {
     list-style-type: none;
     display: inline-block;
     background: #f3f3f3;
-    dposition: absolute;
-    bottom: 22px;
+    position: absolute;
+    bottom: 0;
     padding: 15px 0;
     margin: 0 0 0 60px;
 }
