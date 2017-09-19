@@ -6,7 +6,7 @@ use yii\captcha\Captcha;
 
 ContactAsset::register($this);
 
-$this->title = 'YourHome :: '.\Yii::t('menu', 'Contacts');
+$this->title = 'YourHomeHotel :: '.\Yii::t('menu', 'Contacts');
 ?>
 
 <h3 class="page-title"><?=\Yii::t('menu', 'Contacts')?></h3>

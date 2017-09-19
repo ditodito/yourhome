@@ -10,7 +10,7 @@ use yii\helpers\Url;
         <ul class="menu">
             <li><?=Html::a(\Yii::t('menu', 'Home'), ['/site/index'])?></li>
             <li><?=Html::a(\Yii::t('menu', 'Rooms & Rates'), ['/site/rooms'])?></li>
-            <li><?=Html::a(\Yii::t('menu', 'Service'), ['/site/index'])?></li>
+            <li><?=Html::a(\Yii::t('menu', 'Service'), ['/site/services'])?></li>
             <li><?=Html::a(\Yii::t('menu', 'Photo Gallery'), ['/site/index'])?></li>
             <li><?=Html::a(\Yii::t('menu', 'Contacts'), ['/site/contact'])?></li>
             <li><?=Html::a(\Yii::t('menu', 'Our Tours'), ['/site/contact'])?></li>

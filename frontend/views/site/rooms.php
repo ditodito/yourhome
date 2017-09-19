@@ -4,7 +4,7 @@ use yii\helpers\Html;
 
 RoomsAsset::register($this);
 
-$this->title = 'YourHome :: '.\Yii::t('menu', 'Rooms & Rates');
+$this->title = 'YourHomeHotel :: '.\Yii::t('menu', 'Rooms & Rates');
 ?>
 
 <?php foreach($rooms as $room): ?>

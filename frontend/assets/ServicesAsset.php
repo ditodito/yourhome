@@ -3,13 +3,13 @@ namespace frontend\assets;
 
 use yii\web\AssetBundle;
 
-class RoomsAsset extends AssetBundle {
+class ServicesAsset extends AssetBundle {
 
     public $basePath = '@webroot';
     public $baseUrl = '@web';
 
     public $css = [
-        'css/rooms/rooms.css',
+        'css/services/services.css',
     ];
 
     public $depends = [

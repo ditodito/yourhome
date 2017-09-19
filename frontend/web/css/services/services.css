@@ -1,0 +1,35 @@
+.page-title {
+    font-style: italic;
+    font-weight: bold;
+    margin: 0 0 20px 0;
+}
+
+.service-wrapper {
+    margin-bottom: 5px;
+}
+
+.service-title {
+    font-weight: bold;
+}
+
+.service-item {
+    padding-left: 25px;
+}
+
+ul.service-list {
+    padding: 0;
+    list-style-position: inside;
+    margin-top: 15px;
+}
+
+.other-info-title {
+    font-weight: bold;
+    border-bottom: 1px solid #000;
+    display: inline-block;
+    padding-bottom: 2px;
+}
+
+div.dgg {
+    text-align: right;
+    margin-top: 50px;
+}

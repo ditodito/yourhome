@@ -4,7 +4,7 @@ use yii\bootstrap\Html;
 
 IndexAsset::register($this);
 
-$this->title = 'YourHome :: '.\Yii::t('menu', 'Home');
+$this->title = 'YourHomeHotel :: '.\Yii::t('menu', 'Home');
 ?>
 
 <div class="row">
@@ -79,12 +79,12 @@ $this->title = 'YourHome :: '.\Yii::t('menu', 'Home');
     <div class="col-md-3 form-group">
         <h4 class="title"><?=\Yii::t('main', 'Facilities')?></h4>
         <div><?=\Yii::t('main', 'Free')?> WiFi</div>
-        <div><?=\Yii::t('main', 'Free private parking')?></div>
-        <div><?=\Yii::t('main', '24-hour front desk')?></div>
-        <div><?=\Yii::t('main', 'Luggage storage')?></div>
+        <div><?=\Yii::t('services', 'Free private parking')?></div>
+        <div><?=\Yii::t('services', '24-hour front desk')?></div>
+        <div><?=\Yii::t('services', 'Luggage storage')?></div>
         <div><?=\Yii::t('main', 'Kitchenette')?></div>
-        <div><?=\Yii::t('main', 'Airport Transfer(upon request)')?></div>
-        <div class="more"><?=Html::a(\Yii::t('main', 'more').'...', ['/more'])?></div>
+        <div><?=\Yii::t('services', 'Airport transfer(upon request)')?></div>
+        <div class="more"><?=Html::a(\Yii::t('main', 'more').'...', ['/site/services'])?></div>
 
         <h4 class="title" style="margin-top: 20px;"><?=\Yii::t('menu', 'Our Tours')?></h4>
         <div><?=\Yii::t('tours', 'Discover Georgia with us, we organize the different excursions')?></div>

@@ -61,13 +61,23 @@ class SiteController extends YourHomeController {
 
     public function actionRooms() {
         $this->layout = 'side';
+
         return $this->render('rooms', [
+            'rooms' => RoomsActions::getRooms()
+        ]);
+    }
+
+    public function actionServices() {
+        $this->layout = 'side';
+
+        return $this->render('services', [
             'rooms' => RoomsActions::getRooms()
         ]);
     }
 
     public function actionContact() {
         $this->layout = 'side';
+
         return $this->render('contact');
     }
 

@@ -6,9 +6,9 @@
 </div>
 
 <div class="side-info">
-    <h5>Our additional services and facilities</h5>
-    <div>- Airport transfer</div>
-    <div>- 25-hour front desc</div>
+    <h5><?=\Yii::t('services', 'Our additional services and facilities')?></h5>
+    <div>- <?=\Yii::t('services', 'Airport transfer(upon request)')?></div>
+    <div>- <?=\Yii::t('services', '24-hour front desk')?></div>
     <?=Html::a('more...', ['/site/services'], ['class' => 'more'])?>
 </div>
 
