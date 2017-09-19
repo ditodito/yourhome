@@ -1,10 +1,12 @@
 <?php
 namespace frontend\controllers;
 
+use common\api\actions\GalleryActions;
 use common\api\actions\RoomsActions;
 use common\controllers\YourHomeController;
 use Yii;
 use yii\base\InvalidParamException;
+use yii\helpers\FileHelper;
 use yii\web\BadRequestHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
@@ -70,8 +72,20 @@ class SiteController extends YourHomeController {
     public function actionServices() {
         $this->layout = 'side';
 
-        return $this->render('services', [
-            'rooms' => RoomsActions::getRooms()
+        return $this->render('services');
+    }
+
+    public function actionGallery() {
+        $this->layout = 'side';
+
+        $images = [];
+        $dir_images = FileHelper::findFiles(\Yii::getAlias('@webroot/img/gallery'));
+        foreach($dir_images as $image) {
+            $images[] = basename($image);
+        }
+
+        return $this->render('gallery', [
+            'images' => GalleryActions::getGalleryImages()
         ]);
     }
 
@@ -111,10 +125,6 @@ class SiteController extends YourHomeController {
         Yii::$app->user->logout();
 
         return $this->goHome();
-    }
-
-    public function actionAbout() {
-        return $this->render('about');
     }
 
     public function actionSignup() {
