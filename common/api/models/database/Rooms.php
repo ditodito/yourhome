@@ -29,7 +29,6 @@ use yii\db\ActiveRecord;
  * @property int $towels
  * @property int $slippers
  */
-
 class Rooms extends ActiveRecord {
 
     public static function tableName() {

@@ -78,12 +78,6 @@ class SiteController extends YourHomeController {
     public function actionGallery() {
         $this->layout = 'side';
 
-        $images = [];
-        $dir_images = FileHelper::findFiles(\Yii::getAlias('@webroot/img/gallery'));
-        foreach($dir_images as $image) {
-            $images[] = basename($image);
-        }
-
         return $this->render('gallery', [
             'images' => GalleryActions::getGalleryImages()
         ]);

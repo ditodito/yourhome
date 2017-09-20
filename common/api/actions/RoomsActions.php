@@ -7,10 +7,10 @@ use common\api\models\response\RoomsRow;
 class RoomsActions {
 
     public static function getRooms() {
-        $rooms = Rooms::find()->all();
+        $rows = Rooms::find()->all();
         $result = [];
-        foreach($rooms as $room) {
-            $result[] = new RoomsRow($room);
+        foreach($rows as $row) {
+            $result[] = new RoomsRow($row);
         }
         return $result;
     }
