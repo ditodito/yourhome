@@ -9,6 +9,32 @@
     margin-bottom: 30px;
 }
 
+div.img-main-wrapper {
+    position: relative;
+}
+
+span.next, span.prev {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    user-select: none;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background: #fff;
+    position: absolute;
+    top: 50%;
+}
+
+span.prev {
+    left: 10px;
+}
+
+span.next {
+    right: 10px;
+}
+
 img.img-main {
     width: 100%;
     height: 630px;
