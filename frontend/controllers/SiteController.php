@@ -18,7 +18,7 @@ use frontend\models\ContactForm;
 
 class SiteController extends YourHomeController {
 
-    public function behaviors() {
+    /*public function behaviors() {
         return [
             'access' => [
                 'class' => AccessControl::className(),
@@ -43,7 +43,7 @@ class SiteController extends YourHomeController {
                 ],
             ],
         ];
-    }
+    }*/
 
     public function actions() {
         return [

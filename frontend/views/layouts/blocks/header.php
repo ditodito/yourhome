@@ -8,12 +8,12 @@ use yii\helpers\Url;
         <?=Html::img('@web/img/logo.png', ['class' => 'logo', 'alt' => 'YourHome'])?>
 
         <ul class="menu">
-            <li><?=Html::a(\Yii::t('menu', 'Home'), ['/site/index'])?></li>
+            <li><?=Html::a(\Yii::t('menu', 'Home'), ['/site'])?></li>
             <li><?=Html::a(\Yii::t('menu', 'Rooms & Rates'), ['/site/rooms'])?></li>
             <li><?=Html::a(\Yii::t('menu', 'Service'), ['/site/services'])?></li>
             <li><?=Html::a(\Yii::t('menu', 'Photo Gallery'), ['/site/gallery'])?></li>
             <li><?=Html::a(\Yii::t('menu', 'Contacts'), ['/site/contact'])?></li>
-            <li><?=Html::a(\Yii::t('menu', 'Our Tours'), ['/site/contact'])?></li>
+            <li><?=Html::a(\Yii::t('menu', 'Our Tours'), ['/tours'])?></li>
         </ul>
 
         <div id="languageWrapper">
