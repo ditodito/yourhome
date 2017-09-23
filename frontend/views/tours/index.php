@@ -7,7 +7,6 @@ IndexAsset::register($this);
 $this->title = 'YourHomeHotel :: '.\Yii::t('menu', 'Our Tours');
 ?>
 
-
 <h3 class="page-title"><?=\Yii::t('tours', 'Our tours in Georgia')?></h3>
 <p><?=\Yii::t('tours', 'Here you can find our most popular tours. We also make all tours according to your request and number of days')?>.</p>
 <p><?=\Yii::t('tours', 'Request information on excursions at {0} Hotel Desk', ['"Your Home"'])?>.</p>
