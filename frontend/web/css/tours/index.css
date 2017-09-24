@@ -4,28 +4,8 @@
     margin: 0 0 20px 0;
 }
 
-div.tour-container {
-    display: flex;
-    display: -webkit-flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    -webkit-justify-content: space-between;
-    margin-top: 20px;
-}
-
-div.tour-wrapper {
-    width: 250px;
-    margin-right: 15px;
-    margin-bottom: 15px;
-}
-
-div.tour-wrapper > img {
+img.img-rounded {
     width: 100%;
-    height: 150px;
-    object-fit: cover;
-}
-
-div.tour-wrapper > div {
-    text-align: center;
-    padding: 5px;
+    height: 160px;
+    /*object-fit: cover;*/
 }

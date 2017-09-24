@@ -12,7 +12,17 @@ class ToursActions {
         $result = [];
 
         foreach($rows as $row) {
-            $result[] = new ToursRow($row['id'], $row['title_'.\Yii::$app->language], $row['image']);
+            switch(\Yii::$app->language) {
+                case 'ka-GE':
+                    $title = $row['title_ge'];
+                    break;
+                case 'ru-RU':
+                    $title = $row['title_ru'];
+                    break;
+                default:
+                    $title = $row['title_us'];
+            }
+            $result[] = new ToursRow($row['id'], $title, $row['image']);
         }
 
         return $result;
@@ -22,7 +32,22 @@ class ToursActions {
         $row = Tours::findOne(['id' => $id]);
         if (!$row)
             return null;
-        return new ToursDetailsRow($row['id'], $row['title_'.\Yii::$app->language], $row['text_'.\Yii::$app->language], $row['image']);
+
+        switch(\Yii::$app->language) {
+            case 'ka-GE':
+                $title = $row['title_ge'];
+                $text = $row['text_ge'];
+                break;
+            case 'ru-RU':
+                $title = $row['title_ru'];
+                $text = $row['text_ru'];
+                break;
+            default:
+                $title = $row['title_us'];
+                $text = $row['text_us'];
+        }
+
+        return new ToursDetailsRow($row['id'], $title, $text, $row['image']);
     }
 
 }
