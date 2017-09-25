@@ -2,6 +2,7 @@
 use dosamigos\tinymce\TinyMce;
 use yii\bootstrap\ActiveForm;
 use yii\bootstrap\Html;
+use yii\helpers\ArrayHelper;
 
 $this->title = 'YourHomeHotel :: Admin Page';
 ?>
@@ -13,6 +14,7 @@ $this->title = 'YourHomeHotel :: Admin Page';
     ]
 ]); ?>
     <?=Html::activeHiddenInput($model, 'id')?>
+    <?=$form->field($model, 'duration_id')->dropDownList(ArrayHelper::map($durations, 'id', 'name'))->error(false)?>
     <?=$form->field($model, 'title_us')->error(false)?>
     <?=$form->field($model, 'title_ge')->error(false)?>
     <?=$form->field($model, 'title_ru')->error(false)?>

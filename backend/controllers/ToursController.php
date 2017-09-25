@@ -52,6 +52,7 @@ class ToursController extends Controller {
                 throw new NotFoundHttpException('Data not found');
             }
             $model->id = $tour->id;
+            $model->duration_id = $tour->duration_id;
             $model->title_us = $tour->title_us;
             $model->title_ge = $tour->title_ge;
             $model->title_ru = $tour->title_ru;
@@ -62,7 +63,8 @@ class ToursController extends Controller {
         }
 
         return $this->render('details', [
-            'model' => $model
+            'model' => $model,
+            'durations' => ToursActions::getToursDurations()
         ]);
     }
 

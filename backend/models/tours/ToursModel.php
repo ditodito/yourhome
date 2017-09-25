@@ -7,6 +7,7 @@ use yii\web\UploadedFile;
 
 class ToursModel extends Model {
     public $id;
+    public $duration_id;
     public $title_us;
     public $title_ge;
     public $title_ru;
@@ -17,9 +18,10 @@ class ToursModel extends Model {
 
     public function rules() {
         return [
-            [['title_us', 'title_ge', 'title_ru'], 'required'],
+            [['duration_id', 'title_us', 'title_ge', 'title_ru'], 'required'],
             [['title_us', 'title_ge', 'title_ru', 'text_us', 'text_ge', 'text_ru'], 'trim'],
             ['id', 'safe'],
+            ['duration_id', 'integer', 'min' => 1],
             ['image', 'file', 'extensions' => ['jpg', 'png'], 'maxSize' => 1024 * 500,
                 'wrongExtension' => 'აირჩიეთ შემდეგი ფორმატის სურათი: jpg, png',
                 'tooBig' => 'სურათის ზომა არ უნდა აღემატებოდეს 500 KB-ს'
@@ -29,6 +31,7 @@ class ToursModel extends Model {
 
     public function attributeLabels() {
         return [
+            'duration_id' => 'ტურის ხანგრძლივობა',
             'title_us' => 'დასახელება (US)',
             'title_ge' => 'დასახელება (GE)',
             'title_ru' => 'დასახელება (RU)',
@@ -62,6 +65,7 @@ class ToursModel extends Model {
         } else {
             $tour = new Tours();
         }
+        $tour->duration_id = $this->duration_id;
         $tour->title_us = $this->title_us;
         $tour->title_ge = $this->title_ge;
         $tour->title_ru = $this->title_ru;

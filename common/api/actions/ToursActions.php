@@ -54,6 +54,18 @@ class ToursActions {
         return new ToursDetailsRow($row['id'], $title, $text, $row['image']);
     }
 
+    public static function getToursDurations() {
+        $rows = ToursDurations::find()->all();
+        $result = [];
+
+        foreach($rows as $row) {
+            $duration = new IdNamePair($row['id'], $row['name']);
+            $result[] = $duration;
+        }
+
+        return $result;
+    }
+
     public static function getToursDurationsNav() {
         $result = [];
 
