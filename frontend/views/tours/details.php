@@ -8,5 +8,5 @@ $this->title = 'YourHomeHotel :: '.$tour->title;
 ?>
 
 <h3 class="page-title"><?=$tour->title?></h3>
-<div><?=$tour->text?></div>
-<?=Html::a('უკან გასვლა', Yii::$app->request->referrer)?>
+<div class="page-content"><?=$tour->text?></div>
+&laquo; <?=Html::a(\Yii::t('main', 'Back'), ['/tours'], ['class' => 'back'])?>

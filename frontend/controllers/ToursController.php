@@ -8,15 +8,18 @@ use yii\web\NotFoundHttpException;
 class ToursController extends YourHomeController {
 
     public function actionIndex() {
-        $this->layout = 'side';
+        $this->layout = 'tours';
+        $this->view->params['tours_durations'] = ToursActions::getToursDurationsNav(); // send data from controller to tours layout
 
         return $this->render('index', [
-            'tours' => ToursActions::getTours()
+            'tours' => ToursActions::getTours(),
+            'tours_durations' => ToursActions::getToursDurationsNav()
         ]);
     }
 
     public function actionDetails($id) {
-        $this->layout = 'side';
+        $this->layout = 'tours';
+        $this->view->params['tours_durations'] = ToursActions::getToursDurationsNav(); // send data from controller to tours layout
 
         $tour = ToursActions::getTour($id);
         if (!$tour) {
