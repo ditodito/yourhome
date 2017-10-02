@@ -1,4 +1,5 @@
 <?php
+use kartik\datetime\DateTimePicker;
 use yii\helpers\Html;
 use yii\helpers\Url;
 ?>
@@ -27,5 +28,73 @@ use yii\helpers\Url;
             </div>
         </div>
     </div>
+
+    <?php if (\Yii::$app->controller->id === 'site' && \Yii::$app->controller->action->id === 'index'): ?>
+        <div class="header-reservation">
+            <div><?=\Yii::t('order', 'Online reservation')?></div>
+            <div>
+                <div></div>
+                <div>
+                    <div style="width: 120px; margin: 10px 30px 0 50px; float: left;">
+                        <label class="control-label"><?=\Yii::t('order', 'Check-in')?></label>
+                        <?=DateTimePicker::widget([
+                            'name' => 'check_in',
+                            'type' => DateTimePicker::TYPE_COMPONENT_APPEND,
+                            'size' => 'sm',
+                            'pickerButton' => [
+                                'title' => null,
+                                'style' => 'background-color: #fff; border: none; border-radius: 0;'
+                            ],
+                            'removeButton' => false,
+                            'options' => [
+                                'style' => 'outline: none; border: none; border-radius: 0;'
+                            ],
+                            'convertFormat' => true,
+                            'pluginOptions' => [
+                                //'startDate' => date('m/d/Y', time()),
+                                'autoclose' => true,
+                                'format' => 'mm/dd/yyyy',
+                                'maxView' => 2,
+                                'minView' => 2,
+                            ]
+                        ])?>
+                    </div>
+                    <div style="width: 120px; margin-top: 10px; margin-right: 30px; float: left;">
+                        <label class="control-label"><?=\Yii::t('order', 'Check-out')?></label>
+                        <?=DateTimePicker::widget([
+                            'name' => 'check_out',
+                            'type' => DateTimePicker::TYPE_COMPONENT_APPEND,
+                            'size' => 'sm',
+                            'pickerButton' => [
+                                'title' => null,
+                                'style' => 'background-color: #fff; border: none; border-radius: 0;'
+                            ],
+                            'removeButton' => false,
+                            'options' => [
+                                'style' => 'outline:none; border: none; border-radius: 0;'
+                            ],
+                            'convertFormat' => true,
+                            'pluginOptions' => [
+                                //'startDate' => date('m/d/Y', time()),
+                                'autoclose' => true,
+                                'format' => 'mm/dd/yyyy',
+                                'maxView' => 2,
+                                'minView' => 2,
+                            ]
+                        ])?>
+                    </div>
+                    <div style="margin-top: 10px; float: left;">
+                        <label class="control-label"><?=\Yii::t('rooms', 'Room')?></label>
+                        <select class="form-control input-sm" style="outline: none; border: 0; border-radius: 0;">
+                            <option>Room1</option>
+                            <option>Room1</option>
+                            <option>Room1</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+
     <div class="header-img"></div>
 </header>
