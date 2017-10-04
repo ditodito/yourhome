@@ -16,27 +16,31 @@ use yii\db\ActiveRecord;
  * @property string $description_ge
  * @property string $description_ru
  * @property string $image
- * @property int $capacity
- * @property int $price
- * @property int $free_wifi
- * @property int $tv
- * @property int $air_conditioning
- * @property int $shared_bathroom
- * @property int $private_bathroom
- * @property int $hairdrayer
- * @property int $heating
- * @property int $linen
- * @property int $shared_kitchenette
- * @property int $private_kitchenette
- * @property int $non_smoking
- * @property int $toiletries
- * @property int $towels
- * @property int $slippers
+ * @property integer $capacity
+ * @property integer $price
+ * @property integer $free_wifi
+ * @property integer $tv
+ * @property integer $air_conditioning
+ * @property integer $shared_bathroom
+ * @property integer $private_bathroom
+ * @property integer $hairdrayer
+ * @property integer $heating
+ * @property integer $linen
+ * @property integer $shared_kitchenette
+ * @property integer $private_kitchenette
+ * @property integer $non_smoking
+ * @property integer $toiletries
+ * @property integer $towels
+ * @property integer $slippers
  */
 class Rooms extends ActiveRecord {
 
     public static function tableName() {
         return 'rooms';
+    }
+
+    public function getOrders() {
+        return $this->hasMany(Orders::className(), ['room_id' => 'id']);
     }
 
 }

@@ -131,10 +131,9 @@ div.reservation-input {
     float: left;
 }
 
-div.reservation-input:last-child {
-    width: auto;
-    background: red;
-}
+/*div.reservation-input:last-child {
+    background: green;
+}*/
 /* Header style end */
 
 /* Side style begin */
