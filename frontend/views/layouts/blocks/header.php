@@ -1,4 +1,5 @@
 <?php
+use common\api\actions\RoomsActions;
 use kartik\datetime\DateTimePicker;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -35,7 +36,7 @@ use yii\helpers\Url;
             <div>
                 <div></div>
                 <div>
-                    <div style="width: 120px; margin: 10px 30px 0 50px; float: left;">
+                    <div class="reservation-input">
                         <label class="control-label"><?=\Yii::t('order', 'Check-in')?></label>
                         <?=DateTimePicker::widget([
                             'name' => 'check_in',
@@ -59,7 +60,7 @@ use yii\helpers\Url;
                             ]
                         ])?>
                     </div>
-                    <div style="width: 120px; margin-top: 10px; margin-right: 30px; float: left;">
+                    <div class="reservation-input">
                         <label class="control-label"><?=\Yii::t('order', 'Check-out')?></label>
                         <?=DateTimePicker::widget([
                             'name' => 'check_out',
@@ -83,13 +84,17 @@ use yii\helpers\Url;
                             ]
                         ])?>
                     </div>
-                    <div style="margin-top: 10px; float: left;">
+                    <div class="reservation-input" style="width: 200px;">
                         <label class="control-label"><?=\Yii::t('rooms', 'Room')?></label>
-                        <select class="form-control input-sm" style="outline: none; border: 0; border-radius: 0;">
-                            <option>Room1</option>
-                            <option>Room1</option>
-                            <option>Room1</option>
+                        <select class="form-control input-sm" style="border: 0; border-radius: 0;">
+                            <?php foreach(RoomsActions::getRoomsTitle() as $room): ?>
+                                <option value="<?=$room->id?>"><?=$room->name?></option>
+                            <?php endforeach; ?>
                         </select>
+                    </div>
+                    <div class="reservation-input">
+                        <label class="control-label">&nbsp;</label>
+                        <input type="submit" style="background-color: #8b7d72; padding: 5px 10px; color: #fff;" />Book Now</input>
                     </div>
                 </div>
             </div>

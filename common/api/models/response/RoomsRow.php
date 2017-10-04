@@ -25,8 +25,8 @@ class RoomsRow implements \JsonSerializable {
 
     public function __construct($row) {
         $this->id = $row['id'];
-        $this->name = \Yii::t('rooms', $row['name']);
-        $this->description = \Yii::t('rooms', $row['description']);
+        $this->name = self::resolveName($row, true);
+        $this->description = self::resolveName($row, false);
         $this->image = $row['image'];
         $this->capacity = $row['capacity'];
         $this->price = $row['price'];
@@ -45,6 +45,20 @@ class RoomsRow implements \JsonSerializable {
         $this->towels = $row['towels'];
         $this->slippers = $row['slippers'];
 
+    }
+
+    private function resolveName($row, $for_name) {
+        switch(\Yii::$app->language) {
+            case 'ka-GE':
+                $title = ($for_name) ? $row['name_ge'] : $row['description_ge'];
+                break;
+            case 'ru-RU':
+                $title = ($for_name) ? $row['name_ru'] : $row['description_ru'];
+                break;
+            default:
+                $title = ($for_name) ? $row['name_us'] : $row['description_us'];
+        }
+        return $title;
     }
 
     public function __get($field) {

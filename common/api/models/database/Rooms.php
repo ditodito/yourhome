@@ -9,8 +9,12 @@ use yii\db\ActiveRecord;
  * @package api\models\database
  *
  * @property integer $id
- * @property string $name
- * @property string $description
+ * @property string $name_us
+ * @property string $name_ge
+ * @property string $name_ru
+ * @property string $description_us
+ * @property string $description_ge
+ * @property string $description_ru
  * @property string $image
  * @property int $capacity
  * @property int $price
