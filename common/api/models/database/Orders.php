@@ -11,8 +11,8 @@ use yii\db\ActiveRecord;
  * @property integer $id
  * @property integer $room_id
  * @property integer $capacity
- * @property integer $start_date
- * @property integer $end_date
+ * @property mixed $start_date
+ * @property mixed $end_date
  * @property integer $status
  * @property integer $description_ru
  * @property integer $image
