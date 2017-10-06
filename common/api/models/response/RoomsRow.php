@@ -50,15 +50,15 @@ class RoomsRow implements \JsonSerializable {
     private function resolveName($row, $for_name) {
         switch(\Yii::$app->language) {
             case 'ka-GE':
-                $title = ($for_name) ? $row['name_ge'] : $row['description_ge'];
+                $name = ($for_name) ? $row['name_ge'] : $row['description_ge'];
                 break;
             case 'ru-RU':
-                $title = ($for_name) ? $row['name_ru'] : $row['description_ru'];
+                $name = ($for_name) ? $row['name_ru'] : $row['description_ru'];
                 break;
             default:
-                $title = ($for_name) ? $row['name_us'] : $row['description_us'];
+                $name = ($for_name) ? $row['name_us'] : $row['description_us'];
         }
-        return $title;
+        return $name;
     }
 
     public function __get($field) {
