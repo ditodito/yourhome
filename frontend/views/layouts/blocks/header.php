@@ -112,11 +112,6 @@ $order_form = new OrderForm();
                             <?=Html::activeInput('text', $order_form, 'end_date', ['class' => 'form-control input-sm', 'style' => 'border: none; border-radius: 0;'])?>
                             <?php //$form->field($order_form, 'end_date')->label(false)->error(false); ?>
                         </div>
-                        <div class="reservation-input" style="width: 200px;">
-                            <label class="control-label"><?=\Yii::t('rooms', 'Room')?></label>
-                            <?=Html::activeDropDownList($order_form, 'room_id', ArrayHelper::map(RoomsActions::getRoomsTitle(), 'id', 'name'), ['class' => 'form-control input-sm', 'style' => 'border: none; border-radius: 0;'])?>
-                            <?php //$form->field($order_form, 'room_id')->dropDownList(ArrayHelper::map(RoomsActions::getRoomsTitle(), 'id', 'name'))->label(false)->error(false)?>
-                        </div>
                         <div class="reservation-input">
                             <label class="control-label">&nbsp;</label>
                             <?=Html::submitButton('Book Now', ['style' => 'color: #fff; display: block; outline: none; border: none; background-color: #8b7d72; padding: 5px 10px;'])?>

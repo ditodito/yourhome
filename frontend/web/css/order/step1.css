@@ -1,0 +1,41 @@
+table.available-rooms {
+    margin-top: 30px;
+}
+
+table.available-rooms thead {
+    background-color: #aed786;
+}
+
+table.available-rooms thead th {
+    border-bottom: 5px solid #fff;
+}
+
+table.available-rooms thead th:nth-child(2) {
+    background-color: #8bc652;
+}
+
+table.available-rooms tbody tr:not(:last-child) {
+    background-color: #e8f4dc;
+}
+
+table.available-rooms tbody td {
+    vertical-align: middle;
+    border-bottom: 3px solid #fff;
+}
+
+table.available-rooms tbody tr:not(:last-child) td:nth-child(2) {
+    border-right: 1px solid #8bc652;
+    border-left: 1px solid #8bc652;
+}
+
+select.room-quantity {
+    width: 100px;
+    outline: none;
+    border: none;
+    background-color: #aed786;
+    padding: 4px;
+}
+
+select.room-quantity > option {
+    background-color: #fff;
+}

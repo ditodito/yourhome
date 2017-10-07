@@ -1,0 +1,7 @@
+#orderForm input, #orderForm textarea {
+    border-radius: 0;
+}
+
+#orderForm .control-label {
+    color: #000;
+}

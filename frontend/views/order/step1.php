@@ -1,4 +1,8 @@
 <?php
+use frontend\assets\order\Step1Asset;
+use yii\bootstrap\Html;
+
+Step1Asset::register($this);
 ?>
 
 <div class="row">
@@ -6,7 +10,7 @@
         <div style="background-color: #a7d47b; padding: 10px;">
             Your price summary
             <div style="margin-top: 10px; font-weight: bold;">
-                <?=\Yii::t('order', 'Price')?> <span style="float: right;">GEL <?=$price?></span>
+                <?=\Yii::t('order', 'Price')?> <span id="price" style="float: right;">GEL <span>0</span></span>
             </div>
         </div>
         <div style="background-color: #e8f4dc; margin-bottom: 40px; padding: 10px;">
@@ -45,34 +49,42 @@
             <div style="width: 25%;">4</div>
         </div>
 
-        <table class="table" style="margin-top: 30px;">
-            <thead>
-                <tr style="background-color: #aed786">
-                    <th style="border-bottom: 5px solid #fff;"><?=\Yii::t('rooms', 'Room')?></th>
-                    <th style="background-color: #8bc652;border-bottom: 5px solid #fff;"><?=\Yii::t('order', 'Price')?></th>
-                    <th style="border-bottom: 5px solid #fff;">Quantity</th>
-                    <th style="border-bottom: 5px solid #fff;">Confirm</th>
-                </tr>
-            </thead>
-            <?php foreach($available_rooms as $room): ?>
+        <?=Html::beginForm(['/order/step2'])?>
+            <?=Html::hiddenInput('start_date', $start_date)?>
+            <?=Html::hiddenInput('end_date', $end_date)?>
+            <table class="table available-rooms">
+                <thead>
+                    <tr>
+                        <th><?=\Yii::t('rooms', 'Room')?></th>
+                        <th><?=\Yii::t('order', 'Price')?></th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
                 <tbody>
-                    <tr style="background-color: #e8f4dc;">
-                        <td style="border-bottom: 3px solid #fff; vertical-align: middle;"><?=$room->name?></td>
-                        <td style="border-bottom: 3px solid #fff; vertical-align: middle; border-right: 1px solid #8bc652; border-left: 1px solid #8bc652;"><?=$room->price?> GEL</td>
-                        <td style="border-bottom: 3px solid #fff; vertical-align: middle;">
-                            <select style="width: 70px; background-color: #aed786; border: none; outline: none; padding: 4px;">
-                                <option style="background-color: #fff;" value="0"></option>
-                                <?php for($i = 1; $i <= $room->available_rooms; $i++): ?>
-                                    <option style="background-color: #fff;" value="<?=$i?>"><?=$i.' '.$room->price?></option>
-                                <?php endfor; ?>
-                            </select>
-                        </td>
-                        <td style="border-bottom: 3px solid #fff;">
-                            <button type="button" daa-id="<?=$room->id?>" style="outline: none; background-color: #8bc652; border: none; padding: 3px 15px;">Book</button>
+                    <?php foreach($available_rooms as $room): ?>
+                        <?=Html::hiddenInput('rooms_ids[]', $room->id)?>
+                        <tr>
+                            <td><?=$room->name?></td>
+                            <td><?=$room->price?> GEL</td>
+                            <td>
+                                <select class="room-quantity" name="quantities[]">
+                                    <option value="0" data-price="0"></option>
+                                    <?php for($i = 1; $i <= $room->available_rooms; $i++): ?>
+                                        <option value="<?=$i?>" data-price="<?=$room->price?>"><?=$i.' ('.$room->price.' GEL)'?></option>
+                                    <?php endfor; ?>
+                                </select>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <button type="submit" daa-id="<?=$room->id?>" style="outline: none; background-color: #8bc652; border: none; padding: 3px 15px;">Book</button>
                         </td>
                     </tr>
                 </tbody>
-            <?php endforeach; ?>
-        </table>
+            </table>
+        <?=Html::endForm()?>
     </div>
 </div>
