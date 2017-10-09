@@ -1,7 +1,9 @@
 <?php
+use common\api\models\database\Countries;
 use frontend\assets\order\Step2Asset;
 use yii\bootstrap\ActiveForm;
 use yii\bootstrap\Html;
+use yii\helpers\ArrayHelper;
 
 Step2Asset::register($this);
 ?>
@@ -9,15 +11,16 @@ Step2Asset::register($this);
 <div class="row">
     <div class="col-md-3">f</div>
     <div class="col-md-9">
-        <h4>Enter your details</h4>
+        <h4><?=\Yii::t('order', 'Enter your details')?></h4>
         <?php $form = ActiveForm::begin([
             'id' => 'orderForm',
-            'action' => ['/order/step1']
+            'action' => ['/order/finish']
         ]); ?>
-            <?=Html::activeHiddenInput($model, 'start_date')?>
+            <?=$form->field($model, 'start_date')?>
+            <?php //Html::activeHiddenInput($model, 'start_date')?>
             <?=Html::activeHiddenInput($model, 'end_date')?>
-            <?=Html::activeHiddenInput($model, 'room_id')?>
-            <?=Html::activeHiddenInput($model, 'quantity')?>
+            <?=Html::activeHiddenInput($model, 'room_ids')?>
+            <?=Html::activeHiddenInput($model, 'capacities')?>
 
             <div style="background-color: #aed786; padding: 10px 15px;">
                 <h5><span style="color: red;">*</span> Required information</h5>
@@ -31,10 +34,10 @@ Step2Asset::register($this);
                 </div>
                 <div class="row">
                     <div class="col-md-3">
-                        <?=$form->field($model, 'email')->textInput(['class' => 'form-control input-sm'])?>
+                        <?=$form->field($model, 'email')->textInput(['class' => 'form-control input-sm'])->error(false)?>
                     </div>
                     <div class="col-md-3">
-                        <?=$form->field($model, 'email_confirm')->textInput(['class' => 'form-control input-sm'])?>
+                        <?=$form->field($model, 'email_confirm')->textInput(['class' => 'form-control input-sm'])->error(false)?>
                     </div>
                     <div class="col-md-6">
                         <br/>
@@ -47,7 +50,10 @@ Step2Asset::register($this);
             <div style="background-color: #aed786; padding: 10px 15px; margin-bottom: 15px;">
                 <div class="row">
                     <div class="col-md-3">
-                        <?=$form->field($model, 'country')->textInput(['class' => 'form-control input-sm'])->error(false)?>
+                        <?=$form->field($model, 'country')->dropDownList(ArrayHelper::map(Countries::find()->all(), 'id', 'country_name'), [
+                            'class' => 'form-control input-sm',
+                            'prompt' => \Yii::t('order', 'Select country')
+                        ])->error(false)?>
                     </div>
                 </div>
                 <div class="row">

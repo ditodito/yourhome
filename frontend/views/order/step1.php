@@ -62,12 +62,12 @@ Step1Asset::register($this);
                 </thead>
                 <tbody>
                     <?php foreach($available_rooms as $room): ?>
-                        <?=Html::hiddenInput('rooms_ids[]', $room->id)?>
+                        <?=Html::hiddenInput('room_ids[]', $room->id)?>
                         <tr>
                             <td><?=$room->name?></td>
                             <td><?=$room->price?> GEL</td>
                             <td>
-                                <select class="room-quantity" name="quantities[]">
+                                <select class="room-quantity" name="capacities[]">
                                     <option value="0" data-price="0"></option>
                                     <?php for($i = 1; $i <= $room->available_rooms; $i++): ?>
                                         <option value="<?=$i?>" data-price="<?=$room->price?>"><?=$i.' ('.$room->price.' GEL)'?></option>
