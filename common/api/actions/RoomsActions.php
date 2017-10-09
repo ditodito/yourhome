@@ -49,7 +49,8 @@ class RoomsActions {
                       FROM {{orders}}
                       WHERE [[room_id]] = {{r}}.[[id]] AND [[status]] = 1
                         AND (([[start_date]] <= :start_date AND [[end_date]] >= :start_date)
-                        OR ([[start_date]] <= :end_date AND [[end_date]] >= :end_date))
+                        OR ([[start_date]] <= :end_date AND [[end_date]] >= :end_date)
+                        OR ([[start_date]] >= :start_date AND [[end_date]] <= :end_date))
                     ), 0))
                     [[available_rooms]]
                     FROM {{rooms}} {{r}}

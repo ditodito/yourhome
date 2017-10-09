@@ -9,8 +9,8 @@ class OrderForm extends Model {
 
     public function rules() {
         return [
-            [['start_date', 'end_date'], 'required']
+            [['start_date', 'end_date'], 'required'],
+            ['start_date', 'date', 'format' => 'php:Y-m-d']
         ];
     }
-
 }

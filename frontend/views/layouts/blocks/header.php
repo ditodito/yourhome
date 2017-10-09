@@ -104,13 +104,15 @@ $order_form = new OrderForm();
                     ]); ?>
                         <div class="reservation-input">
                             <label class="control-label"><?=\Yii::t('order', 'Check-in')?></label>
-                            <?=Html::activeInput('text', $order_form, 'start_date', ['class' => 'form-control input-sm', 'style' => 'border: none; border-radius: 0;'])?>
-                            <?php //$form->field($order_form, 'start_date')->label(false)->error(false)?>
+                            <?php //Html::activeInput('text', $order_form, 'start_date', ['class' => 'form-control input-sm', 'style' => 'border: none; border-radius: 0;'])?>
+                            <?php echo $form->field($order_form, 'start_date')->textInput(['class' => 'form-control input-sm', 'style' => 'border: none; border-radius: 0;'])
+                                ->label(false)->error(false)?>
                         </div>
                         <div class="reservation-input">
                             <label class="control-label"><?=\Yii::t('order', 'Check-out')?></label>
-                            <?=Html::activeInput('text', $order_form, 'end_date', ['class' => 'form-control input-sm', 'style' => 'border: none; border-radius: 0;'])?>
-                            <?php //$form->field($order_form, 'end_date')->label(false)->error(false); ?>
+                            <?php //Html::activeInput('text', $order_form, 'end_date', ['class' => 'form-control input-sm', 'style' => 'border: none; border-radius: 0;'])?>
+                            <?php echo $form->field($order_form, 'end_date')->textInput(['class' => 'form-control input-sm', 'style' => 'border: none; border-radius: 0;'])
+                                ->label(false)->error(false)?>
                         </div>
                         <div class="reservation-input">
                             <label class="control-label">&nbsp;</label>
