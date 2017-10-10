@@ -1,72 +1,12 @@
 <?php
-use common\api\actions\RoomsActions;
 use frontend\models\OrderForm;
-//use kartik\datetime\DateTimePicker;
+use kartik\date\DatePicker;
 use yii\bootstrap\ActiveForm;
-use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
 $order_form = new OrderForm();
-
-/*DateTimePicker::widget([
-    'name' => 'check_in',
-    'type' => DateTimePicker::TYPE_COMPONENT_APPEND,
-    'size' => 'sm',
-    'pickerButton' => [
-        'title' => null,
-        'style' => 'background-color: #fff; border: none; border-radius: 0;'
-    ],
-    'removeButton' => false,
-    'options' => [
-        'style' => 'outline: none; border: none; border-radius: 0;'
-    ],
-    'convertFormat' => true,
-    'pluginOptions' => [
-        //'startDate' => date('m/d/Y', time()),
-        'autoclose' => true,
-        'format' => 'mm/dd/yyyy',
-        'maxView' => 2,
-        'minView' => 2,
-    ]
-])
- DateTimePicker::widget([
-        'name' => 'check_out',
-        'type' => DateTimePicker::TYPE_COMPONENT_APPEND,
-        'size' => 'sm',
-        'pickerButton' => [
-            'title' => null,
-            'style' => 'background-color: #fff; border: none; border-radius: 0;'
-        ],
-        'removeButton' => false,
-        'options' => [
-            'style' => 'outline:none; border: none; border-radius: 0;'
-        ],
-        'convertFormat' => true,
-        'pluginOptions' => [
-            //'startDate' => date('m/d/Y', time()),
-            'autoclose' => true,
-            'format' => 'mm/dd/yyyy',
-            'maxView' => 2,
-            'minView' => 2,
-        ]
-    ])
- */
 ?>
-<!--
-<div class="reservation-input" style="width: 200px;">
-    <label class="control-label"><?=\Yii::t('rooms', 'Room')?></label>
-    <select class="form-control input-sm" style="border: 0; border-radius: 0;">
-        <?php foreach(RoomsActions::getRoomsTitle() as $room): ?>
-            <option value="<?=$room->id?>"><?=$room->name?></option>
-        <?php endforeach; ?>
-    </select>
-</div>
-<div class="reservation-input">
-    <label class="control-label">&nbsp;</label>
-    <input type="submit" style="background-color: #8b7d72; padding: 5px 10px; color: #fff;" />Book Now</input>
-</div>
--->
 
 <header class="header">
     <div class="container">
@@ -104,15 +44,64 @@ $order_form = new OrderForm();
                     ]); ?>
                         <div class="reservation-input">
                             <label class="control-label"><?=\Yii::t('order', 'Check-in')?></label>
-                            <?php //Html::activeInput('text', $order_form, 'start_date', ['class' => 'form-control input-sm', 'style' => 'border: none; border-radius: 0;'])?>
-                            <?php echo $form->field($order_form, 'start_date')->textInput(['class' => 'form-control input-sm', 'style' => 'border: none; border-radius: 0;'])
-                                ->label(false)->error(false)?>
+                            <?=$form->field($order_form, 'start_date')->widget(DatePicker::classname(), [
+                                'type' => DatePicker::TYPE_COMPONENT_APPEND,
+                                'size' => 'sm',
+                                'pickerButton' => [
+                                    'title' => false,
+                                    'style' => 'background-color: #fff; border: none; border-radius: 0;'
+                                ],
+                                'removeButton' => false,
+                                'options' => [
+                                    //'placeholder' => '1',
+                                    'style' => 'outline: none; border: none; border-radius: 0;'
+                                ],
+                                'options2' => [
+                                    //'placeholder' => '1',
+                                    'style' => 'outline: none; border: none; border-radius: 0;'
+                                ],
+                                'pluginOptions' => [
+                                    'autoclose' => true,
+                                    'format' => 'mm/dd/yyyy',
+                                    'startDate' => date('m/d/Y', time()),
+                                ],
+                                'pluginEvents' => [
+                                    "clearDate" => "function(e) {
+                                        $('#orderform-end_date').kvDatepicker('clearDates');
+                                    }",
+                                    "changeDate" => "function(e) {
+                                        $('#orderform-end_date').kvDatepicker('clearDates');
+                                        var start_day = new Date($('#orderform-start_date').val());
+                                        var next_day = new Date(start_day.getTime() + 86400000);
+                                        $('#orderform-end_date').kvDatepicker('setStartDate', next_day.toLocaleDateString());
+                                    }",
+                                ]
+                            ])->label(false)->error(false)?>
                         </div>
                         <div class="reservation-input">
                             <label class="control-label"><?=\Yii::t('order', 'Check-out')?></label>
-                            <?php //Html::activeInput('text', $order_form, 'end_date', ['class' => 'form-control input-sm', 'style' => 'border: none; border-radius: 0;'])?>
-                            <?php echo $form->field($order_form, 'end_date')->textInput(['class' => 'form-control input-sm', 'style' => 'border: none; border-radius: 0;'])
-                                ->label(false)->error(false)?>
+                            <?=$form->field($order_form, 'end_date')->widget(DatePicker::classname(), [
+                                'type' => DatePicker::TYPE_COMPONENT_APPEND,
+                                'size' => 'sm',
+                                'pickerButton' => [
+                                    'title' => false,
+                                    'style' => 'background-color: #fff; border: none; border-radius: 0;'
+                                ],
+                                'removeButton' => false,
+                                'options' => [
+                                    //'placeholder' => '1',
+                                    'style' => 'outline: none; border: none; border-radius: 0;'
+                                ],
+                                'options2' => [
+                                    //'placeholder' => '1',
+                                    'style' => 'outline: none; border: none; border-radius: 0;'
+                                ],
+                                'pluginOptions' => [
+                                    'autoclose' => true,
+                                    'format' => 'mm/dd/yyyy',
+                                    'startDate' => date('m/d/Y', time()+86400),
+                                ]
+                            ])->label(false)->error(false)?>
                         </div>
                         <div class="reservation-input">
                             <label class="control-label">&nbsp;</label>

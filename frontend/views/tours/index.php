@@ -14,7 +14,10 @@ $this->title = 'YourHomeHotel :: '.\Yii::t('menu', 'Our Tours');
 <div class="row">
     <?php foreach($tours as $tour): ?>
         <div class="col-md-4 col-sm-6">
-            <?=Html::img('@web/img/tours/'.$tour->image, ['class' => 'img-responsive img-rounded', 'alt' => $tour->title])?>
+            <?=Html::a(Html::img('@web/img/tours/'.$tour->image, [
+                'class' => 'img-responsive img-rounded',
+                'alt' => $tour->title
+            ]), ['/tours/details', 'id' => $tour->id])?>
             <p class="text-center"><?=Html::a($tour->title, ['/tours/details', 'id' => $tour->id])?></p>
         </div>
     <?php endforeach; ?>

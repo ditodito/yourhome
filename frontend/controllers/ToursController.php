@@ -12,8 +12,7 @@ class ToursController extends YourHomeController {
         $this->view->params['tours_durations'] = ToursActions::getToursDurationsNav(); // send data from controller to tours layout
 
         return $this->render('index', [
-            'tours' => ToursActions::getTours(),
-            'tours_durations' => ToursActions::getToursDurationsNav()
+            'tours' => ToursActions::getTours()
         ]);
     }
 

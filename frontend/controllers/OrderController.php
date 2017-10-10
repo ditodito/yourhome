@@ -16,23 +16,22 @@ class OrderController extends YourHomeController {
 
     public function actionStep1() {
         $model = new OrderForm();
+
         if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
-            $sd = $model->start_date;
-            $ed = $model->end_date;
-            $start = new DateTime($sd);
-            $end = new DateTime($ed);
+            $start = new DateTime($model->start_date);
+            $end = new DateTime($model->end_date);
 
             return $this->render('step1', [
                 'check_in' => date_format($start, 'D, M d, Y'),
                 'check_out' => date_format($end, 'D, M d, Y'),
                 'days' => $end->diff($start)->format("%a"),
-                'start_date' => $model->start_date,
-                'end_date' => $model->end_date,
-                'available_rooms' => RoomsActions::getAvailableRooms($sd, $ed)
+                'start_date' => date_format($start, 'Y-m-d'),
+                'end_date' => date_format($end, 'Y-m-d'),
+                'available_rooms' => RoomsActions::getAvailableRooms(date_format($start, 'Y-m-d'), date_format($end, 'Y-m-d'))
             ]);
         }
 
-        return $this->redirect(['order/index']);
+        return $this->redirect(['site/']);
     }
 
     public function actionStep2() {

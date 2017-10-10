@@ -39,11 +39,11 @@ AppAsset::register($this);
                     <?php foreach($this->params['tours_durations'] as $duration): ?>
                         <h5><?=$duration->name?>:</h5>
                         <?php if (count($duration->tours) > 0): ?>
-                            <div>
+                            <ul>
                                 <?php foreach($duration->tours as $tour): ?>
-                                    <div><?=Html::a('* '.$tour->title, ['/tours/details', 'id' => $tour->id])?></div>
+                                    <li><?=Html::a($tour->title, ['/tours/details', 'id' => $tour->id])?></li>
                                 <?php endforeach; ?>
-                            </div>
+                            </ul>
                         <?php endif; ?>
                     <?php endforeach; ?>
                 </div>

@@ -14,7 +14,7 @@ $this->title = 'YourHomeHotel :: '.\Yii::t('menu', 'Contacts');
     <div class="col-md-6">
         <div class="info-wrapper">
             <h5 class="info-title"><?=\Yii::t('contacts', 'Address')?>:</h5>
-            <div><?=\Yii::t('contacts', '{0} Mikheili Tsinamdzghvrishvili Street, {1} Tbilisi, Georgia', [95, 0164])?></div>
+            <div><?=\Yii::t('contacts', '{0} Mikheili Tsinamdzghvrishvili Street, {1} Tbilisi, Georgia', ['95', '0164'])?></div>
         </div>
         <div class="info-wrapper">
             <h5 class="info-title"><?=\Yii::t('contacts', 'Metro')?>:</h5>
@@ -26,9 +26,9 @@ $this->title = 'YourHomeHotel :: '.\Yii::t('menu', 'Contacts');
         </div>
         <div class="info-wrapper">
             <h5 class="info-title"><?=\Yii::t('contacts', 'General information')?>:</h5>
-            <div>(+995 5) 558 48 28 88 (English)</div>
-            <div>(+995 5) 577 53 72 12 (Russian/Hebrew)</div>
-            <div>(+995 5) 577 54 75 75 (German)</div>
+            <div>(+995) 558 48 28 88 (English)</div>
+            <div>(+995) 577 53 72 12 (Russian/Hebrew)</div>
+            <div>(+995) 577 54 75 75 (German)</div>
         </div>
     </div>
     <div class="col-md-6">
@@ -36,11 +36,11 @@ $this->title = 'YourHomeHotel :: '.\Yii::t('menu', 'Contacts');
             <h5 class="info-title">Standard</h5>
             <p>
                 <?=\Yii::t('contacts', 'Tel')?> / <?=\Yii::t('contacts', 'Fax')?>:<br />
-                (+995 32) 221-00-00 (Georgian)
+                (+995 32) 221 00 00 (Georgian)
             </p>
             <p>
                 <?=\Yii::t('contacts', 'E-mail')?>:<br />
-                yourhome@gmail.com
+                yourhometbilisi@yahoo.com
             </p>
         </div>
     </div>
