@@ -19,6 +19,10 @@ div.contact-info > div {
     margin-bottom: 20px;
 }
 
+div.contact-info > div > div:not(:last-child) {
+    margin-bottom: 5px;
+}
+
 div.about {
     border-left: 1px solid #81669d;
     border-right: 1px solid #81669d;

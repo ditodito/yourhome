@@ -17,6 +17,7 @@ $this->registerJs("var phpData = ".Json::encode($php_data), View::POS_END);
 <h3 class="page-title"><?=\Yii::t('menu', 'Photo Gallery')?></h3>
 
 <div class="page-description"><?=\Yii::t('gallery', 'You will be able to see all the hotel facilities in our photo gallery')?></div>
+<div class="page-line"></div>
 
 <div class="img-main-wrapper">
     <span class="glyphicon glyphicon-chevron-left prev"></span>

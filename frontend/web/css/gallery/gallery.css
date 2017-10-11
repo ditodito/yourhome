@@ -6,7 +6,14 @@
 
 .page-description {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+}
+
+.page-line {
+    width: 300px;
+    height: 3px;
+    background-color: #81669d;
+    margin: 0 auto 20px;
 }
 
 div.img-main-wrapper {

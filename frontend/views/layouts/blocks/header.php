@@ -10,7 +10,7 @@ $order_form = new OrderForm();
 
 <header class="header">
     <div class="container">
-        <?=Html::img('@web/img/logo.png', ['class' => 'logo', 'alt' => 'YourHome'])?>
+        <?=Html::a(Html::img('@web/img/logo.png', ['class' => 'logo', 'alt' => 'YourHome']), ['/'])?>
 
         <div class="nav-wrapper">
             <nav class="nav">
@@ -31,17 +31,16 @@ $order_form = new OrderForm();
                 </select>
             </div>
         </div>
-    </div>
 
-    <?php if (\Yii::$app->controller->id === 'site' && \Yii::$app->controller->action->id === 'index'): ?>
-        <div class="header-reservation">
-            <div><?=\Yii::t('order', 'Online reservation')?></div>
-            <div>
-                <div></div>
+        <?php if (\Yii::$app->controller->id === 'site' && \Yii::$app->controller->action->id === 'index'): ?>
+            <div class="header-reservation">
+                <div><?=\Yii::t('order', 'Online reservation')?></div>
                 <div>
-                    <?php $form = ActiveForm::begin([
-                        'action' => ['/order/step1']
-                    ]); ?>
+                    <div></div>
+                    <div>
+                        <?php $form = ActiveForm::begin([
+                            'action' => ['/order/step1']
+                        ]); ?>
                         <div class="reservation-input">
                             <label class="control-label"><?=\Yii::t('order', 'Check-in')?></label>
                             <?=$form->field($order_form, 'start_date')->widget(DatePicker::classname(), [
@@ -107,11 +106,18 @@ $order_form = new OrderForm();
                             <label class="control-label">&nbsp;</label>
                             <?=Html::submitButton('Book Now', ['style' => 'color: #fff; display: block; outline: none; border: none; background-color: #8b7d72; padding: 5px 10px;'])?>
                         </div>
-                    <?php ActiveForm::end(); ?>
+                        <?php ActiveForm::end(); ?>
+                    </div>
                 </div>
             </div>
-        </div>
-    <?php endif; ?>
+        <?php endif; ?>
 
-    <div class="header-img"></div>
+        <?php if (!(\Yii::$app->controller->id === 'site' && \Yii::$app->controller->action->id === 'gallery')): ?>
+            <div class="header-img"></div>
+        <?php else: ?>
+            <div style="color: #fff; text-align: center; background-color: #8b7d72; padding: 15px; margin-top: 20px;">
+                <h4><?=\Yii::t('gallery', 'Gallery hotel "Your Home"')?></h4>
+            </div>
+        <?php endif; ?>
+    </div>
 </header>
