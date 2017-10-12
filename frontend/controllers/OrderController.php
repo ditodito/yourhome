@@ -2,7 +2,6 @@
 namespace frontend\controllers;
 
 use common\api\actions\RoomsActions;
-use common\api\models\database\Rooms;
 use common\controllers\YourHomeController;
 use DateTime;
 use frontend\models\OrderForm;
@@ -22,6 +21,7 @@ class OrderController extends YourHomeController {
             $end = new DateTime($model->end_date);
 
             return $this->render('step1', [
+                'order_form' => $model,
                 'check_in' => date_format($start, 'D, M d, Y'),
                 'check_out' => date_format($end, 'D, M d, Y'),
                 'days' => $end->diff($start)->format("%a"),

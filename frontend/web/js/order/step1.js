@@ -1,4 +1,9 @@
 $(document).ready(function() {
+
+    $("#changeDate").on("click", function() {
+        $("#changeDateModal").modal();
+    });
+
     $(".room-quantity").on("change", function() {
         var totalPrice = 0;
 
@@ -9,4 +14,5 @@ $(document).ready(function() {
 
         $("#price").find("span").text(totalPrice);
     });
+
 });
