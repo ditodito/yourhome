@@ -1,3 +1,23 @@
+div.check-block {
+    font-weight: bold;
+    background-color: #c0c0c0;
+    padding: 10px;
+    margin: 30px 0;
+}
+
+div.check-block > div:first-child {
+    margin-bottom: 10px;
+}
+
+div.contact-info {
+    margin-bottom: 15px;
+}
+
+div.contact-info > span {
+    font-weight: bold;
+}
+
+
 table.available-rooms {
     margin-top: 30px;
 }

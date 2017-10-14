@@ -15,22 +15,47 @@ Step1Asset::register($this);
                 <?=\Yii::t('order', 'Price')?> <span id="price" style="float: right;">GEL <span>0</span></span>
             </div>
         </div>
-        <div style="background-color: #e8f4dc; margin-bottom: 40px; padding: 10px;">
+        <div style="background-color: #e8f4dc; padding: 10px;">
             <div style="margin-bottom: 20px; font-weight: bold;">
                 18 % VAT <span style="float: right;">Included</span>
             </div>
-            <div><?=\Yii::t('order', 'Free cancellation before 24h')?></div>
+            <div><?=\Yii::t('order', 'Free cancellation before 24h')?> *</div>
             <div><?=\Yii::t('order', 'Payment at the hotel')?></div>
         </div>
-        <div style="border: 1px solid #e8f4dc; padding: 10px; font-weight: bold;">
-            <p>
+
+        <div class="check-block">
+            <div>
                 <?=\Yii::t('order', 'Check-in')?>:<br />
                 - <?=\Yii::t('order', 'From 14:00 (2:00 PM)')?>
-            </p>
-            <p>
+            </div>
+            <div>
                 <?=\Yii::t('order', 'Check-out')?>:<br />
                 - <?=\Yii::t('order', 'Until 12:00 (noon)')?>
+            </div>
+        </div>
+
+        <div class="contact-info">
+            <span><?=\Yii::t('contacts', 'Address')?>:</span>
+            <div><?=\Yii::t('contacts', '{0} Mikheili Tsinamdzghvrishvili Street, {1} Tbilisi, Georgia', ['95', '0164'])?></div>
+        </div>
+        <div class="contact-info">
+            <span><?=\Yii::t('contacts', 'Metro')?>:</span>
+            <p>
+                <?=\Yii::t('contacts', 'Line {0}', ['I'])?>, <?=\Yii::t('contacts', 'Station Marjanishvili')?>
+                <br /><?=\Yii::t('contacts', 'Open hours - {0} (6am-12am)', ['06:00-24:00'])?>
             </p>
+        </div>
+        <div class="contact-info">
+            <span><?=\Yii::t('contacts', 'Bus')?>:</span>
+            <div>N122, <?=\Yii::t('contacts', 'Station Tsinamdzghvrishvili')?></div>
+        </div>
+        <div class="contact-info">
+            <span><?=\Yii::t('menu', 'Contacts')?>:</span>
+            <div>
+                <div><?=\Yii::t('contacts', 'Tel')?> / <?=\Yii::t('contacts', 'Fax')?>: (+995 32) 221 00 00</div>
+                <div><?=\Yii::t('contacts', 'Cell')?>: (+995) 558 48 28 88 (<?=\Yii::t('contacts', 'Manager')?>)</div>
+                <div><?=\Yii::t('contacts', 'E-mail')?>: yourhometbilisi@yahoo.com</div>
+            </div>
         </div>
     </div>
 
@@ -90,6 +115,8 @@ Step1Asset::register($this);
                 </tbody>
             </table>
         <?=Html::endForm()?>
+
+        * Cancellation is free 24h before arrival. The guest will be charged the first night if they cancel within 24h before arrival.
     </div>
 </div>
 

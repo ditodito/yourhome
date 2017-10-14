@@ -44,7 +44,7 @@
     <div>- <?=\Yii::t('main', 'Free')?> WiFi</div>
     <div>- <?=\Yii::t('services', 'Free private parking')?></div>
     <div>- <?=\Yii::t('services', 'Luggage storage')?></div>
-    <div>- <?=\Yii::t('services', 'Airport transfer(upon request)')?></div>
+    <div>- <?=\Yii::t('services', 'Airport transfer')?> (<?=Html::a(\Yii::t('contacts', 'upon request'), ['/site/services'])?>)</div>
     <div>- <?=\Yii::t('services', '24-hour front desk')?></div>
     <div>- <?=\Yii::t('rooms', 'Toiletries')?></div>
     <div>- <?=\Yii::t('rooms', 'Towels')?></div>

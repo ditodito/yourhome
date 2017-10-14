@@ -17,27 +17,27 @@ $this->title = 'YourHomeHotel :: '.\Yii::t('menu', 'Home');
             <div><?=\Yii::t('contacts', '{0} Mikheili Tsinamdzghvrishvili Street, {1} Tbilisi, Georgia', ['95', '0164'])?></div>
 
             <h4 class="title"><?=\Yii::t('contacts', 'Metro')?>:</h4>
-            <div><?=\Yii::t('contacts', 'Line I, Station Marjanishvili. Open hours - 06:00-24:00 (6am-12am)')?></div>
+            <div>
+                <?=\Yii::t('contacts', 'Line {0}', ['I'])?>, <?=\Yii::t('contacts', 'Station Marjanishvili')?>
+                <br /><?=\Yii::t('contacts', 'Open hours - {0} (6am-12am)', ['06:00-24:00'])?>
+            </div>
 
             <h4 class="title"><?=\Yii::t('contacts', 'Bus')?>:</h4>
             <div>N122, <?=\Yii::t('contacts', 'Station Tsinamdzghvrishvili')?></div>
 
             <h4 class="title"><?=\Yii::t('contacts', 'How to reach the hotel from airport')?>:</h4>
             <div>
-                <div>- <?=\Yii::t('contacts', 'Hotel-airport shuttle')?> (<?=\Yii::t('contacts', 'upon request')?>)</div>
+                <div>- <?=\Yii::t('contacts', 'Hotel-airport shuttle')?> (<?=Html::a(\Yii::t('contacts', 'upon request'), ['/site/services'])?>)</div>
                 <div>- <?=\Yii::t('contacts', 'Taxi')?></div>
                 <div>- <?=\Yii::t('contacts', 'Bus')?>: <?=\Yii::t('contacts', 'Public Transport N{0}, Station Queen Tamar Ave.', ['37'])?></div>
             </div>
 
             <h4 class="title"><?=\Yii::t('menu', 'Contacts')?>:</h4>
             <div>
-                <div><?=\Yii::t('contacts', 'Tel')?> / <?=\Yii::t('contacts', 'Fax')?>:</div>
-                <div><?=\Yii::t('contacts', 'Manager')?>: (+995) 558 58 48 08</div>
-                <div><?=\Yii::t('contacts', 'Standard')?>: (+995 32) 221 00 00</div>
+                <div><?=\Yii::t('contacts', 'Tel')?> / <?=\Yii::t('contacts', 'Fax')?>: (+995 32) 221 00 00</div>
+                <div><?=\Yii::t('contacts', 'Cell')?>: (+995) 558 48 28 88 (<?=\Yii::t('contacts', 'Manager')?>)</div>
+                <div><?=\Yii::t('contacts', 'E-mail')?>: yourhometbilisi@yahoo.com</div>
             </div>
-
-            <h4 class="title"><?=\Yii::t('contacts', 'E-mail')?>:</h4>
-            <div>yourhometbilisi@yahoo.com</div>
         </div>
     </div>
     <div class="col-md-5 form-group about">
@@ -90,11 +90,11 @@ $this->title = 'YourHomeHotel :: '.\Yii::t('menu', 'Home');
     <div class="col-md-3 form-group">
         <h4 class="title"><?=\Yii::t('main', 'Facilities')?></h4>
         <div><?=\Yii::t('main', 'Free')?> WiFi</div>
-        <div><?=\Yii::t('services', 'Free private parking')?></div>
+        <div><?=\Yii::t('services', 'Free private parking')?> (<?=Html::a(\Yii::t('contacts', 'upon request'), ['/site/services'])?>)</div>
         <div><?=\Yii::t('services', '24-hour front desk')?></div>
         <div><?=\Yii::t('services', 'Luggage storage')?></div>
         <div><?=\Yii::t('main', 'Kitchenette')?></div>
-        <div><?=\Yii::t('services', 'Airport transfer(upon request)')?></div>
+        <div><?=\Yii::t('services', 'Airport transfer')?> (<?=Html::a(\Yii::t('contacts', 'upon request'), ['/site/services'])?>)</div>
         <div class="more"><?=Html::a(\Yii::t('main', 'More').'...', ['/site/services'])?></div>
 
         <h4 class="title" style="margin-top: 20px;"><?=\Yii::t('menu', 'Our Tours')?></h4>
