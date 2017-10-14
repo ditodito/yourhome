@@ -55,10 +55,6 @@ $order_form = new OrderForm();
                                     //'placeholder' => '1',
                                     'style' => 'outline: none; border: none; border-radius: 0;'
                                 ],
-                                'options2' => [
-                                    //'placeholder' => '1',
-                                    'style' => 'outline: none; border: none; border-radius: 0;'
-                                ],
                                 'pluginOptions' => [
                                     'autoclose' => true,
                                     'format' => 'mm/dd/yyyy',
@@ -88,10 +84,6 @@ $order_form = new OrderForm();
                                 ],
                                 'removeButton' => false,
                                 'options' => [
-                                    //'placeholder' => '1',
-                                    'style' => 'outline: none; border: none; border-radius: 0;'
-                                ],
-                                'options2' => [
                                     //'placeholder' => '1',
                                     'style' => 'outline: none; border: none; border-radius: 0;'
                                 ],

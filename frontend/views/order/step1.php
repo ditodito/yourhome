@@ -25,11 +25,11 @@ Step1Asset::register($this);
         <div style="border: 1px solid #e8f4dc; padding: 10px; font-weight: bold;">
             <p>
                 <?=\Yii::t('order', 'Check-in')?>:<br />
-                - From 14:00 (PM 2:00)
+                - <?=\Yii::t('order', 'From 14:00 (2:00 PM)')?>
             </p>
             <p>
                 <?=\Yii::t('order', 'Check-out')?>:<br />
-                - Until 12:00 (noon)
+                - <?=\Yii::t('order', 'Until 12:00 (noon)')?>
             </p>
         </div>
     </div>
@@ -50,9 +50,6 @@ Step1Asset::register($this);
             </div>
             <div style="width: 25%;">
                 <button id="changeDate">change date</button>
-<!--                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#changeDateModal">
-                    Launch demo modal
-                </button>-->
             </div>
         </div>
 
@@ -101,76 +98,73 @@ Step1Asset::register($this);
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Modal title</h4>
+                <h4 class="modal-title">Change your details</h4>
             </div>
             <div class="modal-body">
                 <?php $form = ActiveForm::begin([
-                    'action' => ['/order/step1'],
-                    'options' => ['class' => 'form-horizontal']
+                    'action' => ['/order/step1']
                 ]); ?>
-                    <?=$form->field($order_form, 'start_date')->widget(DatePicker::classname(), [
-                        'type' => DatePicker::TYPE_COMPONENT_APPEND,
-                        'size' => 'sm',
-                        'pickerButton' => [
-                            'title' => false,
-                            'style' => 'background-color: #fff; border: none; border-radius: 0;'
-                        ],
-                        'removeButton' => false,
-                        'options' => [
-                            //'placeholder' => '1',
-                            'style' => 'outline: none; border: none; border-radius: 0;'
-                        ],
-                        'options2' => [
-                            //'placeholder' => '1',
-                            'style' => 'outline: none; border: none; border-radius: 0;'
-                        ],
-                        'pluginOptions' => [
-                            'autoclose' => true,
-                            'format' => 'mm/dd/yyyy',
-                            'startDate' => date('m/d/Y', time()),
-                        ],
-                        'pluginEvents' => [
-                            "clearDate" => "function(e) {
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="control-label"><?=\Yii::t('order', 'Check-in')?></label>
+                            <?=$form->field($order_form, 'start_date')->widget(DatePicker::classname(), [
+                                'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                                'size' => 'sm',
+                                'pickerButton' => [
+                                    'title' => false,
+                                    'style' => 'background-color: #fff; border-right: none; border-radius: 0;'
+                                ],
+                                'removeButton' => false,
+                                'options' => [
+                                    //'placeholder' => '1',
+                                    'style' => 'border-left: none; border-radius: 0;'
+                                ],
+                                'pluginOptions' => [
+                                    'autoclose' => true,
+                                    'format' => 'mm/dd/yyyy',
+                                    'startDate' => date('m/d/Y', time()),
+                                ],
+                                'pluginEvents' => [
+                                    "clearDate" => "function(e) {
                                             $('#orderform-end_date').kvDatepicker('clearDates');
                                         }",
-                            "changeDate" => "function(e) {
+                                    "changeDate" => "function(e) {
                                             $('#orderform-end_date').kvDatepicker('clearDates');
                                             var start_day = new Date($('#orderform-start_date').val());
                                             var next_day = new Date(start_day.getTime() + 86400000);
                                             $('#orderform-end_date').kvDatepicker('setStartDate', next_day.toLocaleDateString());
                                         }",
-                        ]
-                    ])->label(false)->error(false)?>
-                    <?=$form->field($order_form, 'end_date')->widget(DatePicker::classname(), [
-                        'type' => DatePicker::TYPE_COMPONENT_APPEND,
-                        'size' => 'sm',
-                        'pickerButton' => [
-                            'title' => false,
-                            'style' => 'background-color: #fff; border: none; border-radius: 0;'
-                        ],
-                        'removeButton' => false,
-                        'options' => [
-                            //'placeholder' => '1',
-                            'style' => 'outline: none; border: none; border-radius: 0;'
-                        ],
-                        'options2' => [
-                            //'placeholder' => '1',
-                            'style' => 'outline: none; border: none; border-radius: 0;'
-                        ],
-                        'pluginOptions' => [
-                            'autoclose' => true,
-                            'format' => 'mm/dd/yyyy',
-                            'startDate' => date('m/d/Y', time()+86400),
-                        ]
-                    ])->label(false)->error(false)?>
-                    <?=Html::submitButton('Book Now', ['style' => 'color: #fff; display: block; outline: none; border: none; background-color: #8b7d72; padding: 5px 10px;'])?>
+                                ]
+                            ])->label(false)->error(false)?>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="control-label"><?=\Yii::t('order', 'Check-out')?></label>
+                            <?=$form->field($order_form, 'end_date')->widget(DatePicker::classname(), [
+                                'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                                'size' => 'sm',
+                                'pickerButton' => [
+                                    'title' => false,
+                                    'style' => 'background-color: #fff; border-right: none; border-radius: 0;'
+                                ],
+                                'removeButton' => false,
+                                'options' => [
+                                    //'placeholder' => '1',
+                                    'style' => 'border-left: none; border-radius: 0;'
+                                ],
+                                'pluginOptions' => [
+                                    'autoclose' => true,
+                                    'format' => 'mm/dd/yyyy',
+                                    'startDate' => date('m/d/Y', time() + 86400),
+                                ]
+                            ])->label(false)->error(false)?>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="control-label">&nbsp;</label>
+                            <?=Html::submitButton('Book Now')?>
+                        </div>
+                    </div>
                 <?php ActiveForm::end(); ?>
             </div>
-            <!--
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-            -->
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+        </div>
+    </div>
+</div>
