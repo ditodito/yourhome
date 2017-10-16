@@ -12,7 +12,10 @@
 
 <div class="side-info">
     <h5><?=\Yii::t('contacts', 'Metro')?>:</h5>
-    <div><?=\Yii::t('contacts', 'Line I, Station Marjanishvili. Open hours - 06:00-24:00 (6am-12am)')?></div>
+    <div>
+        <?=\Yii::t('contacts', 'Line {0}', ['I'])?>, <?=\Yii::t('contacts', 'Station Marjanishvili')?>
+        <br /><?=\Yii::t('contacts', 'Open hours - {0} (6am-12am)', ['06:00-24:00'])?>
+    </div>
 </div>
 
 <div class="side-info">

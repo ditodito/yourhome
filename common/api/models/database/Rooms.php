@@ -16,7 +16,9 @@ use yii\db\ActiveRecord;
  * @property string $description_ge
  * @property string $description_ru
  * @property string $image
+ * @property integer $quantity
  * @property integer $capacity
+ * @property integer $is_hostel
  * @property integer $price
  * @property integer $free_wifi
  * @property integer $tv
