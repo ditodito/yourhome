@@ -37,10 +37,7 @@ $tour_id = array_key_exists('id', $query_params) ? $query_params['id'] : '0';
                                 <?php if (count($duration->tours) > 0): ?>
                                     <ul>
                                         <?php foreach($duration->tours as $tour): ?>
-                                            <?php
-                                                $class_name = ($tour_id == $tour->id) ? 'active' : '';
-                                            ?>
-                                            <li><?=Html::a($tour->title, ['/tours/details', 'id' => $tour->id], ['class' => $class_name])?></li>
+                                            <li><?=Html::a($tour->title, ['/tours/details', 'id' => $tour->id], ['class' => ($tour_id == $tour->id) ? 'active' : ''])?></li>
                                         <?php endforeach; ?>
                                     </ul>
                                 <?php endif; ?>
