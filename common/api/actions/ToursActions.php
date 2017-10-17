@@ -25,7 +25,9 @@ class ToursActions {
                 default:
                     $title = $row['title_us'];
             }
-            $result[] = new ToursRow($row['id'], $title, $row['image']);
+            $tour = new ToursRow($row['id'], $title, $row['image']);
+            $tour->setDuration(\Yii::t('tours', ToursDurations::findOne(['id' => $row->duration_id])->name));
+            $result[] = $tour;
         }
 
         return $result;

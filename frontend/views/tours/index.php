@@ -18,7 +18,7 @@ $this->title = 'YourHomeHotel :: '.\Yii::t('menu', 'Our Tours');
                 'class' => 'img-responsive img-rounded',
                 'alt' => $tour->title
             ]), ['/tours/details', 'id' => $tour->id])?>
-            <p class="text-center"><?=Html::a($tour->title, ['/tours/details', 'id' => $tour->id])?></p>
+            <p class="text-center" style="font-weight: bold;"><?=Html::a($tour->duration.'<br />'.$tour->title, ['/tours/details', 'id' => $tour->id])?></p>
         </div>
     <?php endforeach; ?>
 </div>
