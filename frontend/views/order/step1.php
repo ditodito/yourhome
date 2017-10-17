@@ -8,10 +8,10 @@ Step1Asset::register($this);
 ?>
 
 <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-3 form-group">
         <div class="price-block">
             <div>
-                <div>Your price summary</div>
+                <div><?=\Yii::t('order', 'Your price summary')?></div>
                 <div><?=\Yii::t('order', 'Price')?> <span class="pull-right" id="price">GEL <span>0</span></span></div>
             </div>
             <div>
@@ -56,20 +56,18 @@ Step1Asset::register($this);
             </div>
         </div>
     </div>
-
-    <div class="col-md-9">
-        <h4 style="margin-top: 0;">Availability</h4>
+    <div class="col-md-9 form-group">
         <div style="background-color: #e8f4dc; padding: 30px; display: flex; width: 100%; font-weight: bold;">
             <div style="width: 25%;">
-                <span class="small">Check In Date:</span><br />
+                <span class="small"><?=\Yii::t('order', 'Check in date')?>:</span><br />
                 <span style="color: #8bc652;" class=""><?=$check_in?></span>
             </div>
             <div style="width: 25%;">
-                <span class="small">Check Out Date:</span><br />
+                <span class="small"><?=\Yii::t('order', 'Check out date')?>:</span><br />
                 <span style="color: #8bc652"><?=$check_out?></span>
             </div>
             <div style="width: 25%;">
-                (<?=$days?>-night stay)
+                (<?=\Yii::t('order', '{0}-night stay ', [$days])?>)
             </div>
             <div style="width: 25%;">
                 <button id="changeDate"><?=\Yii::t('order', 'Change date')?></button>
@@ -123,7 +121,7 @@ Step1Asset::register($this);
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Change your details</h4>
+                <h4 class="modal-title"><?=\Yii::t('order', 'Change date')?></h4>
             </div>
             <div class="modal-body">
                 <?php $form = ActiveForm::begin([

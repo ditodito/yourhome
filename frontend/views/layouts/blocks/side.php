@@ -32,9 +32,9 @@
 
 <div class="side-info">
     <h5><?=\Yii::t('menu', 'Contacts')?>:</h5>
-    <div><?=\Yii::t('contacts', 'Tel')?> / <?=\Yii::t('contacts', 'Fax')?>:</div>
-    <div><?=\Yii::t('contacts', 'Manager')?>: (+995) 558 58 48 08</div>
-    <div><?=\Yii::t('contacts', 'Standard')?>: (+995 32) 221 00 00</div>
+    <div><?=\Yii::t('contacts', 'Tel')?> / <?=\Yii::t('contacts', 'Fax')?>: (+995 32) 221 00 00</div>
+    <div><?=\Yii::t('contacts', 'Cell')?>: (+995) 558 48 28 88 (<?=\Yii::t('contacts', 'Manager')?>)</div>
+    <div><?=\Yii::t('contacts', 'E-mail')?>: yourhometbilisi@yahoo.com</div>
 </div>
 
 <div class="side-info">

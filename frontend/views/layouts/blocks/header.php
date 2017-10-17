@@ -52,8 +52,8 @@ $order_form = new OrderForm();
                                 ],
                                 'removeButton' => false,
                                 'options' => [
-                                    //'placeholder' => '1',
-                                    'style' => 'outline: none; border: none; border-radius: 0;'
+                                    'style' => 'outline: none; border: none; border-radius: 0;',
+                                    'value' => date('m/d/Y', time()),
                                 ],
                                 'pluginOptions' => [
                                     'autoclose' => true,
@@ -84,8 +84,8 @@ $order_form = new OrderForm();
                                 ],
                                 'removeButton' => false,
                                 'options' => [
-                                    //'placeholder' => '1',
-                                    'style' => 'outline: none; border: none; border-radius: 0;'
+                                    'style' => 'outline: none; border: none; border-radius: 0;',
+                                    'value' => date('m/d/Y', time()+86400),
                                 ],
                                 'pluginOptions' => [
                                     'autoclose' => true,

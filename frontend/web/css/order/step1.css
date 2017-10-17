@@ -18,7 +18,7 @@ div.price-block > div:last-child > div:first-child {
 
 div.check-block {
     font-weight: bold;
-    background-color: #c0c0c0;
+    background-color: #a7d47b;
     padding: 10px;
     margin: 30px 0;
 }
@@ -31,6 +31,13 @@ div.contact-info {
 }
 div.contact-info > span {
     font-weight: bold;
+}
+
+#changeDate {
+    outline: none;
+    border: none;
+    background-color: #a7d47b;
+    padding: 5px 15px;
 }
 
 table.available-rooms {
