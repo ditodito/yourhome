@@ -26,7 +26,7 @@ div.tours-nav a {
     color: #000;
 }
 
-div.tours-nav a:hover {
+div.tours-nav a.active, div.tours-nav a:hover {
     color: #0083d6;
 }
 

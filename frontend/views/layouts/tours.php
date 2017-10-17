@@ -6,6 +6,9 @@ use yii\helpers\Html;
 use frontend\assets\AppAsset;
 
 AppAsset::register($this);
+
+$query_params = \Yii::$app->request->queryParams;
+$tour_id = array_key_exists('id', $query_params) ? $query_params['id'] : '0';
 ?>
 
 <?php $this->beginPage(); ?>
@@ -34,7 +37,10 @@ AppAsset::register($this);
                                 <?php if (count($duration->tours) > 0): ?>
                                     <ul>
                                         <?php foreach($duration->tours as $tour): ?>
-                                            <li><?=Html::a($tour->title, ['/tours/details', 'id' => $tour->id])?></li>
+                                            <?php
+                                                $class_name = ($tour_id == $tour->id) ? 'active' : '';
+                                            ?>
+                                            <li><?=Html::a($tour->title, ['/tours/details', 'id' => $tour->id], ['class' => $class_name])?></li>
                                         <?php endforeach; ?>
                                     </ul>
                                 <?php endif; ?>
