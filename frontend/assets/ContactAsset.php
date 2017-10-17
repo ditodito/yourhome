@@ -12,11 +12,6 @@ class ContactAsset extends AssetBundle {
         'css/contact/contact.css',
     ];
 
-    public $js = [
-        'js/contact/contact.js',
-        'https://maps.googleapis.com/maps/api/js?key=AIzaSyAju67w32shYoNSFJHSQKKHTy4E77jnLSY&callback=initMap'
-    ];
-
     public $depends = [
         'frontend\assets\AppAsset'
     ];

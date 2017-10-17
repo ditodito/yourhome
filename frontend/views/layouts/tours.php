@@ -44,7 +44,9 @@ $tour_id = array_key_exists('id', $query_params) ? $query_params['id'] : '0';
                             <?php endforeach; ?>
                         </div>
 
-                        <?php
+                        <div class="tours-contact">
+                            <span><?=\Yii::t('contacts', 'Access Map')?>:</span>
+                            <?php
                             $coord = new LatLng(['lat' => 41.712990, 'lng' => 44.798526]);
                             $map = new Map([
                                 'width' => '100%',
@@ -57,10 +59,8 @@ $tour_id = array_key_exists('id', $query_params) ? $query_params['id'] : '0';
                                 'title' => 'YourHomeHotel.Ge'
                             ]);
                             $map->addOverlay($marker);
-                        ?>
-                        <div class="tours-contact">
-                            <span><?=\Yii::t('contacts', 'Access Map')?>:</span>
-                            <?=$map->display()?>
+                            echo $map->display();
+                            ?>
                         </div>
 
                         <div class="tours-contact">
