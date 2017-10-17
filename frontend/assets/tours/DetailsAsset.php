@@ -10,6 +10,7 @@ class DetailsAsset extends AssetBundle {
 
     public $css = [
         'css/tours/details.css',
+        'css/tours/nav.css'
     ];
 
     public $depends = [

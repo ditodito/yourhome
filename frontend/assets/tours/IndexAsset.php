@@ -10,6 +10,7 @@ class IndexAsset extends AssetBundle {
 
     public $css = [
         'css/tours/index.css',
+        'css/tours/nav.css'
     ];
 
     public $depends = [

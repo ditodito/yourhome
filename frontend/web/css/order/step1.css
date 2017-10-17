@@ -1,10 +1,27 @@
+div.price-block > div {
+    padding: 10px;
+}
+div.price-block > div:first-child {
+    background-color: #a7d47b;
+}
+div.price-block > div:first-child > div:last-child {
+    font-weight: bold;
+    margin-top: 10px;
+}
+div.price-block > div:last-child {
+    background-color: #e8f4dc;
+}
+div.price-block > div:last-child > div:first-child {
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
 div.check-block {
     font-weight: bold;
     background-color: #c0c0c0;
     padding: 10px;
     margin: 30px 0;
 }
-
 div.check-block > div:first-child {
     margin-bottom: 10px;
 }
@@ -12,37 +29,29 @@ div.check-block > div:first-child {
 div.contact-info {
     margin-bottom: 15px;
 }
-
 div.contact-info > span {
     font-weight: bold;
 }
 
-
 table.available-rooms {
     margin-top: 30px;
 }
-
 table.available-rooms thead {
     background-color: #aed786;
 }
-
 table.available-rooms thead th {
     border-bottom: 5px solid #fff;
 }
-
 table.available-rooms thead th:nth-child(2) {
     background-color: #8bc652;
 }
-
 table.available-rooms tbody tr:not(:last-child) {
     background-color: #e8f4dc;
 }
-
 table.available-rooms tbody td {
     vertical-align: middle;
     border-bottom: 3px solid #fff;
 }
-
 table.available-rooms tbody tr:not(:last-child) td:nth-child(2) {
     border-right: 1px solid #8bc652;
     border-left: 1px solid #8bc652;
@@ -55,21 +64,17 @@ select.room-quantity {
     background-color: #aed786;
     padding: 4px;
 }
-
 select.room-quantity > option {
     background-color: #fff;
 }
 
-
 #changeDateModal div.modal-content {
     border-radius: 0;
 }
-
 #changeDateModal div.modal-header {
     border-bottom: none;
     padding-bottom: 0;
 }
-
 #changeDateModal div.modal-body button[type='submit'] {
     color: #fff;
     display: block;

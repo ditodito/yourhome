@@ -9,18 +9,16 @@ Step1Asset::register($this);
 
 <div class="row">
     <div class="col-md-3">
-        <div style="background-color: #a7d47b; padding: 10px;">
-            Your price summary
-            <div style="margin-top: 10px; font-weight: bold;">
-                <?=\Yii::t('order', 'Price')?> <span id="price" style="float: right;">GEL <span>0</span></span>
+        <div class="price-block">
+            <div>
+                <div>Your price summary</div>
+                <div><?=\Yii::t('order', 'Price')?> <span class="pull-right" id="price">GEL <span>0</span></span></div>
             </div>
-        </div>
-        <div style="background-color: #e8f4dc; padding: 10px;">
-            <div style="margin-bottom: 20px; font-weight: bold;">
-                18 % VAT <span style="float: right;">Included</span>
+            <div>
+                <div>18 % <?=\Yii::t('order', 'VAT')?> <span class="pull-right"><?=\Yii::t('order', 'Included')?></span></div>
+                <div><?=\Yii::t('order', 'Free cancellation before 24h')?> *</div>
+                <div><?=\Yii::t('order', 'Payment at the hotel')?></div>
             </div>
-            <div><?=\Yii::t('order', 'Free cancellation before 24h')?> *</div>
-            <div><?=\Yii::t('order', 'Payment at the hotel')?></div>
         </div>
 
         <div class="check-block">
@@ -74,7 +72,7 @@ Step1Asset::register($this);
                 (<?=$days?>-night stay)
             </div>
             <div style="width: 25%;">
-                <button id="changeDate">change date</button>
+                <button id="changeDate"><?=\Yii::t('order', 'Change date')?></button>
             </div>
         </div>
 
@@ -86,7 +84,7 @@ Step1Asset::register($this);
                     <tr>
                         <th><?=\Yii::t('rooms', 'Room')?></th>
                         <th><?=\Yii::t('order', 'Price')?></th>
-                        <th>Quantity</th>
+                        <th><?=\Yii::t('order', 'Select rooms')?></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -116,7 +114,7 @@ Step1Asset::register($this);
             </table>
         <?=Html::endForm()?>
 
-        * Cancellation is free 24h before arrival. The guest will be charged the first night if they cancel within 24h before arrival.
+        * <?=\Yii::t('order', 'Cancellation is free 24h before arrival')?>. <?=\Yii::t('order', 'The guest will be charged the first night if they cancel within 24h before arrival')?>.
     </div>
 </div>
 
