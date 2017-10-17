@@ -105,7 +105,16 @@ $order_form = new OrderForm();
         <?php endif; ?>
 
         <?php if (!(\Yii::$app->controller->id === 'site' && \Yii::$app->controller->action->id === 'gallery')): ?>
-            <div class="header-img"></div>
+            <?php
+                switch(\Yii::$app->controller->id) {
+                    case 'tours':
+                        $header_image = 'header_tours.jpg';
+                        break;
+                    default:
+                        $header_image = 'header.jpg';
+                }
+            ?>
+            <div class="header-img" style="background: url('<?=\Yii::getAlias('@web/img/'.$header_image)?>') center no-repeat;"></div>
         <?php else: ?>
             <div style="color: #fff; text-align: center; background-color: #8b7d72; padding: 15px; margin-top: 20px;">
                 <h4><?=\Yii::t('gallery', 'Gallery hotel "Your Home"')?></h4>
