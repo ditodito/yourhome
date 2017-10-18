@@ -12,9 +12,28 @@ Step2Asset::register($this);
     <div class="col-md-3">
         <div class="booking-header"><?=\Yii::t('order', 'Your booking details')?></div>
         <div class="booking-details">
-            <div>18 % <?=\Yii::t('order', 'VAT')?> <span class="pull-right"><?=\Yii::t('order', 'Included')?></span></div>
-            <div><?=\Yii::t('order', 'Free cancellation before 24h')?> *</div>
-            <div><?=\Yii::t('order', 'Payment at the hotel')?></div>
+            <div>
+                <div><strong><?=\Yii::t('order', 'Check-in')?></strong></div>
+                <div>
+                    <?=\Yii::t('day', date('l', $start_date))?>, <?=\Yii::t('month', date('F', $start_date))?> <?=date('d', $start_date)?>, <?=date('Y', $start_date)?>
+                    <?=\Yii::t('order', 'From 14:00 (2:00 PM)')?>
+                </div>
+            </div>
+            <div>
+                <div><strong><?=\Yii::t('order', 'Check-out')?></strong></div>
+                <div>
+                    <?=\Yii::t('day', date('l', $end_date))?>, <?=\Yii::t('month', date('F', $end_date))?> <?=date('d', $end_date)?>, <?=date('Y', $end_date)?>
+                    <?=\Yii::t('order', 'Until 12:00 (noon)')?>
+                </div>
+            </div>
+            <div>
+                <div><strong>Total length of stay</strong></div>
+                <div>1 <?=\Yii::t('order', 'night')?></div>
+            </div>
+        </div>
+
+        <div class="booking-extra">
+            <?php print_r($model->room_ids); ?>
         </div>
     </div>
 

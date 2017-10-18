@@ -37,11 +37,16 @@ class OrderController extends YourHomeController {
     public function actionStep2() {
         $model = new OrderStep2();
 
-        $model->start_date = \Yii::$app->request->post('start_date');
-        $model->end_date = \Yii::$app->request->post('end_date');
+        $start = strtotime('10/18/2017'); // new DateTime('10/18/2017'); //\Yii::$app->request->post('start_date');
+        $end = strtotime('10/19/2017'); // \Yii::$app->request->post('end_date');
+
+        $model->start_date = date('Y-m-d', $start);
+        $model->end_date = date('Y-m-d', $end);
         $room_ids = \Yii::$app->request->post('room_ids');
         $capacities = \Yii::$app->request->post('capacities');
 
+        $capacities = [1,3,4];
+        $room_ids = [1,2,3];
         foreach($capacities as $key => $capacity) {
             if ($capacity == 0)
                 continue;
@@ -50,6 +55,8 @@ class OrderController extends YourHomeController {
         }
 
         return $this->render('step2', [
+            'start_date' => $start,
+            'end_date' => $end,
             'model' => $model
         ]);
     }

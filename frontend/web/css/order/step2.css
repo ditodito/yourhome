@@ -1,11 +1,26 @@
-div.booking-header {
+div.booking-header, div.booking-details, div.booking-extra {
     padding: 10px;
+}
+
+div.booking-header {
+    font-weight: bold;
     background-color: #a7d47b;
+}
+
+div.booking-details, div.booking-extra {
+    background-color: #e8f4dc;
+}
+
+div.booking-details > div {
+    margin-bottom: 10px;
+}
+
+div.booking-details-header {
+    font-weight: bold;
 }
 
 #orderForm input, #orderForm textarea {
     border-radius: 0;
-    border: 1px solid red;
 }
 
 #orderForm .control-label {
