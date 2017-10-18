@@ -9,7 +9,7 @@ class RoomsAsset extends AssetBundle {
     public $baseUrl = '@web';
 
     public $css = [
-        'css/rooms/rooms.css',
+        'css/rooms/rooms.css'
     ];
 
     public $depends = [

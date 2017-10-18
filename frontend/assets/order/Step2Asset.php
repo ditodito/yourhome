@@ -12,9 +12,9 @@ class Step2Asset extends AssetBundle {
         'css/order/step2.css',
     ];
 
-    public $js = [
+   /*public $js = [
         'js/order/step2.js',
-    ];
+    ];*/
 
     public $depends = [
         'frontend\assets\AppAsset'

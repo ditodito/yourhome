@@ -9,15 +9,23 @@ Step2Asset::register($this);
 ?>
 
 <div class="row">
-    <div class="col-md-3">f</div>
+    <div class="col-md-3">
+        <div class="booking-header"><?=\Yii::t('order', 'Your booking details')?></div>
+        <div class="booking-details">
+            <div>18 % <?=\Yii::t('order', 'VAT')?> <span class="pull-right"><?=\Yii::t('order', 'Included')?></span></div>
+            <div><?=\Yii::t('order', 'Free cancellation before 24h')?> *</div>
+            <div><?=\Yii::t('order', 'Payment at the hotel')?></div>
+        </div>
+    </div>
+
+
     <div class="col-md-9">
         <h4><?=\Yii::t('order', 'Enter your details')?></h4>
         <?php $form = ActiveForm::begin([
             'id' => 'orderForm',
             'action' => ['/order/finish']
         ]); ?>
-            <?=$form->field($model, 'start_date')?>
-            <?php //Html::activeHiddenInput($model, 'start_date')?>
+            <?=Html::activeHiddenInput($model, 'start_date')?>
             <?=Html::activeHiddenInput($model, 'end_date')?>
             <?=Html::activeHiddenInput($model, 'room_ids')?>
             <?=Html::activeHiddenInput($model, 'capacities')?>

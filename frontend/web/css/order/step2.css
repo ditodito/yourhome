@@ -1,5 +1,11 @@
+div.booking-header {
+    padding: 10px;
+    background-color: #a7d47b;
+}
+
 #orderForm input, #orderForm textarea {
     border-radius: 0;
+    border: 1px solid red;
 }
 
 #orderForm .control-label {

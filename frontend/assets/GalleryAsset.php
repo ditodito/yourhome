@@ -9,11 +9,11 @@ class GalleryAsset extends AssetBundle {
     public $baseUrl = '@web';
 
     public $css = [
-        'css/gallery/gallery.css',
+        'css/gallery/gallery.css'
     ];
 
     public $js = [
-        'js/gallery/gallery.js',
+        'js/gallery/gallery.js'
     ];
 
     public $depends = [

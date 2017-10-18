@@ -9,7 +9,7 @@ class ContactAsset extends AssetBundle {
     public $baseUrl = '@web';
 
     public $css = [
-        'css/contact/contact.css',
+        'css/contact/contact.css'
     ];
 
     public $depends = [

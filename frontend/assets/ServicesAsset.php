@@ -9,7 +9,7 @@ class ServicesAsset extends AssetBundle {
     public $baseUrl = '@web';
 
     public $css = [
-        'css/services/services.css',
+        'css/services/services.css'
     ];
 
     public $depends = [

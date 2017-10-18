@@ -9,11 +9,11 @@ class Step1Asset extends AssetBundle {
     public $baseUrl = '@web';
 
     public $css = [
-        'css/order/step1.css',
+        'css/order/step1.css'
     ];
 
     public $js = [
-        'js/order/step1.js',
+        'js/order/step1.js'
     ];
 
     public $depends = [
