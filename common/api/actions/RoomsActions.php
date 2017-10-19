@@ -47,7 +47,7 @@ class RoomsActions {
                     CASE
                       WHEN {{r}}.[[is_hostel]] = 0 THEN
                         ({{r}}.[[quantity]] - IFNULL((
-                          SELECT COUNT(*)
+                          SELECT SUM([[capacity]])
                           FROM {{orders}}
                           WHERE [[room_id]] = {{r}}.[[id]] AND [[status]] = 1
                             AND (([[start_date]] <= :start_date AND [[end_date]] >= :start_date)

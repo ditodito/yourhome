@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
     $("#changeDate").on("click", function() {
         $("#changeDateModal").modal();
     });
@@ -9,10 +8,10 @@ $(document).ready(function() {
 
         $(".room-quantity").each(function(i, element) {
             var price = $(element).find("option:selected").data("price");
-            totalPrice += $(element).val() * price;
+            totalPrice += $(element).val() * price * totalDays;
         });
 
-        $("#price").find("span").text(totalPrice);
+        $("#price").text(totalPrice);
     });
 
 });

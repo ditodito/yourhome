@@ -2,6 +2,7 @@
 namespace frontend\models;
 
 use common\api\models\database\Orders;
+use common\api\models\database\Rooms;
 use yii\base\Model;
 use yii\db\Exception;
 
@@ -22,14 +23,27 @@ class OrderStep2 extends Model {
     public $comment;
     public $arrival_time;
 
+    public $airport_transfer_price_id;
+    public $parking_reservation;
+    public $breakfast;
+
     public function rules() {
         return [
-            [['start_date', 'end_date', 'room_ids', 'capacities', 'first_name', 'last_name', 'email', 'email_confirm', 'country', 'city', 'address', 'mobile'], 'required'],
-            [['first_name', 'last_name', 'email', 'email_confirm', 'city', 'address', 'zip_code', 'mobile', 'comment', 'arrival_time'], 'trim'],
+            [['room_ids', 'capacities', 'first_name', 'last_name', 'email', 'email_confirm',
+                'country', 'city', 'address', 'mobile', 'start_date', 'end_date'], 'required'],
+            [['zip_code', 'comment', 'arrival_time', 'airport_transfer_price_id', 'parking_reservation', 'breakfast'], 'safe'],
+            [['room_ids', 'capacities', 'first_name', 'last_name', 'email', 'email_confirm',
+                'city', 'address', 'zip_code', 'mobile', 'comment', 'arrival_time'], 'trim'],
             ['email', 'email'],
             ['email_confirm', 'compare', 'compareAttribute' => 'email'],
             ['start_date', 'date', 'format' => 'php:Y-m-d'],
-            ['country', 'exist', 'targetClass' => 'common\api\models\database\Countries', 'targetAttribute' => 'id']
+            ['start_date', function($attribute, $params, $validator) {
+                if (strtotime($this->end_date) - strtotime($this->start_date) < 86400) {
+                    $this->addError($attribute, 'Incorrect date');
+                }
+            }],
+            ['country', 'exist', 'targetClass' => 'common\api\models\database\Countries', 'targetAttribute' => 'id'],
+            ['airport_transfer_price_id', 'exist', 'targetClass' => 'common\api\models\database\AirportTransferPrices', 'targetAttribute' => 'id']
         ];
     }
 
@@ -44,23 +58,30 @@ class OrderStep2 extends Model {
             'zip_code' => \Yii::t('order', 'Zip code'),
             'mobile' => \Yii::t('order', 'Mobile').' *',
             'comment' => \Yii::t('order', 'Special requests'),
-            'arrival_time' => \Yii::t('order', 'Approximate arrival time')
+            'arrival_time' => \Yii::t('order', 'Approximate arrival time'),
+
+            'parking_reservation' => \Yii::t('services', 'Free private parking'),
+            'breakfast' => \Yii::t('services', 'Breakfast')
         ];
     }
 
     public function saveOrder() {
         if ($this->validate()) {
-            $rooms = explode(',', $this->room_ids);
+            $room_ids = explode(',', $this->room_ids);
             $capacities = explode(',', $this->capacities);
 
             $transaction = \Yii::$app->db->beginTransaction();
             try {
-                foreach ($rooms as $key => $value) {
-                    if (!$value)
+                foreach ($room_ids as $key => $room_id) {
+                    //if (!$room_id)
+                        //continue;
+
+                    $room = Rooms::findOne(['id' => $room_id]);
+                    if (!$room)
                         continue;
 
                     $order = new Orders();
-                    $order->room_id = $value;
+                    $order->room_id = $room_id;
                     $order->capacity = $capacities[$key];
                     $order->first_name = $this->first_name;
                     $order->last_name = $this->last_name;
@@ -75,6 +96,12 @@ class OrderStep2 extends Model {
                         $order->comment = $this->comment;
                     if ($this->arrival_time)
                         $order->arrival_time = $this->arrival_time;
+
+                    if ($this->airport_transfer_price_id)
+                        $order->airport_transfer_price_id = $this->airport_transfer_price_id;
+                    $order->parking_reservation = $this->parking_reservation;
+                    $order->breakfast = $this->breakfast;
+
                     $order->start_date = $this->start_date;
                     $order->end_date = $this->end_date;
                     $order->save();

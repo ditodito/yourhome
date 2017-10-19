@@ -21,11 +21,12 @@ use yii\db\ActiveRecord;
  * @property string $mobile
  * @property string $comment
  * @property mixed $arrival_time
+ * @property integer $airport_transfer_price_id
+ * @property integer $parking_reservation
+ * @property integer $breakfast
  * @property mixed $start_date
  * @property mixed $end_date
  * @property integer $status
- * @property integer $description_ru
- * @property integer $image
  */
 class Orders extends ActiveRecord {
 

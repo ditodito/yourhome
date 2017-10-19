@@ -19,7 +19,13 @@ div.booking-details-header {
     font-weight: bold;
 }
 
-#orderForm input, #orderForm textarea {
+div.price-details {
+}
+
+
+
+
+#orderForm input, #orderForm select, #orderForm textarea {
     border-radius: 0;
 }
 

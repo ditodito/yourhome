@@ -3,8 +3,11 @@ use frontend\assets\order\Step1Asset;
 use kartik\date\DatePicker;
 use yii\bootstrap\ActiveForm;
 use yii\bootstrap\Html;
+use yii\web\View;
 
 Step1Asset::register($this);
+
+$this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
 ?>
 
 <div class="row">
@@ -12,7 +15,7 @@ Step1Asset::register($this);
         <div class="price-block">
             <div>
                 <div><?=\Yii::t('order', 'Your price summary')?></div>
-                <div><?=\Yii::t('order', 'Price')?> <span class="pull-right" id="price">GEL <span>0</span></span></div>
+                <div><?=\Yii::t('order', 'Price')?> <div class="pull-right">GEL <span id="price">0</span></div></div>
             </div>
             <div>
                 <div>18 % <?=\Yii::t('order', 'VAT')?> <span class="pull-right"><?=\Yii::t('order', 'Included')?></span></div>
@@ -67,7 +70,7 @@ Step1Asset::register($this);
                 <span style="color: #8bc652"><?=$check_out?></span>
             </div>
             <div style="width: 25%;">
-                (<?=\Yii::t('order', '{0}-night stay ', [$days])?>)
+                (<?=\Yii::t('order', '{0}-night stay ', [$total_days])?>)
             </div>
             <div style="width: 25%;">
                 <button id="changeDate"><?=\Yii::t('order', 'Change date')?></button>
