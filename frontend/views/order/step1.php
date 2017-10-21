@@ -26,11 +26,11 @@ $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
 
         <div class="check-block">
             <div>
-                <?=\Yii::t('order', 'Check-in')?>:<br />
+                <?=\Yii::t('order', 'Check in')?>:<br />
                 - <?=\Yii::t('order', 'From 14:00 (2:00 PM)')?>
             </div>
             <div>
-                <?=\Yii::t('order', 'Check-out')?>:<br />
+                <?=\Yii::t('order', 'Check out')?>:<br />
                 - <?=\Yii::t('order', 'Until 12:00 (noon)')?>
             </div>
         </div>
@@ -63,11 +63,19 @@ $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
         <div style="background-color: #e8f4dc; padding: 30px; display: flex; width: 100%; font-weight: bold;">
             <div style="width: 25%;">
                 <span class="small"><?=\Yii::t('order', 'Check in date')?>:</span><br />
-                <span style="color: #8bc652;" class=""><?=$check_in?></span>
+                <span style="color: #8bc652;">
+                    <?=\Yii::t('day', date('D', $start_date))?>,
+                    <?=\Yii::t('month', date('M', $start_date))?> <?=date('d', $start_date)?>,
+                    <?=date('Y', $start_date)?>
+                </span>
             </div>
             <div style="width: 25%;">
                 <span class="small"><?=\Yii::t('order', 'Check out date')?>:</span><br />
-                <span style="color: #8bc652"><?=$check_out?></span>
+                <span style="color: #8bc652">
+                    <?=\Yii::t('day', date('D', $end_date))?>,
+                    <?=\Yii::t('month', date('M', $end_date))?> <?=date('d', $end_date)?>,
+                    <?=date('Y', $end_date)?>
+                </span>
             </div>
             <div style="width: 25%;">
                 (<?=\Yii::t('order', '{0}-night stay ', [$total_days])?>)
@@ -78,8 +86,8 @@ $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
         </div>
 
         <?=Html::beginForm(['/order/step2'])?>
-            <?=Html::hiddenInput('start_date', $start_date)?>
-            <?=Html::hiddenInput('end_date', $end_date)?>
+            <?=Html::hiddenInput('start_date', date('Y-m-d', $start_date))?>
+            <?=Html::hiddenInput('end_date', date('Y-m-d', $end_date))?>
             <table class="table available-rooms">
                 <thead>
                     <tr>

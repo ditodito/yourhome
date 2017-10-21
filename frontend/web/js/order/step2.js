@@ -1,11 +1,5 @@
 $(document).ready(function() {
 
-    $("#airportTransfer").on("click", function() {
-        var disabled = $(this).is(":checked") ? false : true;
-        $("#orderstep2-airport_transfer_price_id").val("").attr("disabled", disabled);
-        updatePrices();
-    });
-
     $("#orderstep2-airport_transfer_price_id").on("change", function() {
         updatePrices()
     });

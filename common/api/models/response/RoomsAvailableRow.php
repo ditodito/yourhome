@@ -11,7 +11,7 @@ class RoomsAvailableRow implements \JsonSerializable {
     public function __construct($row) {
         $this->id = $row['id'];
         $this->name = self::resolveName($row);
-        $this->capacity = $row['capacity'];
+        //$this->capacity = $row['capacity'];
         $this->price = $row['price'];
         $this->available_rooms = $row['available_rooms'];
     }

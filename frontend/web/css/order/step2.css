@@ -23,7 +23,11 @@ div.price-details {
 }
 
 
-
+div.form-block {
+    background-color: #aed786;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+}
 
 #orderForm input, #orderForm select, #orderForm textarea {
     border-radius: 0;

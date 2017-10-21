@@ -2,13 +2,12 @@
 namespace frontend\models;
 
 use common\api\models\database\Orders;
+use common\api\models\database\OrdersRoom;
 use common\api\models\database\Rooms;
 use yii\base\Model;
 use yii\db\Exception;
 
 class OrderStep2 extends Model {
-    public $start_date;
-    public $end_date;
     public $room_ids;
     public $capacities;
     public $first_name;
@@ -22,28 +21,28 @@ class OrderStep2 extends Model {
     public $mobile;
     public $comment;
     public $arrival_time;
-
     public $airport_transfer_price_id;
     public $parking_reservation;
     public $breakfast;
+    public $start_date;
+    public $end_date;
 
     public function rules() {
         return [
             [['room_ids', 'capacities', 'first_name', 'last_name', 'email', 'email_confirm',
                 'country', 'city', 'address', 'mobile', 'start_date', 'end_date'], 'required'],
             [['zip_code', 'comment', 'arrival_time', 'airport_transfer_price_id', 'parking_reservation', 'breakfast'], 'safe'],
-            [['room_ids', 'capacities', 'first_name', 'last_name', 'email', 'email_confirm',
-                'city', 'address', 'zip_code', 'mobile', 'comment', 'arrival_time'], 'trim'],
+            [['first_name', 'last_name', 'email', 'email_confirm', 'city', 'address', 'zip_code', 'mobile', 'comment', 'arrival_time'], 'trim'],
             ['email', 'email'],
             ['email_confirm', 'compare', 'compareAttribute' => 'email'],
+            ['country', 'exist', 'targetClass' => 'common\api\models\database\Countries', 'targetAttribute' => 'id'],
+            ['airport_transfer_price_id', 'exist', 'targetClass' => 'common\api\models\database\AirportTransferPrices', 'targetAttribute' => 'id'],
             ['start_date', 'date', 'format' => 'php:Y-m-d'],
             ['start_date', function($attribute, $params, $validator) {
                 if (strtotime($this->end_date) - strtotime($this->start_date) < 86400) {
                     $this->addError($attribute, 'Incorrect date');
                 }
-            }],
-            ['country', 'exist', 'targetClass' => 'common\api\models\database\Countries', 'targetAttribute' => 'id'],
-            ['airport_transfer_price_id', 'exist', 'targetClass' => 'common\api\models\database\AirportTransferPrices', 'targetAttribute' => 'id']
+            }]
         ];
     }
 
@@ -57,9 +56,9 @@ class OrderStep2 extends Model {
             'address' => \Yii::t('contacts', 'Address').' *',
             'zip_code' => \Yii::t('order', 'Zip code'),
             'mobile' => \Yii::t('order', 'Mobile').' *',
-            'comment' => \Yii::t('order', 'Special requests'),
+            'comment' => \Yii::t('order', 'Special request'),
             'arrival_time' => \Yii::t('order', 'Approximate arrival time'),
-
+            'airport_transfer_price_id' => \Yii::t('services', 'Airport transfer'),
             'parking_reservation' => \Yii::t('services', 'Free private parking'),
             'breakfast' => \Yii::t('services', 'Breakfast')
         ];
@@ -72,39 +71,39 @@ class OrderStep2 extends Model {
 
             $transaction = \Yii::$app->db->beginTransaction();
             try {
-                foreach ($room_ids as $key => $room_id) {
-                    //if (!$room_id)
-                        //continue;
+                $order = new Orders();
+                $order->first_name = $this->first_name;
+                $order->last_name = $this->last_name;
+                $order->email = $this->email;
+                $order->country_id = $this->country;
+                $order->city = $this->city;
+                $order->address = $this->address;
+                if ($this->zip_code)
+                    $order->zip_code = $this->zip_code;
+                $order->mobile = $this->mobile;
+                if ($this->comment)
+                    $order->comment = $this->comment;
+                if ($this->arrival_time)
+                    $order->arrival_time = $this->arrival_time;
+                if ($this->airport_transfer_price_id)
+                    $order->airport_transfer_price_id = $this->airport_transfer_price_id;
+                $order->parking_reservation = $this->parking_reservation;
+                $order->breakfast = $this->breakfast;
+                $order->start_date = $this->start_date;
+                $order->end_date = $this->end_date;
+                $order->save();
 
+                foreach ($room_ids as $key => $room_id) {
                     $room = Rooms::findOne(['id' => $room_id]);
                     if (!$room)
                         continue;
 
-                    $order = new Orders();
-                    $order->room_id = $room_id;
-                    $order->capacity = $capacities[$key];
-                    $order->first_name = $this->first_name;
-                    $order->last_name = $this->last_name;
-                    $order->email = $this->email;
-                    $order->country_id = $this->country;
-                    $order->city = $this->city;
-                    $order->address = $this->address;
-                    if ($this->zip_code)
-                        $order->zip_code = $this->zip_code;
-                    $order->mobile = $this->mobile;
-                    if ($this->comment)
-                        $order->comment = $this->comment;
-                    if ($this->arrival_time)
-                        $order->arrival_time = $this->arrival_time;
-
-                    if ($this->airport_transfer_price_id)
-                        $order->airport_transfer_price_id = $this->airport_transfer_price_id;
-                    $order->parking_reservation = $this->parking_reservation;
-                    $order->breakfast = $this->breakfast;
-
-                    $order->start_date = $this->start_date;
-                    $order->end_date = $this->end_date;
-                    $order->save();
+                    for ($i = 0; $i < $capacities[$key]; $i++) {
+                        $order_rooms = new OrdersRoom();
+                        $order_rooms->order_id = $order->id;
+                        $order_rooms->room_id = $room_id;
+                        $order_rooms->save();
+                    }
                 }
 
                 $transaction->commit();

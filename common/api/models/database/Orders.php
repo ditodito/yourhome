@@ -9,8 +9,6 @@ use yii\db\ActiveRecord;
  * @package api\models\database
  *
  * @property integer $id
- * @property integer $room_id
- * @property integer $capacity
  * @property string $first_name
  * @property string $last_name
  * @property string $email
@@ -34,8 +32,8 @@ class Orders extends ActiveRecord {
         return 'orders';
     }
 
-    public function getRoom() {
-        return $this->hasOne(Rooms::className(), ['id' => 'room_id']);
+    public function getOrdersRoom() {
+        return $this->hasMany(OrdersRoom::className(), ['order_id' => 'id']);
     }
 
     public function getCountry() {

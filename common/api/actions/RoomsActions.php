@@ -43,25 +43,27 @@ class RoomsActions {
 
     public static function getAvailableRooms($start_date, $end_date) {
         $sql = "SELECT * FROM (
-                    SELECT {{r}}.[[id]], {{r}}.[[name_us]], {{r}}.[[name_ge]], {{r}}.[[name_ru]], {{r}}.[[capacity]], {{r}}.[[price]],
+                    SELECT {{r}}.[[id]], {{r}}.[[name_us]], {{r}}.[[name_ge]], {{r}}.[[name_ru]], {{r}}.[[price]],
                     CASE
                       WHEN {{r}}.[[is_hostel]] = 0 THEN
                         ({{r}}.[[quantity]] - IFNULL((
-                          SELECT SUM([[capacity]])
-                          FROM {{orders}}
-                          WHERE [[room_id]] = {{r}}.[[id]] AND [[status]] = 1
-                            AND (([[start_date]] <= :start_date AND [[end_date]] >= :start_date)
-                            OR ([[start_date]] <= :end_date AND [[end_date]] >= :end_date)
-                            OR ([[start_date]] >= :start_date AND [[end_date]] <= :end_date))
+                          SELECT COUNT({{ri}}.[[id]])
+                          FROM {{orders}} {{o}}
+                          INNER JOIN {{orders_room}} {{ri}} ON {{ri}}.[[order_id]] = {{o}}.[[id]]
+                          WHERE {{ri}}.[[room_id]] = {{r}}.[[id]] AND {{o}}.[[status]] = 1
+                            AND (({{o}}.[[start_date]] <= :start_date AND {{o}}.[[end_date]] >= :start_date)
+                            OR ({{o}}.[[start_date]] <= :end_date AND {{o}}.[[end_date]] >= :end_date)
+                            OR ({{o}}.[[start_date]] >= :start_date AND {{o}}.[[end_date]] <= :end_date))
                         ), 0))
                       ELSE
                         ({{r}}.[[capacity]] - IFNULL((
-                          SELECT SUM([[capacity]])
-                          FROM {{orders}}
+                          SELECT COUNT({{ri}}.[[id]])
+                          FROM {{orders}} {{o}}
+                          INNER JOIN {{orders_room}} {{ri}} ON {{ri}}.[[order_id]] = {{o}}.[[id]]
                           WHERE [[room_id]] = {{r}}.[[id]] AND [[status]] = 1
-                            AND (([[start_date]] <= :start_date AND [[end_date]] >= :start_date)
-                            OR ([[start_date]] <= :end_date AND [[end_date]] >= :end_date)
-                            OR ([[start_date]] >= :start_date AND [[end_date]] <= :end_date))
+                            AND (({{o}}.[[start_date]] <= :start_date AND {{o}}.[[end_date]] >= :start_date)
+                            OR ({{o}}.[[start_date]] <= :end_date AND {{o}}.[[end_date]] >= :end_date)
+                            OR ({{o}}.[[start_date]] >= :start_date AND {{o}}.[[end_date]] <= :end_date))
                         ), 0))
                     END [[available_rooms]]
                     FROM {{rooms}} {{r}}

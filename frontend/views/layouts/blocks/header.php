@@ -42,7 +42,7 @@ $order_form = new OrderForm();
                             'action' => ['/order/step1']
                         ]); ?>
                         <div class="reservation-input">
-                            <label class="control-label"><?=\Yii::t('order', 'Check-in')?></label>
+                            <label class="control-label"><?=\Yii::t('order', 'Check in')?></label>
                             <?=$form->field($order_form, 'start_date')->widget(DatePicker::classname(), [
                                 'type' => DatePicker::TYPE_COMPONENT_APPEND,
                                 'size' => 'sm',
@@ -74,7 +74,7 @@ $order_form = new OrderForm();
                             ])->label(false)->error(false)?>
                         </div>
                         <div class="reservation-input">
-                            <label class="control-label"><?=\Yii::t('order', 'Check-out')?></label>
+                            <label class="control-label"><?=\Yii::t('order', 'Check out')?></label>
                             <?=$form->field($order_form, 'end_date')->widget(DatePicker::classname(), [
                                 'type' => DatePicker::TYPE_COMPONENT_APPEND,
                                 'size' => 'sm',
@@ -96,7 +96,7 @@ $order_form = new OrderForm();
                         </div>
                         <div class="reservation-input">
                             <label class="control-label">&nbsp;</label>
-                            <?=Html::submitButton('Book Now', ['style' => 'color: #fff; display: block; outline: none; border: none; background-color: #8b7d72; padding: 5px 10px;'])?>
+                            <?=Html::submitButton(\Yii::t('main', 'Search'), ['style' => 'color: #fff; display: block; outline: none; border: none; background-color: #8b7d72; padding: 5px 20px;'])?>
                         </div>
                         <?php ActiveForm::end(); ?>
                     </div>
