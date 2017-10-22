@@ -6,6 +6,8 @@ use yii\bootstrap\Html;
 use yii\helpers\ArrayHelper;
 
 Step2Asset::register($this);
+
+$this->title = 'YourHomeHotel :: Order Step2';
 ?>
 
 <div class="row">
@@ -32,15 +34,14 @@ Step2Asset::register($this);
             </div>
             <div>
                 <div><strong><?=\Yii::t('order', 'Total length of stay')?></strong></div>
-                <div><?=$days?> <?=\Yii::t('order', 'night')?></div>
+                <div><?=$total_days?> <?=\Yii::t('order', 'night')?></div>
             </div>
         </div>
 
-        <!--
-        <div class="booking-extra" style="margin-top: 15px;">
-            <?php print_r($model->room_ids); ?>
-        </div>
-        -->
+        You selected:
+        <?php foreach($selectedRooms as $room): ?>
+            <div class="booking-extra"><?=$room->name?></div>
+        <?php endforeach; ?>
 
         <div class="booking-header" style="margin-top: 15px;"><?=\Yii::t('order', 'Your price summary')?></div>
         <div class="booking-details">
@@ -57,7 +58,7 @@ Step2Asset::register($this);
                 <div><?=\Yii::t('order', 'Price')?> <span class="pull-right"><span id="totalPrice"><?=$room_price?></span> GEL</span></div>
             </div>
         </div>
-        <p style="margin-top: 10px;"><?=\Yii::t('order', 'Free cancellation before 24h')?></p>
+        <p><?=\Yii::t('order', 'Free cancellation before 24h')?></p>
         <p><?=\Yii::t('order', 'Payment at the hotel')?></p>
     </div>
     <div class="col-md-9 form-group">
@@ -65,8 +66,8 @@ Step2Asset::register($this);
         <?php $form = ActiveForm::begin(['id' => 'orderForm', 'action' => ['/order/finish']]); ?>
             <?=Html::activeHiddenInput($model, 'start_date')?>
             <?=Html::activeHiddenInput($model, 'end_date')?>
-            <?=Html::activeHiddenInput($model, 'room_ids')?>
-            <?=Html::activeHiddenInput($model, 'capacities')?>
+            <?=Html::activeHiddenInput($model, 'rooms')?>
+            <?=Html::activeHiddenInput($model, 'quantities')?>
 
             <div class="form-block">
                 <h5><span class="text-danger">*</span> <?=\Yii::t('order', 'Required information')?></h5>

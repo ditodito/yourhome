@@ -8,8 +8,8 @@ use yii\base\Model;
 use yii\db\Exception;
 
 class OrderStep2 extends Model {
-    public $room_ids;
-    public $capacities;
+    public $rooms;
+    public $quantities;
     public $first_name;
     public $last_name;
     public $email;
@@ -29,7 +29,7 @@ class OrderStep2 extends Model {
 
     public function rules() {
         return [
-            [['room_ids', 'capacities', 'first_name', 'last_name', 'email', 'email_confirm',
+            [['rooms', 'quantities', 'first_name', 'last_name', 'email', 'email_confirm',
                 'country', 'city', 'address', 'mobile', 'start_date', 'end_date'], 'required'],
             [['zip_code', 'comment', 'arrival_time', 'airport_transfer_price_id', 'parking_reservation', 'breakfast'], 'safe'],
             [['first_name', 'last_name', 'email', 'email_confirm', 'city', 'address', 'zip_code', 'mobile', 'comment', 'arrival_time'], 'trim'],
@@ -66,8 +66,8 @@ class OrderStep2 extends Model {
 
     public function saveOrder() {
         if ($this->validate()) {
-            $room_ids = explode(',', $this->room_ids);
-            $capacities = explode(',', $this->capacities);
+            $rooms = explode(',', $this->rooms);
+            $quantities = explode(',', $this->quantities);
 
             $transaction = \Yii::$app->db->beginTransaction();
             try {
@@ -93,12 +93,12 @@ class OrderStep2 extends Model {
                 $order->end_date = $this->end_date;
                 $order->save();
 
-                foreach ($room_ids as $key => $room_id) {
+                foreach ($rooms as $key => $room_id) {
                     $room = Rooms::findOne(['id' => $room_id]);
                     if (!$room)
                         continue;
 
-                    for ($i = 0; $i < $capacities[$key]; $i++) {
+                    for ($i = 0; $i < $quantities[$key]; $i++) {
                         $order_rooms = new OrdersRoom();
                         $order_rooms->order_id = $order->id;
                         $order_rooms->room_id = $room_id;

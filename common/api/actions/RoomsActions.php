@@ -27,7 +27,27 @@ class RoomsActions {
         }
 
         return $result;
+    }
 
+    public static function getRoomsTitleById($id) {
+        $row = Rooms::findOne(['id' => $id]);
+        $result = null;
+
+        if ($row) {
+            switch(\Yii::$app->language) {
+                case 'ka-GE':
+                    $name = $row['name_ge'];
+                    break;
+                case 'ru-RU':
+                    $name = $row['name_ru'];
+                    break;
+                default:
+                    $name = $row['name_us'];
+            }
+            $result = new IdNamePair($row['id'], $name);
+        }
+
+        return $result;
     }
 
     public static function getRooms() {

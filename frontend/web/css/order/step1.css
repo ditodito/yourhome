@@ -4,16 +4,16 @@ div.price-block > div {
 div.price-block > div:first-child {
     background-color: #a7d47b;
 }
+div.price-block > div:last-child {
+    background-color: #e8f4dc;
+}
 div.price-block > div:first-child > div:last-child {
     font-weight: bold;
     margin-top: 10px;
 }
-div.price-block > div:last-child {
-    background-color: #e8f4dc;
-}
 div.price-block > div:last-child > div:first-child {
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 div.check-block {
@@ -33,6 +33,12 @@ div.contact-info > span {
     font-weight: bold;
 }
 
+
+div.date-block {
+    font-weight: bold;
+    background-color: #e8f4dc;
+    padding: 30px 30px 15px 30px;
+}
 #changeDate {
     outline: none;
     border: none;
@@ -74,6 +80,14 @@ select.room-quantity {
 select.room-quantity > option {
     background-color: #fff;
 }
+
+#submitBtn {
+    outline: none;
+    border: none;
+    background-color: #8bc652;
+    padding: 5px 15px;
+}
+
 
 #changeDateModal div.modal-content {
     border-radius: 0;

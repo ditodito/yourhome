@@ -4,14 +4,12 @@ namespace common\api\models\response;
 class RoomsAvailableRow implements \JsonSerializable {
     protected $id;
     protected $name;
-    protected $capacity;
     protected $price;
     protected $available_rooms;
 
     public function __construct($row) {
         $this->id = $row['id'];
         $this->name = self::resolveName($row);
-        //$this->capacity = $row['capacity'];
         $this->price = $row['price'];
         $this->available_rooms = $row['available_rooms'];
     }
@@ -37,9 +35,6 @@ class RoomsAvailableRow implements \JsonSerializable {
                 break;
             case 'name':
                 return $this->name;
-                break;
-            case 'capacity':
-                return $this->capacity;
                 break;
             case 'price':
                 return $this->price;

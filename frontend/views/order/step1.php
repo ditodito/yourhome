@@ -7,6 +7,8 @@ use yii\web\View;
 
 Step1Asset::register($this);
 
+$this->title = 'YourHomeHotel :: Order Step1';
+
 $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
 ?>
 
@@ -41,10 +43,10 @@ $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
         </div>
         <div class="contact-info">
             <span><?=\Yii::t('contacts', 'Metro')?>:</span>
-            <p>
-                <?=\Yii::t('contacts', 'Line {0}', ['I'])?>, <?=\Yii::t('contacts', 'Station Marjanishvili')?>
-                <br /><?=\Yii::t('contacts', 'Open hours - {0} (6am-12am)', ['06:00-24:00'])?>
-            </p>
+            <div>
+                <div><?=\Yii::t('contacts', 'Line {0}', ['I'])?>, <?=\Yii::t('contacts', 'Station Marjanishvili')?></div>
+                <div><?=\Yii::t('contacts', 'Open hours - {0} (6am-12am)', ['06:00-24:00'])?></div>
+            </div>
         </div>
         <div class="contact-info">
             <span><?=\Yii::t('contacts', 'Bus')?>:</span>
@@ -60,28 +62,30 @@ $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
         </div>
     </div>
     <div class="col-md-9 form-group">
-        <div style="background-color: #e8f4dc; padding: 30px; display: flex; width: 100%; font-weight: bold;">
-            <div style="width: 25%;">
-                <span class="small"><?=\Yii::t('order', 'Check in date')?>:</span><br />
-                <span style="color: #8bc652;">
-                    <?=\Yii::t('day', date('D', $start_date))?>,
-                    <?=\Yii::t('month', date('M', $start_date))?> <?=date('d', $start_date)?>,
-                    <?=date('Y', $start_date)?>
-                </span>
-            </div>
-            <div style="width: 25%;">
-                <span class="small"><?=\Yii::t('order', 'Check out date')?>:</span><br />
-                <span style="color: #8bc652">
-                    <?=\Yii::t('day', date('D', $end_date))?>,
-                    <?=\Yii::t('month', date('M', $end_date))?> <?=date('d', $end_date)?>,
-                    <?=date('Y', $end_date)?>
-                </span>
-            </div>
-            <div style="width: 25%;">
-                (<?=\Yii::t('order', '{0}-night stay ', [$total_days])?>)
-            </div>
-            <div style="width: 25%;">
-                <button id="changeDate"><?=\Yii::t('order', 'Change date')?></button>
+        <div class="date-block">
+            <div class="row">
+                <div class="col-md-3 form-group">
+                    <span class="small"><?=\Yii::t('order', 'Check in date')?>:</span><br />
+                    <span style="color: #8bc652;">
+                        <?=\Yii::t('day', date('D', $start_date))?>,
+                        <?=\Yii::t('month', date('M', $start_date))?> <?=date('d', $start_date)?>,
+                        <?=date('Y', $start_date)?>
+                    </span>
+                </div>
+                <div class="col-md-3 form-group">
+                    <span class="small"><?=\Yii::t('order', 'Check out date')?>:</span><br />
+                    <span style="color: #8bc652">
+                        <?=\Yii::t('day', date('D', $end_date))?>,
+                        <?=\Yii::t('month', date('M', $end_date))?> <?=date('d', $end_date)?>,
+                        <?=date('Y', $end_date)?>
+                    </span>
+                </div>
+                <div class="col-md-3 form-group">
+                    (<?=\Yii::t('order', '{0}-night stay ', [$total_days])?>)
+                </div>
+                <div class="col-md-3 form-group">
+                    <button id="changeDate"><?=\Yii::t('order', 'Change date')?></button>
+                </div>
             </div>
         </div>
 
@@ -98,12 +102,12 @@ $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
                 </thead>
                 <tbody>
                     <?php foreach($available_rooms as $room): ?>
-                        <?=Html::hiddenInput('room_ids[]', $room->id)?>
+                        <?=Html::hiddenInput('rooms[]', $room->id)?>
                         <tr>
                             <td><?=$room->name?></td>
                             <td><?=$room->price?> GEL</td>
                             <td>
-                                <select class="room-quantity" name="capacities[]">
+                                <select class="room-quantity" name="quantities[]">
                                     <option value="0" data-price="0"></option>
                                     <?php for($i = 1; $i <= $room->available_rooms; $i++): ?>
                                         <option value="<?=$i?>" data-price="<?=$room->price?>"><?=$i.' ('.$room->price.' GEL)'?></option>
@@ -116,7 +120,7 @@ $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
                         <td></td>
                         <td></td>
                         <td>
-                            <button type="submit" daa-id="<?=$room->id?>" style="outline: none; background-color: #8bc652; border: none; padding: 3px 15px;">Book</button>
+                            <button type="submit" id="submitBtn" disabled>Book</button>
                         </td>
                     </tr>
                 </tbody>

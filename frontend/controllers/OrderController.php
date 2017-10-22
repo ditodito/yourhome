@@ -52,36 +52,51 @@ class OrderController extends YourHomeController {
 
     public function actionStep2() {
         if (\Yii::$app->request->post()) {
-            $start = strtotime(\Yii::$app->request->post('start_date')); // strtotime('10/19/2017');
-            $end = strtotime(\Yii::$app->request->post('end_date')); // strtotime('10/21/2017');
-            $room_ids = \Yii::$app->request->post('room_ids'); // [2, 3];
-            $capacities = \Yii::$app->request->post('capacities'); // [2,6];
+            $start = strtotime(\Yii::$app->request->post('start_date'));
+            $end = strtotime(\Yii::$app->request->post('end_date'));
+            $rooms = \Yii::$app->request->post('rooms');
+            $quantities = \Yii::$app->request->post('quantities');
 
-            $room_price = 0;
             $total_days = floor(($end - $start) / 86400);
+            $room_price = 0;
+            $final_rooms = [];
+            $final_quantities = [];
+            $selected_rooms = [];
+
+            foreach ($quantities as $key => $quantity) {
+                if ($quantity <= 0)
+                    continue;
+
+                $room = Rooms::findOne(['id' => $rooms[$key]]);
+                if (!$room)
+                    continue;
+
+                $room_price += $room->price * $quantity;
+
+                $final_rooms[] = $rooms[$key];
+                $final_quantities[] = $quantity;
+
+                if ($room->is_hostel) {
+                    $selected_rooms[] = RoomsActions::getRoomsTitleById($rooms[$key]);
+                } else {
+                    for ($i = 0; $i < $quantity; $i++) {
+                        $selected_rooms[] = RoomsActions::getRoomsTitleById($rooms[$key]);
+                    }
+                }
+            }
 
             $model = new OrderStep2();
             $model->start_date = date('Y-m-d', $start);
             $model->end_date = date('Y-m-d', $end);
-
-            foreach ($capacities as $key => $capacity) {
-                if ($capacity == 0)
-                    continue;
-
-                $room = Rooms::findOne(['id' => $room_ids[$key]]);
-                if (!$room)
-                    continue;
-
-                $room_price += $room->price * $capacity;
-                $model->room_ids .= $room_ids[$key] . ',';
-                $model->capacities .= $capacity . ',';
-            }
+            $model->rooms = implode(',', $final_rooms);
+            $model->quantities = implode(',', $final_quantities);
 
             return $this->render('step2', [
                 'start_date' => $start,
                 'end_date' => $end,
+                'total_days' => $total_days,
                 'room_price' => $room_price * $total_days,
-                'days' => $total_days,
+                'selectedRooms' => $selected_rooms,
                 'model' => $model,
                 'airportTransferPrices' => OrderActions::getAirportTransferPrices()
             ]);

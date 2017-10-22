@@ -9,6 +9,7 @@ div.booking-header {
 
 div.booking-details, div.booking-extra {
     background-color: #e8f4dc;
+    margin-bottom: 15px;
 }
 
 div.booking-details > div {
