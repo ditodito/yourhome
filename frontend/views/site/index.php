@@ -1,10 +1,26 @@
 <?php
 use frontend\assets\IndexAsset;
 use yii\bootstrap\Html;
+use yii\helpers\Url;
 
 IndexAsset::register($this);
 
 $this->title = 'YourHomeHotel :: '.\Yii::t('menu', 'Home');
+
+/*
+$order = \common\api\models\database\Orders::findOne(['id' => 1]);
+$mail = \Yii::$app->mailer->compose(['html' => 'orderConfirmation-html', 'text' => 'orderConfirmation-text'], [
+    'logo' => \Yii::getAlias('@common/mail/img/logo.png'),
+    'order' => $order
+])
+->setFrom('dddd@mail.ru')
+->setTo('ditokhanishvili@gmail.com')
+->setSubject('Test ტესტი');
+if ($mail->send()) {
+    echo "yes";
+} else {
+    echo "no";
+}*/
 ?>
 
 <div class="row">

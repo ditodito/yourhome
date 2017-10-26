@@ -3,7 +3,10 @@ namespace frontend\controllers;
 
 use common\api\actions\OrderActions;
 use common\api\actions\RoomsActions;
+use common\api\models\database\Orders;
 use common\api\models\database\Rooms;
+use common\api\models\response\RoomServiceRow;
+use common\api\models\response\RoomsWithServicesRow;
 use common\controllers\YourHomeController;
 use DateTime;
 use frontend\models\OrderForm;
@@ -47,15 +50,19 @@ class OrderController extends YourHomeController {
             ]);
         }
 
-        return $this->redirect(['/site/']);
+        return $this->redirect(['site/']);
     }
 
     public function actionStep2() {
-        if (\Yii::$app->request->post()) {
-            $start = strtotime(\Yii::$app->request->post('start_date'));
-            $end = strtotime(\Yii::$app->request->post('end_date'));
-            $rooms = \Yii::$app->request->post('rooms');
-            $quantities = \Yii::$app->request->post('quantities');
+        //if (\Yii::$app->request->post()) {
+             $start = time();
+             $end = time()+86400*3;
+             $rooms = [1,2,3];
+             $quantities = [2,1,4];
+            //$start = strtotime(\Yii::$app->request->post('start_date'));
+            //$end = strtotime(\Yii::$app->request->post('end_date'));
+            //$rooms = \Yii::$app->request->post('rooms');
+            //$quantities = \Yii::$app->request->post('quantities');
 
             $total_days = floor(($end - $start) / 86400);
             $room_price = 0;
@@ -63,7 +70,7 @@ class OrderController extends YourHomeController {
             $final_quantities = [];
             $selected_rooms = [];
 
-            foreach ($quantities as $key => $quantity) {
+            foreach($quantities as $key => $quantity) {
                 if ($quantity <= 0)
                     continue;
 
@@ -76,14 +83,66 @@ class OrderController extends YourHomeController {
                 $final_rooms[] = $rooms[$key];
                 $final_quantities[] = $quantity;
 
-                if ($room->is_hostel) {
-                    $selected_rooms[] = RoomsActions::getRoomsTitleById($rooms[$key]);
-                } else {
-                    for ($i = 0; $i < $quantity; $i++) {
-                        $selected_rooms[] = RoomsActions::getRoomsTitleById($rooms[$key]);
+                /*if ($room->is_hostel) {
+                    switch(\Yii::$app->language) {
+                        case 'ka-GE':
+                            $name = $room['name_ge'];
+                            break;
+                        case 'ru-RU':
+                            $name = $room['name_ru'];
+                            break;
+                        default:
+                            $name = $room['name_us'];
                     }
-                }
-            }
+
+                    $rws = new RoomsWithServicesRow($room['id'], $name);
+                    foreach($room->services as $service) {
+                        switch(\Yii::$app->language) {
+                            case 'ka-GE':
+                                $service_name = $service['name_ge'];
+                                break;
+                            case 'ru-RU':
+                                $service_name = $service['name_ru'];
+                                break;
+                            default:
+                                $service_name = $service['name_us'];
+                        }
+                        $service = new RoomServiceRow($service['id'], $service_name, $service['price'], $service['per_day']);
+                        $rws->setService($service);
+                    }
+                    $selected_rooms[] = $rws;
+                } else {*/
+                    for($i = 0; $i < $quantity; $i++) {
+                        switch(\Yii::$app->language) {
+                            case 'ka-GE':
+                                $name = $room['name_ge'];
+                                break;
+                            case 'ru-RU':
+                                $name = $room['name_ru'];
+                                break;
+                            default:
+                                $name = $room['name_us'];
+                        }
+
+                        $rws = new RoomsWithServicesRow($room['id'], $name);
+                        foreach($room->services as $service) {
+                            switch(\Yii::$app->language) {
+                                case 'ka-GE':
+                                    $service_name = $service['name_ge'];
+                                    break;
+                                case 'ru-RU':
+                                    $service_name = $service['name_ru'];
+                                    break;
+                                default:
+                                    $service_name = $service['name_us'];
+                            }
+                            $service = new RoomServiceRow($service['id'], $service_name, $service['price'], $service['per_day']);
+                            $rws->setService($service);
+                        }
+                        $selected_rooms[] = $rws;
+                    }
+                //}
+            //}
 
             $model = new OrderStep2();
             $model->start_date = date('Y-m-d', $start);
@@ -102,19 +161,23 @@ class OrderController extends YourHomeController {
             ]);
         }
 
-        return $this->redirect(['/site/']);
+        return $this->redirect(['site/']);
     }
 
     public function actionFinish() {
         $model = new OrderStep2();
 
         if ($model->load(\Yii::$app->request->post()) && $model->saveOrder()) {
-            return "y";///return $this->redirect(['/order/success']);
+            return "y";///return $this->redirect(['order/success']);
         } else {
             return 'no';
         }
 
-        return $this->redirect(['/site/']);
+        return $this->redirect(['site/']);
+    }
+
+    public function actionRemove($id, $order_key) {
+        echo OrderActions::removeOrder($id, $order_key);
     }
 
 }

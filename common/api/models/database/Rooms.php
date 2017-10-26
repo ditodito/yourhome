@@ -45,4 +45,8 @@ class Rooms extends ActiveRecord {
         return $this->hasMany(Orders::className(), ['room_id' => 'id']);
     }
 
+    public function getServices() {
+        return $this->hasMany(RoomsServices::className(), ['room_id' => 'id']);
+    }
+
 }

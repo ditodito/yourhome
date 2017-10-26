@@ -44,7 +44,6 @@ class RoomsRow implements \JsonSerializable {
         $this->toiletries = $row['toiletries'];
         $this->towels = $row['towels'];
         $this->slippers = $row['slippers'];
-
     }
 
     private function resolveName($row, $for_name) {

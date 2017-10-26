@@ -8,7 +8,7 @@ use common\api\models\response\RoomsRow;
 
 class RoomsActions {
 
-    public static function getRoomsTitle() {
+    /*public static function getRoomsTitle() {
         $rows = Rooms::find()->all();
         $result = [];
 
@@ -27,8 +27,9 @@ class RoomsActions {
         }
 
         return $result;
-    }
+    }*/
 
+    /*
     public static function getRoomsTitleById($id) {
         $row = Rooms::findOne(['id' => $id]);
         $result = null;
@@ -49,6 +50,7 @@ class RoomsActions {
 
         return $result;
     }
+    */
 
     public static function getRooms() {
         $rows = Rooms::find()->all();

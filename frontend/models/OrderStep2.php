@@ -26,12 +26,13 @@ class OrderStep2 extends Model {
     public $breakfast;
     public $start_date;
     public $end_date;
+    public $room_services;
 
     public function rules() {
         return [
             [['rooms', 'quantities', 'first_name', 'last_name', 'email', 'email_confirm',
                 'country', 'city', 'address', 'mobile', 'start_date', 'end_date'], 'required'],
-            [['zip_code', 'comment', 'arrival_time', 'airport_transfer_price_id', 'parking_reservation', 'breakfast'], 'safe'],
+            [['zip_code', 'comment', 'arrival_time', 'airport_transfer_price_id', 'parking_reservation', 'breakfast', 'room_services'], 'safe'],
             [['first_name', 'last_name', 'email', 'email_confirm', 'city', 'address', 'zip_code', 'mobile', 'comment', 'arrival_time'], 'trim'],
             ['email', 'email'],
             ['email_confirm', 'compare', 'compareAttribute' => 'email'],
@@ -68,10 +69,12 @@ class OrderStep2 extends Model {
         if ($this->validate()) {
             $rooms = explode(',', $this->rooms);
             $quantities = explode(',', $this->quantities);
+            $room_services = $this->room_services ? explode(',', $this->room_services) : [];
 
             $transaction = \Yii::$app->db->beginTransaction();
             try {
                 $order = new Orders();
+                $order->order_key = \Yii::$app->security->generateRandomString();
                 $order->first_name = $this->first_name;
                 $order->last_name = $this->last_name;
                 $order->email = $this->email;
@@ -93,24 +96,42 @@ class OrderStep2 extends Model {
                 $order->end_date = $this->end_date;
                 $order->save();
 
-                foreach ($rooms as $key => $room_id) {
+                foreach($rooms as $key => $room_id) {
                     $room = Rooms::findOne(['id' => $room_id]);
                     if (!$room)
-                        continue;
+                        throw new \yii\base\Exception('Invalid room id');
 
-                    for ($i = 0; $i < $quantities[$key]; $i++) {
+                    for($i = 0; $i < $quantities[$key]; $i++) {
                         $order_rooms = new OrdersRoom();
                         $order_rooms->order_id = $order->id;
                         $order_rooms->room_id = $room_id;
                         $order_rooms->save();
+
+                        /*foreach($room_services as $service) {
+                            $r = explode('-', $service);
+                            $rid = $r[0];
+                            $sid = $r[1];
+                            if ($room_id == $rid)
+                                \Yii::error($rid.":::".$sid);
+                        }*/
                     }
                 }
+
+                $mail = \Yii::$app->mailer->compose(['html' => 'orderConfirmation-html', 'text' => 'orderConfirmation-text'], [
+                    'logo' => \Yii::getAlias('@common/mail/img/logo.png'),
+                    'order' => $order
+                ])->setFrom('dddd@mail.ru')
+                  ->setTo($order->email)
+                  ->setSubject('Reservation confirmation. Hotel YOUR HOME');
+
+                if (!$mail->send())
+                    throw new \yii\base\Exception('Order confirm email was not send');
 
                 $transaction->commit();
                 return true;
             } catch(Exception $ex) {
                 $transaction->rollBack();
-                \Yii::error('Add order '.$ex->getMessage());
+                \Yii::error('Add order '.$ex->getMessage().' '.$ex->getLine());
             }
 
             return false;

@@ -9,6 +9,7 @@ use yii\db\ActiveRecord;
  * @package api\models\database
  *
  * @property integer $id
+ * @property string $order_key
  * @property string $first_name
  * @property string $last_name
  * @property string $email

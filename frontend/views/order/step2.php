@@ -1,5 +1,6 @@
 <?php
 use common\api\models\database\Countries;
+use common\api\models\database\Rooms;
 use frontend\assets\order\Step2Asset;
 use yii\bootstrap\ActiveForm;
 use yii\bootstrap\Html;
@@ -40,7 +41,17 @@ $this->title = 'YourHomeHotel :: Order Step2';
 
         You selected:
         <?php foreach($selectedRooms as $room): ?>
-            <div class="booking-extra"><?=$room->name?></div>
+            <div class="booking-extra">
+                <?=$room->name?>
+                <?php foreach($room->services as $service): ?>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" class="room-service" value="<?=$room->id?>-<?=$service->id?>" data-price="<?=$service->price?>" />
+                            <?=$service->name. ' + ' . $service->price. ' GEL '.$service->per_day?>
+                        </label>
+                    </div>
+                <?php endforeach; ?>
+            </div>
         <?php endforeach; ?>
 
         <div class="booking-header" style="margin-top: 15px;"><?=\Yii::t('order', 'Your price summary')?></div>
@@ -68,6 +79,7 @@ $this->title = 'YourHomeHotel :: Order Step2';
             <?=Html::activeHiddenInput($model, 'end_date')?>
             <?=Html::activeHiddenInput($model, 'rooms')?>
             <?=Html::activeHiddenInput($model, 'quantities')?>
+            <?=Html::activeHiddenInput($model, 'room_services')?>
 
             <div class="form-block">
                 <h5><span class="text-danger">*</span> <?=\Yii::t('order', 'Required information')?></h5>
