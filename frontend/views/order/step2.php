@@ -40,13 +40,14 @@ $this->title = 'YourHomeHotel :: Order Step2';
         </div>
 
         You selected:
-        <?php foreach($selectedRooms as $room): ?>
+        <?php foreach($selectedRooms as $key => $room): ?>
+            <?php $index = ($key > 0 && $room == $selectedRooms[$key-1]) ? $key : 0; ?>
             <div class="booking-extra">
                 <?=$room->name?>
                 <?php foreach($room->services as $service): ?>
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" class="room-service" value="<?=$room->id?>-<?=$service->id?>" data-price="<?=$service->price?>" />
+                            <input type="checkbox" class="room-service" value="<?=$index?>-<?=$room->id?>-<?=$service->id?>" data-price="<?=$service->price?>" />
                             <?=$service->name. ' + ' . $service->price. ' GEL '.$service->per_day?>
                         </label>
                     </div>

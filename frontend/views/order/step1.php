@@ -65,7 +65,7 @@ $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
         <div class="date-block">
             <div class="row">
                 <div class="col-md-3 form-group">
-                    <span class="small"><?=\Yii::t('order', 'Check in date')?>:</span><br />
+                    <span><?=\Yii::t('order', 'Check in date')?>:</span><br />
                     <span style="color: #8bc652;">
                         <?=\Yii::t('day', date('D', $start_date))?>,
                         <?=\Yii::t('month', date('M', $start_date))?> <?=date('d', $start_date)?>,
@@ -73,7 +73,7 @@ $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
                     </span>
                 </div>
                 <div class="col-md-3 form-group">
-                    <span class="small"><?=\Yii::t('order', 'Check out date')?>:</span><br />
+                    <span><?=\Yii::t('order', 'Check out date')?>:</span><br />
                     <span style="color: #8bc652">
                         <?=\Yii::t('day', date('D', $end_date))?>,
                         <?=\Yii::t('month', date('M', $end_date))?> <?=date('d', $end_date)?>,
@@ -89,7 +89,7 @@ $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
             </div>
         </div>
 
-        <?=Html::beginForm(['/order/step2'])?>
+        <?=Html::beginForm(['order/step2'])?>
             <?=Html::hiddenInput('start_date', date('Y-m-d', $start_date))?>
             <?=Html::hiddenInput('end_date', date('Y-m-d', $end_date))?>
             <table class="table available-rooms">
@@ -139,13 +139,11 @@ $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
                 <h4 class="modal-title"><?=\Yii::t('order', 'Change date')?></h4>
             </div>
             <div class="modal-body">
-                <?php $form = ActiveForm::begin([
-                    'action' => ['/order/step1']
-                ]); ?>
+                <?php $form = ActiveForm::begin(['action' => ['order/step1']]); ?>
                     <div class="row">
                         <div class="col-md-4">
-                            <label class="control-label"><?=\Yii::t('order', 'Check-in')?></label>
-                            <?=$form->field($order_form, 'start_date')->widget(DatePicker::classname(), [
+                            <label class="control-label"><?=\Yii::t('order', 'Check in')?></label>
+                            <?=$form->field($model, 'start_date')->widget(DatePicker::classname(), [
                                 'type' => DatePicker::TYPE_COMPONENT_PREPEND,
                                 'size' => 'sm',
                                 'pickerButton' => [
@@ -154,7 +152,7 @@ $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
                                 ],
                                 'removeButton' => false,
                                 'options' => [
-                                    //'placeholder' => '1',
+                                    // 'placeholder' => '1',
                                     'style' => 'border-left: none; border-radius: 0;'
                                 ],
                                 'pluginOptions' => [
@@ -176,8 +174,8 @@ $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
                             ])->label(false)->error(false)?>
                         </div>
                         <div class="col-md-4">
-                            <label class="control-label"><?=\Yii::t('order', 'Check-out')?></label>
-                            <?=$form->field($order_form, 'end_date')->widget(DatePicker::classname(), [
+                            <label class="control-label"><?=\Yii::t('order', 'Check out')?></label>
+                            <?=$form->field($model, 'end_date')->widget(DatePicker::classname(), [
                                 'type' => DatePicker::TYPE_COMPONENT_PREPEND,
                                 'size' => 'sm',
                                 'pickerButton' => [
@@ -186,7 +184,7 @@ $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
                                 ],
                                 'removeButton' => false,
                                 'options' => [
-                                    //'placeholder' => '1',
+                                    // 'placeholder' => '1',
                                     'style' => 'border-left: none; border-radius: 0;'
                                 ],
                                 'pluginOptions' => [

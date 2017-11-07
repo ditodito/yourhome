@@ -107,13 +107,14 @@ class OrderStep2 extends Model {
                         $order_rooms->room_id = $room_id;
                         $order_rooms->save();
 
-                        /*foreach($room_services as $service) {
+                        foreach($room_services as $service) {
                             $r = explode('-', $service);
-                            $rid = $r[0];
-                            $sid = $r[1];
-                            if ($room_id == $rid)
+                            $ind = $r[0];
+                            $rid = $r[1];
+                            $sid = $r[2];
+                            if ($room_id == $rid && $i == $ind)
                                 \Yii::error($rid.":::".$sid);
-                        }*/
+                        }
                     }
                 }
 
@@ -127,7 +128,7 @@ class OrderStep2 extends Model {
                 if (!$mail->send())
                     throw new \yii\base\Exception('Order confirm email was not send');
 
-                $transaction->commit();
+                //$transaction->commit();
                 return true;
             } catch(Exception $ex) {
                 $transaction->rollBack();

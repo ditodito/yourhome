@@ -46,7 +46,7 @@ class OrderController extends YourHomeController {
                 'start_date' => $start_date,
                 'end_date' => $end_date,
                 'available_rooms' => RoomsActions::getAvailableRooms(date('Y-m-d', $start_date), date('Y-m-d', $end_date)),
-                'order_form' => $model
+                'model' => $model
             ]);
         }
 
@@ -59,10 +59,10 @@ class OrderController extends YourHomeController {
              $end = time()+86400*3;
              $rooms = [1,2,3];
              $quantities = [2,1,4];
-            //$start = strtotime(\Yii::$app->request->post('start_date'));
-            //$end = strtotime(\Yii::$app->request->post('end_date'));
-            //$rooms = \Yii::$app->request->post('rooms');
-            //$quantities = \Yii::$app->request->post('quantities');
+             // $start = strtotime(\Yii::$app->request->post('start_date'));
+             // $end = strtotime(\Yii::$app->request->post('end_date'));
+             // $rooms = \Yii::$app->request->post('rooms');
+             // $quantities = \Yii::$app->request->post('quantities');
 
             $total_days = floor(($end - $start) / 86400);
             $room_price = 0;
@@ -79,7 +79,6 @@ class OrderController extends YourHomeController {
                     continue;
 
                 $room_price += $room->price * $quantity;
-
                 $final_rooms[] = $rooms[$key];
                 $final_quantities[] = $quantity;
 
@@ -136,13 +135,14 @@ class OrderController extends YourHomeController {
                                 default:
                                     $service_name = $service['name_us'];
                             }
+
                             $service = new RoomServiceRow($service['id'], $service_name, $service['price'], $service['per_day']);
                             $rws->setService($service);
                         }
                         $selected_rooms[] = $rws;
                     }
                 //}
-            //}
+            }
 
             $model = new OrderStep2();
             $model->start_date = date('Y-m-d', $start);
@@ -159,7 +159,7 @@ class OrderController extends YourHomeController {
                 'model' => $model,
                 'airportTransferPrices' => OrderActions::getAirportTransferPrices()
             ]);
-        }
+        //}
 
         return $this->redirect(['site/']);
     }
