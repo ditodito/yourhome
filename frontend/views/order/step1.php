@@ -7,7 +7,7 @@ use yii\web\View;
 
 Step1Asset::register($this);
 
-$this->title = 'YourHomeHotel :: Order Step1';
+$this->title = 'YourHomeHotel :: Order Step 1';
 
 $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
 ?>

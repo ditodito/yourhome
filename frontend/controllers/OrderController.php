@@ -57,8 +57,8 @@ class OrderController extends YourHomeController {
         //if (\Yii::$app->request->post()) {
              $start = time();
              $end = time()+86400*3;
-             $rooms = [1,2,3];
-             $quantities = [2,1,4];
+             $rooms = [1,2,3,4];
+             $quantities = [2,1,3,4];
              // $start = strtotime(\Yii::$app->request->post('start_date'));
              // $end = strtotime(\Yii::$app->request->post('end_date'));
              // $rooms = \Yii::$app->request->post('rooms');

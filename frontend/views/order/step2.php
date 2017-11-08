@@ -5,10 +5,13 @@ use frontend\assets\order\Step2Asset;
 use yii\bootstrap\ActiveForm;
 use yii\bootstrap\Html;
 use yii\helpers\ArrayHelper;
+use yii\web\View;
 
 Step2Asset::register($this);
 
-$this->title = 'YourHomeHotel :: Order Step2';
+$this->title = 'YourHomeHotel :: Order Step 2';
+
+$this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
 ?>
 
 <div class="row">
@@ -41,14 +44,18 @@ $this->title = 'YourHomeHotel :: Order Step2';
 
         You selected:
         <?php foreach($selectedRooms as $key => $room): ?>
-            <?php $index = ($key > 0 && $room == $selectedRooms[$key-1]) ? $key : 0; ?>
+            <?php
+            //$index = ($key > 0 && $room != $selectedRooms[$key-1]) ? 0 : $key;
+            //$index = ($room != $selectedRooms[$key+1])
+            ?>
             <div class="booking-extra">
                 <?=$room->name?>
                 <?php foreach($room->services as $service): ?>
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" class="room-service" value="<?=$index?>-<?=$room->id?>-<?=$service->id?>" data-price="<?=$service->price?>" />
-                            <?=$service->name. ' + ' . $service->price. ' GEL '.$service->per_day?>
+                            <input type="checkbox" class="room-service" value="<?=$key?>-<?=$room->id?>-<?=$service->id?>" data-price="<?=$service->price?>" data-per-day="<?=$service->per_day?>" />
+                            <?=$service->name?> + <?=$service->price?> GEL
+                            (<?=($service->per_day == 1) ? \Yii::t('order', 'Per day') : \Yii::t('order', 'One package')?>)
                         </label>
                     </div>
                 <?php endforeach; ?>

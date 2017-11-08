@@ -15,10 +15,12 @@ $(document).ready(function() {
         var services = [];
 
         $(".room-service").each(function(i, element) {
+            var price = $(element).data("price");
+            var perDay = $(element).data("per-day");
+
             if ($(element).is(":checked")) {
-                servicePrice += parseInt($(element).data("price"));
+                servicePrice += (perDay == 1) ? price * totalDays : price;
                 services.push($(element).val());
-                //services += $(element).val()+", ";
             }
         });
 
@@ -27,7 +29,6 @@ $(document).ready(function() {
 
         $("#servicePrice").text(servicePrice);
         $("#totalPrice").text(roomPrice + servicePrice);
-        console.log(services);
         $("#orderstep2-room_services").val(services.join());
     }
 
