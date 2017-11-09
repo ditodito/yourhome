@@ -11,7 +11,6 @@ use yii\db\ActiveRecord;
  * @property integer $id
  * @property integer $order_id
  * @property integer $room_id
- * @property integer $extra_bed
  */
 class OrdersRoom extends ActiveRecord {
 
@@ -25,6 +24,10 @@ class OrdersRoom extends ActiveRecord {
 
     public function getRoom() {
         return $this->hasOne(Rooms::className(), ['id' => 'room_id']);
+    }
+
+    public function getServices() {
+        return $this->hasMany(OrdersRoomServices::className(), ['order_room_id' => 'id']);
     }
 
 }

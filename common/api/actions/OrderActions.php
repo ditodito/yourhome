@@ -4,6 +4,7 @@ namespace common\api\actions;
 use common\api\models\database\AirportTransferPrices;
 use common\api\models\database\Orders;
 use common\api\models\database\OrdersRoom;
+use common\api\models\database\OrdersRoomServices;
 use common\api\models\response\IdNamePair;
 use common\api\models\response\IdNamePairPlus;
 use yii\base\Exception;
@@ -29,7 +30,17 @@ class OrderActions {
         $transaction = \Yii::$app->db->beginTransaction();
         try {
             $order->delete();
-            OrdersRoom::deleteAll(['order_id' => $order->id]);
+
+            foreach(OrdersRoom::findAll(['order_id' => $order->id]) as $order_room) {
+                $order_room->delete();
+
+                foreach(OrdersRoomServices::findAll(['order_room_id' => $order_room->id]) as $order_room_service) {
+                    $order_room_service->delete();
+                }
+
+            }
+            //OrdersRoom::deleteAll(['order_id' => $order->id]);
+            //OrdersRoomServices::deleteAll(['order_id' => $order->id]);
             $transaction->commit();
             return true;
         } catch(Exception $ex) {

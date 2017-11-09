@@ -26,10 +26,17 @@ return [
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'mail.yourhomehotel.ge',
-                'username' => 'yourhome111',
+                'username' => 'yourhome',
                 'password' => '6B4bO6ayt2',
-                //'port' => '',
+                // 'port' => '25',
                 'encryption' => 'tls',
+                'streamOptions' => [
+                    'ssl' => [
+                        'allow_self_signed' => true,
+                        'verify_peer' => false,
+                        'verify_peer_name' => false
+                    ]
+                ]
             ]
         ]
     ],

@@ -2,6 +2,7 @@
 use common\api\models\database\Countries;
 use common\api\models\database\Rooms;
 use frontend\assets\order\Step2Asset;
+use kartik\time\TimePicker;
 use yii\bootstrap\ActiveForm;
 use yii\bootstrap\Html;
 use yii\helpers\ArrayHelper;
@@ -43,6 +44,9 @@ $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
         </div>
 
         You selected:
+        <?php
+        $index11 = 0;
+        ?>
         <?php foreach($selectedRooms as $key => $room): ?>
             <?php
             //$index = ($key > 0 && $room != $selectedRooms[$key-1]) ? 0 : $key;
@@ -51,6 +55,11 @@ $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
             <div class="booking-extra">
                 <?=$room->name?>
                 <?php foreach($room->services as $service): ?>
+                    <?php
+                    //$index = 0;
+                    //$index = ($key > 0 && $room != $selectedRooms[$key-1]) ? 0 : $key;
+                    //$index = ($room != $selectedRooms[$key+1])
+                    ?>
                     <div class="checkbox">
                         <label>
                             <input type="checkbox" class="room-service" value="<?=$key?>-<?=$room->id?>-<?=$service->id?>" data-price="<?=$service->price?>" data-per-day="<?=$service->per_day?>" />
@@ -175,8 +184,17 @@ $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-3">
-                        <?=$form->field($model, 'arrival_time')->textInput(['class' => 'form-control input-sm'])?>
+                    <div class="col-md-4">
+                        <?php  //$form->field($model, 'arrival_time')->textInput(['class' => 'form-control input-sm']) ?>
+                        <?=$form->field($model, 'arrival_time')->widget(TimePicker::classname(), [
+                            'size' => 'xs',
+                            'pluginOptions' => [
+                                'minuteStep' => 5,
+                                'defaultTime' => false,
+                                'showInputs' => false,
+                                'showMeridian' => false
+                            ]
+                        ])?>
                     </div>
                 </div>
             </div>

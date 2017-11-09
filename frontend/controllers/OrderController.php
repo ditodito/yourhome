@@ -57,8 +57,8 @@ class OrderController extends YourHomeController {
         //if (\Yii::$app->request->post()) {
              $start = time();
              $end = time()+86400*3;
-             $rooms = [1,2,3,4];
-             $quantities = [2,1,3,4];
+             $rooms = [1,2,4];
+             $quantities = [2,1,4];
              // $start = strtotime(\Yii::$app->request->post('start_date'));
              // $end = strtotime(\Yii::$app->request->post('end_date'));
              // $rooms = \Yii::$app->request->post('rooms');
@@ -167,13 +167,20 @@ class OrderController extends YourHomeController {
     public function actionFinish() {
         $model = new OrderStep2();
 
-        if ($model->load(\Yii::$app->request->post()) && $model->saveOrder()) {
-            return "y";///return $this->redirect(['order/success']);
-        } else {
-            return 'no';
+        if ($model->load(\Yii::$app->request->post())) {
+            if ($model->saveOrder())
+                return $this->redirect(['order/result', 'status' => 1]);
+            else
+                return $this->redirect(['order/result', 'status' => 0]);
         }
 
         return $this->redirect(['site/']);
+    }
+
+    public function actionResult($status) {
+        return $this->render('result', [
+           'status' => $status
+        ]);
     }
 
     public function actionRemove($id, $order_key) {

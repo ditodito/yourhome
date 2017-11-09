@@ -3,6 +3,7 @@ namespace frontend\models;
 
 use common\api\models\database\Orders;
 use common\api\models\database\OrdersRoom;
+use common\api\models\database\OrdersRoomServices;
 use common\api\models\database\Rooms;
 use yii\base\Model;
 use yii\db\Exception;
@@ -112,8 +113,13 @@ class OrderStep2 extends Model {
                             $ind = $r[0];
                             $rid = $r[1];
                             $sid = $r[2];
-                            if ($room_id == $rid && $i == $ind)
-                                \Yii::error($rid.":::".$sid);
+                            if ($room_id == $rid /*&& $i == $ind*/) {
+                                // \Yii::error($rid.":::".$sid);
+                                $order_room_service = new OrdersRoomServices();
+                                $order_room_service->order_room_id = $order_rooms->id;
+                                $order_room_service->room_service_id = $sid;
+                                $order_room_service->save();
+                            }
                         }
                     }
                 }
@@ -121,14 +127,14 @@ class OrderStep2 extends Model {
                 $mail = \Yii::$app->mailer->compose(['html' => 'orderConfirmation-html', 'text' => 'orderConfirmation-text'], [
                     'logo' => \Yii::getAlias('@common/mail/img/logo.png'),
                     'order' => $order
-                ])->setFrom('dddd@mail.ru')
+                ])->setFrom(\Yii::$app->params['supportEmail'])
                   ->setTo($order->email)
                   ->setSubject('Reservation confirmation. Hotel YOUR HOME');
 
                 if (!$mail->send())
                     throw new \yii\base\Exception('Order confirm email was not send');
 
-                //$transaction->commit();
+                $transaction->commit();
                 return true;
             } catch(Exception $ex) {
                 $transaction->rollBack();
