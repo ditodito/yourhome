@@ -57,8 +57,8 @@ class OrderController extends YourHomeController {
         //if (\Yii::$app->request->post()) {
              $start = time();
              $end = time()+86400*3;
-             $rooms = [1,2,4];
-             $quantities = [2,1,4];
+             $rooms = [1,2];
+             $quantities = [2,1];
              // $start = strtotime(\Yii::$app->request->post('start_date'));
              // $end = strtotime(\Yii::$app->request->post('end_date'));
              // $rooms = \Yii::$app->request->post('rooms');
@@ -136,7 +136,7 @@ class OrderController extends YourHomeController {
                                     $service_name = $service['name_us'];
                             }
 
-                            $service = new RoomServiceRow($service['id'], $service_name, $service['price'], $service['per_day']);
+                            $service = new RoomServiceRow($service['id'], $service_name, $service['price'], $service['per_night']);
                             $rws->setService($service);
                         }
                         $selected_rooms[] = $rws;
@@ -183,8 +183,12 @@ class OrderController extends YourHomeController {
         ]);
     }
 
-    public function actionRemove($id, $order_key) {
+    public function actionRemoveOrder($id, $order_key) {
         echo OrderActions::removeOrder($id, $order_key);
+    }
+
+    public function actionRemoveOrderRoom($id, $order_key) {
+        echo OrderActions::removeOrderRoom($id, $order_key);
     }
 
 }

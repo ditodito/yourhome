@@ -62,9 +62,9 @@ $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
                     ?>
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" class="room-service" value="<?=$key?>-<?=$room->id?>-<?=$service->id?>" data-price="<?=$service->price?>" data-per-day="<?=$service->per_day?>" />
+                            <input type="checkbox" class="room-service" value="<?=$key?>-<?=$room->id?>-<?=$service->id?>" data-price="<?=$service->price?>" data-per-night="<?=$service->per_night?>" />
                             <?=$service->name?> + <?=$service->price?> GEL
-                            (<?=($service->per_day == 1) ? \Yii::t('order', 'Per day') : \Yii::t('order', 'One package')?>)
+                            (<?=($service->per_night == 1) ? \Yii::t('order', 'Per night') : \Yii::t('order', 'One package')?>)
                         </label>
                     </div>
                 <?php endforeach; ?>
@@ -91,7 +91,7 @@ $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
     </div>
     <div class="col-md-9 form-group">
         <h4><?=\Yii::t('order', 'Enter your details')?></h4>
-        <?php $form = ActiveForm::begin(['id' => 'orderForm', 'action' => ['/order/finish']]); ?>
+        <?php $form = ActiveForm::begin(['id' => 'orderForm', 'action' => ['order/finish']]); ?>
             <?=Html::activeHiddenInput($model, 'start_date')?>
             <?=Html::activeHiddenInput($model, 'end_date')?>
             <?=Html::activeHiddenInput($model, 'rooms')?>
@@ -200,7 +200,6 @@ $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
             </div>
 
             <?=Html::submitButton('Book Now')?>
-
         <?php ActiveForm::end(); ?>
     </div>
 </div>

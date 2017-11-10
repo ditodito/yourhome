@@ -5,13 +5,13 @@ class RoomServiceRow implements \JsonSerializable {
     private $id;
     private $name;
     private $price;
-    private $per_day;
+    private $per_night;
 
-    public function __construct($id, $name, $price, $per_day) {
+    public function __construct($id, $name, $price, $per_night) {
         $this->id = $id;
         $this->name = $name;
         $this->price = $price;
-        $this->per_day = $per_day;
+        $this->per_night = $per_night;
     }
 
     public function __get($field) {
@@ -25,8 +25,8 @@ class RoomServiceRow implements \JsonSerializable {
             case 'price':
                 return $this->price;
                 break;
-            case 'per_day':
-                return $this->per_day;
+            case 'per_night':
+                return $this->per_night;
                 break;
             default:
                 throw new \Exception("Invalid property: '" . $field . "'");

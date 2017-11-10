@@ -37,3 +37,10 @@ div.form-block {
 #orderForm .control-label {
     color: #000;
 }
+
+#orderForm button[type='submit'] {
+    outline: none;
+    border: none;
+    background-color: #a7d47b;
+    padding: 5px 15px;
+}

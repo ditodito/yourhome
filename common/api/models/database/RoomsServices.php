@@ -13,7 +13,7 @@ use yii\db\ActiveRecord;
  * @property string $name_ge
  * @property string $name_ru
  * @property integer $price
- * @property integer $per_day
+ * @property integer $per_night
  */
 class RoomsServices extends ActiveRecord {
 

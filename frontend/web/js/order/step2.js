@@ -16,10 +16,10 @@ $(document).ready(function() {
 
         $(".room-service").each(function(i, element) {
             var price = $(element).data("price");
-            var perDay = $(element).data("per-day");
+            var perNight = $(element).data("per-night");
 
             if ($(element).is(":checked")) {
-                servicePrice += (perDay == 1) ? price * totalDays : price;
+                servicePrice += (perNight == 1) ? price * totalDays : price;
                 services.push($(element).val());
             }
         });
