@@ -72,6 +72,7 @@ class OrderStep2 extends Model {
             $rooms = explode(',', $this->rooms);
             $quantities = explode(',', $this->quantities);
             $room_services = $this->room_services ? explode(',', $this->room_services) : [];
+            $time = time();
 
             $transaction = \Yii::$app->db->beginTransaction();
             try {
@@ -96,6 +97,7 @@ class OrderStep2 extends Model {
                 $order->breakfast = $this->breakfast;
                 $order->start_date = $this->start_date;
                 $order->end_date = $this->end_date;
+                $order->created = $time;
                 $order->save();
 
                 foreach($rooms as $key => $room_id) {
@@ -107,6 +109,7 @@ class OrderStep2 extends Model {
                         $order_rooms = new OrdersRoom();
                         $order_rooms->order_id = $order->id;
                         $order_rooms->room_id = $room_id;
+                        $order_rooms->created = $time;
                         $order_rooms->save();
 
                         foreach($room_services as $service) {
@@ -129,12 +132,12 @@ class OrderStep2 extends Model {
                     }
                 }
 
-                $mail = \Yii::$app->mailer->compose(['html' => 'orderConfirmation-html', 'text' => 'orderConfirmation-text'], [
+                $mail = \Yii::$app->mailer->compose(['html' => 'orderConfirmation-html'/*, 'text' => 'orderConfirmation-text'*/], [
                     'logo' => \Yii::getAlias('@common/mail/img/logo.png'),
                     'order' => $order
-                ])->setFrom(\Yii::$app->params['supportEmail'])
+                ])->setFrom(\Yii::$app->params['infoEmail'])
                   ->setTo($order->email)
-                  ->setSubject('Reservation confirmation. '. \Yii::t('main', 'Hotel').' YOUR HOME');
+                  ->setSubject(\Yii::t('order', 'Reservation confirmation').'. '.\Yii::t('main', 'Hotel').' YOUR HOME');
 
                 if (!$mail->send())
                     throw new Exception('Order confirm email was not send');

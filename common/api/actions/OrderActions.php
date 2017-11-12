@@ -22,21 +22,22 @@ class OrderActions {
     }
 
     public static function removeOrder($id, $order_key) {
-        $order = Orders::findOne(['id' => $id, 'order_key' => $order_key]);
+        $order = Orders::findOne(['id' => $id, 'order_key' => $order_key, 'status' => 1]);
         if (!$order)
             return false;
 
+        $time = time();
+
         $transaction = \Yii::$app->db->beginTransaction();
         try {
-            $order->delete();
+            $order->canceled = $time;
+            $order->status = 2;
+            $order->save();
 
             foreach(OrdersRoom::findAll(['order_id' => $order->id]) as $order_room) {
-                $order_room->delete();
-
-                foreach(OrdersRoomServices::findAll(['order_room_id' => $order_room->id]) as $order_room_service) {
-                    $order_room_service->delete();
-                }
-
+                $order_room->canceled = $time;
+                $order_room->status = 2;
+                $order_room->save();
             }
 
             $transaction->commit();
@@ -50,7 +51,7 @@ class OrderActions {
     }
 
     public static function removeOrderRoom($id, $order_key) {
-        $order_room = OrdersRoom::findOne(['id' => $id]);
+        $order_room = OrdersRoom::findOne(['id' => $id, 'status' => 1]);
         if (!$order_room)
             return false;
 
@@ -58,13 +59,19 @@ class OrderActions {
         if (!$order)
             return false;
 
+        $time = time();
+
         $transaction = \Yii::$app->db->beginTransaction();
         try {
-            $order_room->delete();
-            OrdersRoomServices::deleteAll(['order_room_id' => $order_room->id]);
+            $order_room->canceled = $time;
+            $order_room->status = 2;
+            $order_room->save();
 
-            if (count($order->ordersRoom) == 0)
-                $order->delete();
+            if (!OrdersRoom::findAll(['order_id' => $order_room->order_id, 'status' => 1])) {
+                $order->canceled = $time;
+                $order->status = 2;
+                $order->save();
+            }
 
             $transaction->commit();
             return true;

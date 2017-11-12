@@ -11,6 +11,9 @@ use yii\db\ActiveRecord;
  * @property integer $id
  * @property integer $order_id
  * @property integer $room_id
+ * @property integer $created
+ * @property integer $canceled
+ * @property integer $status
  */
 class OrdersRoom extends ActiveRecord {
 

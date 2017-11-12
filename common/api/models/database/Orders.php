@@ -25,6 +25,8 @@ use yii\db\ActiveRecord;
  * @property integer $breakfast
  * @property mixed $start_date
  * @property mixed $end_date
+ * @property integer $created
+ * @property integer $canceled
  * @property integer $status
  */
 class Orders extends ActiveRecord {

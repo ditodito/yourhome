@@ -71,7 +71,7 @@ class RoomsActions {
                         ({{r}}.[[quantity]] - IFNULL((
                           SELECT COUNT({{ri}}.[[id]])
                           FROM {{orders}} {{o}}
-                          INNER JOIN {{orders_room}} {{ri}} ON {{ri}}.[[order_id]] = {{o}}.[[id]]
+                          INNER JOIN {{orders_room}} {{ri}} ON {{ri}}.[[order_id]] = {{o}}.[[id]] AND {{ri}}.[[status]] = 1
                           WHERE {{ri}}.[[room_id]] = {{r}}.[[id]] AND {{o}}.[[status]] = 1
                             AND (({{o}}.[[start_date]] <= :start_date AND {{o}}.[[end_date]] >= :start_date)
                             OR ({{o}}.[[start_date]] <= :end_date AND {{o}}.[[end_date]] >= :end_date)
@@ -81,8 +81,8 @@ class RoomsActions {
                         ({{r}}.[[capacity]] - IFNULL((
                           SELECT COUNT({{ri}}.[[id]])
                           FROM {{orders}} {{o}}
-                          INNER JOIN {{orders_room}} {{ri}} ON {{ri}}.[[order_id]] = {{o}}.[[id]]
-                          WHERE [[room_id]] = {{r}}.[[id]] AND [[status]] = 1
+                          INNER JOIN {{orders_room}} {{ri}} ON {{ri}}.[[order_id]] = {{o}}.[[id]] AND {{ri}}.[[status]] = 1
+                          WHERE [[room_id]] = {{r}}.[[id]] AND {{o}}.[[status]] = 1
                             AND (({{o}}.[[start_date]] <= :start_date AND {{o}}.[[end_date]] >= :start_date)
                             OR ({{o}}.[[start_date]] <= :end_date AND {{o}}.[[end_date]] >= :end_date)
                             OR ({{o}}.[[start_date]] >= :start_date AND {{o}}.[[end_date]] <= :end_date))

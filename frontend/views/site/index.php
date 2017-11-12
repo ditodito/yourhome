@@ -6,15 +6,13 @@ IndexAsset::register($this);
 
 $this->title = 'YourHomeHotel :: '.\Yii::t('menu', 'Home');
 
-/*
-$order = \common\api\models\database\Orders::findOne(['id' => 1]);
+/*$order = \common\api\models\database\Orders::findOne(['id' => 27]);
 $mail = \Yii::$app->mailer->compose(['html' => 'orderConfirmation-html', 'text' => 'orderConfirmation-text'], [
     'logo' => \Yii::getAlias('@common/mail/img/logo.png'),
     'order' => $order
-])
-->setFrom('dddd@mail.ru')
-->setTo('ditokhanishvili@gmail.com')
-->setSubject('Test ტესტი');
+])->setFrom(\Yii::$app->params['infoEmail'])
+    ->setTo([$order->email, 'dito_1987@mail.ru'])
+    ->setSubject(\Yii::t('order', 'Reservation confirmation').'. '.\Yii::t('main', 'Hotel').' YOUR HOME');
 if ($mail->send()) {
     echo "yes";
 } else {
