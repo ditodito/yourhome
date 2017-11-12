@@ -44,30 +44,22 @@ $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
         </div>
 
         You selected:
-        <?php
-        $index11 = 0;
-        ?>
+        <?php $index = -1; ?>
         <?php foreach($selectedRooms as $key => $room): ?>
-            <?php
-            //$index = ($key > 0 && $room != $selectedRooms[$key-1]) ? 0 : $key;
-            //$index = ($room != $selectedRooms[$key+1])
-            ?>
             <div class="booking-extra">
                 <?=$room->name?>
-                <?php foreach($room->services as $service): ?>
-                    <?php
-                    //$index = 0;
-                    //$index = ($key > 0 && $room != $selectedRooms[$key-1]) ? 0 : $key;
-                    //$index = ($room != $selectedRooms[$key+1])
-                    ?>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" class="room-service" value="<?=$key?>-<?=$room->id?>-<?=$service->id?>" data-price="<?=$service->price?>" data-per-night="<?=$service->per_night?>" />
-                            <?=$service->name?> + <?=$service->price?> GEL
-                            (<?=($service->per_night == 1) ? \Yii::t('order', 'Per night') : \Yii::t('order', 'One package')?>)
-                        </label>
-                    </div>
-                <?php endforeach; ?>
+                <?php if ($room->services): ?>
+                    <?php $index = ($key > 0 && $room != $selectedRooms[$key-1]) ? 0 : ++$index; ?>
+                    <?php foreach($room->services as $service): ?>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" class="room-service" value="<?=$index?>-<?=$room->id?>-<?=$service->id?>" data-price="<?=$service->price?>" data-per-night="<?=$service->per_night?>" />
+                                <?=$service->name?> + <?=$service->price?> GEL
+                                (<?=($service->per_night == 1) ? \Yii::t('order', 'Per night') : \Yii::t('order', 'One package')?>)
+                            </label>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </div>
         <?php endforeach; ?>
 

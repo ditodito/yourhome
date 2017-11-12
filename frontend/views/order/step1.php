@@ -152,7 +152,6 @@ $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
                                 ],
                                 'removeButton' => false,
                                 'options' => [
-                                    // 'placeholder' => '1',
                                     'style' => 'border-left: none; border-radius: 0;'
                                 ],
                                 'pluginOptions' => [
@@ -162,14 +161,14 @@ $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
                                 ],
                                 'pluginEvents' => [
                                     "clearDate" => "function(e) {
-                                            $('#orderform-end_date').kvDatepicker('clearDates');
-                                        }",
+                                        $('#orderform-end_date').kvDatepicker('clearDates');
+                                    }",
                                     "changeDate" => "function(e) {
-                                            $('#orderform-end_date').kvDatepicker('clearDates');
-                                            var start_day = new Date($('#orderform-start_date').val());
-                                            var next_day = new Date(start_day.getTime() + 86400000);
-                                            $('#orderform-end_date').kvDatepicker('setStartDate', next_day.toLocaleDateString());
-                                        }",
+                                        $('#orderform-end_date').kvDatepicker('clearDates');
+                                        var start_day = new Date($('#orderform-start_date').val());
+                                        var next_day = new Date(start_day.getTime() + 86400000);
+                                        $('#orderform-end_date').kvDatepicker('setStartDate', next_day.toLocaleDateString());
+                                    }"
                                 ]
                             ])->label(false)->error(false)?>
                         </div>
@@ -184,7 +183,6 @@ $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
                                 ],
                                 'removeButton' => false,
                                 'options' => [
-                                    // 'placeholder' => '1',
                                     'style' => 'border-left: none; border-radius: 0;'
                                 ],
                                 'pluginOptions' => [

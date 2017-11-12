@@ -1,7 +1,6 @@
 <?php
 use frontend\assets\IndexAsset;
 use yii\bootstrap\Html;
-use yii\helpers\Url;
 
 IndexAsset::register($this);
 

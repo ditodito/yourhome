@@ -22,7 +22,7 @@ class OrderController extends YourHomeController {
                 'only' => ['step1', 'step2'],
                 'rules' => [
                     [
-                        'allow' => false,
+                        'allow' => true,
                         'verbs' => ['POST']
                     ]
                 ],
@@ -54,17 +54,13 @@ class OrderController extends YourHomeController {
     }
 
     public function actionStep2() {
-        //if (\Yii::$app->request->post()) {
-             $start = time();
-             $end = time()+86400*3;
-             $rooms = [1,2];
-             $quantities = [2,1];
-             // $start = strtotime(\Yii::$app->request->post('start_date'));
-             // $end = strtotime(\Yii::$app->request->post('end_date'));
-             // $rooms = \Yii::$app->request->post('rooms');
-             // $quantities = \Yii::$app->request->post('quantities');
+        if (\Yii::$app->request->post()) {
+             $start_date = strtotime(\Yii::$app->request->post('start_date'));
+             $end_date = strtotime(\Yii::$app->request->post('end_date'));
+             $rooms = \Yii::$app->request->post('rooms');
+             $quantities = \Yii::$app->request->post('quantities');
 
-            $total_days = floor(($end - $start) / 86400);
+            $total_days = floor(($end_date - $start_date) / 86400);
             $room_price = 0;
             $final_rooms = [];
             $final_quantities = [];
@@ -145,21 +141,21 @@ class OrderController extends YourHomeController {
             }
 
             $model = new OrderStep2();
-            $model->start_date = date('Y-m-d', $start);
-            $model->end_date = date('Y-m-d', $end);
+            $model->start_date = date('Y-m-d', $start_date);
+            $model->end_date = date('Y-m-d', $end_date);
             $model->rooms = implode(',', $final_rooms);
             $model->quantities = implode(',', $final_quantities);
 
             return $this->render('step2', [
-                'start_date' => $start,
-                'end_date' => $end,
+                'start_date' => $start_date,
+                'end_date' => $end_date,
                 'total_days' => $total_days,
                 'room_price' => $room_price * $total_days,
                 'selectedRooms' => $selected_rooms,
                 'model' => $model,
                 'airportTransferPrices' => OrderActions::getAirportTransferPrices()
             ]);
-        //}
+        }
 
         return $this->redirect(['site/']);
     }

@@ -1,7 +1,10 @@
 <?php
-use yii\helpers\Html;
+use common\api\models\database\Rooms;
 
-$cancel_link = \Yii::$app->urlManager->createAbsoluteUrl(['order/remove-order', 'id' => $order->id, 'order_key' => $order->order_key]);
+$start_date = strtotime($order->start_date);
+$end_date = strtotime($order->end_date);
+$total_days = floor(($end_date - $start_date) / 86400);
+$total_price = 0;
 ?>
 
 <div style="border: 1px solid #ccc;">
@@ -26,13 +29,60 @@ $cancel_link = \Yii::$app->urlManager->createAbsoluteUrl(['order/remove-order', 
 
         <div style="height: 15px; background-color: #8b7d72; margin: 15px 0;"></div>
         <h4><?=\Yii::t('order', 'Your reservation')?></h4>
+        <?php foreach($order->ordersRoom as $order_room): ?>
+            <?php
+            $room = Rooms::findOne(['id' => $order_room->room_id]);
+            $price = $room->price * $total_days;
+            $total_price += $price;
+
+            switch(\Yii::$app->language) {
+                case 'ka-GE':
+                    $room_name = $room->name_ge;
+                    break;
+                case 'ru-RU':
+                    $room_name = $room->name_ru;
+                    break;
+                default:
+                    $room_name = $room->name_us;
+            }
+            ?>
+            <div style="width: 60%; border: 1px solid #999; padding: 15px; margin-bottom: 15px;">
+                <div style="margin-bottom: 10px;">
+                    <strong><?=$room_name?></strong>
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <strong><?=\Yii::t('order', 'Check in')?>:</strong>
+                    <?=\Yii::t('day', date('l', $start_date))?>
+                    <?=date('d', $start_date)?>
+                    <?=\Yii::t('month', date('F', $start_date))?>
+                    <?=date('Y', $start_date)?>,
+                    <?=\Yii::t('order', 'From 14:00 (2:00 PM)')?>
+                </div>
+                <div style="border-bottom: 1px solid #999; padding-bottom: 10px; margin-bottom: 10px;">
+                    <strong><?=\Yii::t('order', 'Check out')?>:</strong>
+                    <?=\Yii::t('day', date('l', $end_date))?>
+                    <?=date('d', $end_date)?>
+                    <?=\Yii::t('month', date('F', $end_date))?>
+                    <?=date('Y', $end_date)?>,
+                    <?=\Yii::t('order', 'Until 12:00 (noon)')?>
+                </div>
+                <div style="text-align: right; margin-bottom: 10px;">
+                    <strong><?=$price?> GEL</strong>
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <a href="<?=\Yii::$app->urlManager->createAbsoluteUrl(['order/remove-order-room', 'id' => $order_room->id, 'order_key' => $order->order_key])?>"><?=\Yii::t('order', 'Cancel this reservation')?></a>
+                </div>
+            </div>
+        <?php endforeach; ?>
+        <div style="padding: 0 15px; margin-bottom: 30px;"><strong><?=\Yii::t('order', 'Price')?>: <?=$total_price?> GEL</strong></div>
         <div style="height: 15px; background-color: #8b7d72; margin: 15px 0;"></div>
+
         <div style="margin-bottom: 10px;"><strong><?=\Yii::t('order', 'Cancel reservation')?></strong></div>
         <div style="margin-bottom: 10px;">
             <?=\Yii::t('order', 'Cancellation is free 24h before arrival')?>.
             <?=\Yii::t('order', 'The guest will be charged the first night if they cancel within 24h before arrival')?>.
         </div>
-        <a href="<?=$cancel_link?>"><?=\Yii::t('order', 'Cancel all reservations')?></a>
+        <a href="<?=\Yii::$app->urlManager->createAbsoluteUrl(['order/remove-order', 'id' => $order->id, 'order_key' => $order->order_key])?>"><?=\Yii::t('order', 'Cancel all reservations')?></a>
     </div>
 </div>
 

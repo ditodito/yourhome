@@ -5,8 +5,9 @@ use common\api\models\database\Orders;
 use common\api\models\database\OrdersRoom;
 use common\api\models\database\OrdersRoomServices;
 use common\api\models\database\Rooms;
+use common\api\models\database\RoomsServices;
 use yii\base\Model;
-use yii\db\Exception;
+use yii\base\Exception;
 
 class OrderStep2 extends Model {
     public $rooms;
@@ -100,7 +101,7 @@ class OrderStep2 extends Model {
                 foreach($rooms as $key => $room_id) {
                     $room = Rooms::findOne(['id' => $room_id]);
                     if (!$room)
-                        throw new \yii\base\Exception('Invalid room id');
+                        throw new Exception('Invalid room id');
 
                     for($i = 0; $i < $quantities[$key]; $i++) {
                         $order_rooms = new OrdersRoom();
@@ -113,8 +114,12 @@ class OrderStep2 extends Model {
                             $ind = $r[0];
                             $rid = $r[1];
                             $sid = $r[2];
-                            if ($room_id == $rid /*&& $i == $ind*/) {
-                                // \Yii::error($rid.":::".$sid);
+
+                            $room_service = RoomsServices::findOne(['id' => $sid, 'room_id' => $rid]);
+                            if (!$room_service)
+                                throw new Exception('Invalid service id');
+
+                            if ($room_id == $rid && $i == $ind) {
                                 $order_room_service = new OrdersRoomServices();
                                 $order_room_service->order_room_id = $order_rooms->id;
                                 $order_room_service->room_service_id = $sid;
@@ -129,16 +134,16 @@ class OrderStep2 extends Model {
                     'order' => $order
                 ])->setFrom(\Yii::$app->params['supportEmail'])
                   ->setTo($order->email)
-                  ->setSubject('Reservation confirmation. Hotel YOUR HOME');
+                  ->setSubject('Reservation confirmation. '. \Yii::t('main', 'Hotel').' YOUR HOME');
 
                 if (!$mail->send())
-                    throw new \yii\base\Exception('Order confirm email was not send');
+                    throw new Exception('Order confirm email was not send');
 
                 $transaction->commit();
                 return true;
             } catch(Exception $ex) {
                 $transaction->rollBack();
-                \Yii::error('Add order '.$ex->getMessage().' '.$ex->getLine());
+                \Yii::error('Add order: '.$ex->getMessage().'; Line: '.$ex->getLine());
             }
 
             return false;

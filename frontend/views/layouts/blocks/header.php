@@ -69,7 +69,7 @@ $order_form = new OrderForm();
                                         var start_day = new Date($('#orderform-start_date').val());
                                         var next_day = new Date(start_day.getTime() + 86400000);
                                         $('#orderform-end_date').kvDatepicker('setStartDate', next_day.toLocaleDateString());
-                                    }",
+                                    }"
                                 ]
                             ])->label(false)->error(false)?>
                         </div>
@@ -85,12 +85,12 @@ $order_form = new OrderForm();
                                 'removeButton' => false,
                                 'options' => [
                                     'style' => 'outline: none; border: none; border-radius: 0;',
-                                    'value' => date('m/d/Y', time()+86400),
+                                    'value' => date('m/d/Y', strtotime('+1 days')),
                                 ],
                                 'pluginOptions' => [
                                     'autoclose' => true,
                                     'format' => 'mm/dd/yyyy',
-                                    'startDate' => date('m/d/Y', time()+86400),
+                                    'startDate' => date('m/d/Y', strtotime('+1 days')),
                                 ]
                             ])->label(false)->error(false)?>
                         </div>
