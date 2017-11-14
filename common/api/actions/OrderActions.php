@@ -40,6 +40,15 @@ class OrderActions {
                 $order_room->save();
             }
 
+            $mail = \Yii::$app->mailer->compose(['html' => 'orderCancelConfirmation-html'/*, 'text' => 'orderCancelConfirmation-text'*/], [
+                'order' => $order
+            ])->setFrom(\Yii::$app->params['infoEmail'])
+                ->setTo($order->email)
+                ->setSubject(\Yii::t('order', 'Cancellation details').'. '.\Yii::t('main', 'Hotel').' YOUR HOME');
+
+            if (!$mail->send())
+                throw new Exception('Order cancel confirm email was not send');
+
             $transaction->commit();
             return true;
         } catch(Exception $ex) {

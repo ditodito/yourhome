@@ -25,7 +25,7 @@ $total_price = 0;
         <div><strong><?=\Yii::t('contacts', 'Tel')?> / <?=\Yii::t('contacts', 'Fax')?>:</strong> (+995 32) 221 00 00</div>
         <div><strong><?=\Yii::t('contacts', 'Cell')?>:</strong> (+995) 558 48 28 88 (<?=\Yii::t('contacts', 'Manager')?>)</div>
         <div><strong><?=\Yii::t('contacts', 'E-mail')?>:</strong> yourhometbilisi@yahoo.com</div>
-        <div>yourhomehotel.ge</div>
+        <div>www.yourhomehotel.ge</div>
 
         <div style="height: 15px; background-color: #8b7d72; margin: 15px 0;"></div>
         <h4><?=\Yii::t('order', 'Your reservation')?></h4>
