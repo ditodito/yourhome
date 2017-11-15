@@ -86,4 +86,3 @@ $total_price = 0;
         <a href="<?=\Yii::$app->urlManager->createAbsoluteUrl(['order/remove-order', 'id' => $order->id, 'order_key' => $order->order_key])?>"><?=\Yii::t('order', 'Cancel all reservations')?></a>
     </div>
 </div>
-
