@@ -167,7 +167,7 @@ class OrderController extends YourHomeController {
             if ($model->saveOrder())
                 return $this->redirect(['order/result', 'status' => 1]);
             else
-                return $this->redirect(['order/result', 'status' => 0]);
+                return $this->redirect(['order/result', 'status' => 2]);
         }
 
         return $this->redirect(['site/']);
@@ -180,11 +180,17 @@ class OrderController extends YourHomeController {
     }
 
     public function actionRemoveOrder($id, $order_key) {
-        echo OrderActions::removeOrder($id, $order_key);
+        if (OrderActions::removeOrder($id, $order_key))
+            return $this->redirect(['order/result', 'status' => 3]);
+        else
+            return $this->redirect(['order/result', 'status' => 4]);
     }
 
     public function actionRemoveOrderRoom($id, $order_key) {
-        echo OrderActions::removeOrderRoom($id, $order_key);
+        if (OrderActions::removeOrderRoom($id, $order_key))
+            return $this->redirect(['order/result', 'status' => 3]);
+        else
+            return $this->redirect(['order/result', 'status' => 4]);
     }
 
 }
