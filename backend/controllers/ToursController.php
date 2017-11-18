@@ -10,9 +10,6 @@ use yii\web\NotFoundHttpException;
 
 class ToursController extends Controller {
 
-    /**
-     * @inheritdoc
-     */
     public function behaviors() {
         return [
             'access' => [
@@ -27,9 +24,6 @@ class ToursController extends Controller {
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
     public function actions() {
         return [
             'error' => [
@@ -44,23 +38,22 @@ class ToursController extends Controller {
         ]);
     }
 
-    public function actionDetails($id = null) {
+    public function actionDetails($id) {
         $model = new ToursModel();
-        if ($id) {
-            $tour = Tours::findOne(['id' => $id]);
-            if (!$tour) {
-                throw new NotFoundHttpException('Data not found');
-            }
-            $model->id = $tour->id;
-            $model->duration_id = $tour->duration_id;
-            $model->title_us = $tour->title_us;
-            $model->title_ge = $tour->title_ge;
-            $model->title_ru = $tour->title_ru;
-            $model->text_us = $tour->text_us;
-            $model->text_ge = $tour->text_ge;
-            $model->text_ru = $tour->text_ru;
-            $model->image = $tour->image;
-        }
+
+        $tour = Tours::findOne(['id' => $id]);
+        if (!$tour)
+            throw new NotFoundHttpException('Data not found');
+
+        $model->id = $tour->id;
+        $model->duration_id = $tour->duration_id;
+        $model->title_us = $tour->title_us;
+        $model->title_ge = $tour->title_ge;
+        $model->title_ru = $tour->title_ru;
+        $model->text_us = $tour->text_us;
+        $model->text_ge = $tour->text_ge;
+        $model->text_ru = $tour->text_ru;
+        $model->image = $tour->image;
 
         return $this->render('details', [
             'model' => $model,
@@ -70,13 +63,12 @@ class ToursController extends Controller {
 
     public function actionSave() {
         $model = new ToursModel();
-        if ($model->load(\Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(\Yii::$app->request->post()) && $model->save())
             \Yii::$app->session->setFlash('success', 'ოპერაცია წარმატებით შესრულდა');
-        } else {
+        else
             \Yii::$app->session->setFlash('error', 'დაფიქსირდა შეცდომა');
-        }
 
-        return $this->redirect(['/tours']);
+        return $this->redirect(['tours/']);
     }
 
 }

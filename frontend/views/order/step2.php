@@ -158,7 +158,7 @@ $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <?=$form->field($model, 'zip_code')->textInput(['class' => 'form-control input-sm'])?>
                     </div>
                 </div>

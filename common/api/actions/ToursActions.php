@@ -26,7 +26,7 @@ class ToursActions {
                     $title = $row['title_us'];
             }
             $tour = new ToursRow($row['id'], $title, $row['image']);
-            $tour->setDuration(\Yii::t('tours', ToursDurations::findOne(['id' => $row->duration_id])->name));
+            $tour->setDuration(\Yii::t('tours', $row->duration->name));
             $result[] = $tour;
         }
 
@@ -35,9 +35,8 @@ class ToursActions {
 
     public static function getTour($id) {
         $row = Tours::findOne(['id' => $id]);
-        if (!$row) {
+        if (!$row)
             return null;
-        }
 
         switch(\Yii::$app->language) {
             case 'ka-GE':
@@ -61,7 +60,7 @@ class ToursActions {
         $result = [];
 
         foreach($rows as $row) {
-            $duration = new IdNamePair($row['id'], $row['name']);
+            $duration = new IdNamePair($row['id'], \Yii::t('tours', $row['name']));
             $result[] = $duration;
         }
 
@@ -72,9 +71,8 @@ class ToursActions {
         $result = [];
 
         $durations = ToursDurations::find()->all();
-        if (!$durations) {
+        if (!$durations)
             return $result;
-        }
 
         foreach($durations as $duration) {
             $tours = [];

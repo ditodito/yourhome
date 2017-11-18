@@ -43,4 +43,8 @@ class Orders extends ActiveRecord {
         return $this->hasOne(Countries::className(), ['id' => 'country_id']);
     }
 
+    public function getAirportTransferPrice() {
+        return $this->hasOne(AirportTransferPrices::className(), ['id' => 'airport_transfer_price_id']);
+    }
+
 }

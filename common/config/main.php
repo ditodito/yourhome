@@ -40,5 +40,6 @@ return [
             ]
         ]
     ],
-    'language' => 'en-US'
+    'language' => 'en-US',
+    'timeZone' => 'Asia/Tbilisi'
 ];

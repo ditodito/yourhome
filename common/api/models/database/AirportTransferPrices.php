@@ -18,4 +18,8 @@ class AirportTransferPrices extends ActiveRecord {
         return 'airport_transfer_prices';
     }
 
+    public function getOrders() {
+        return $this->hasMany(Orders::className(), ['airport_transfer_price_id' => 'id']);
+    }
+
 }
