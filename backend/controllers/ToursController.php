@@ -5,6 +5,7 @@ use backend\models\tours\ToursModel;
 use common\api\actions\ToursActions;
 use common\api\models\database\Tours;
 use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
@@ -19,7 +20,15 @@ class ToursController extends Controller {
                         'allow' => true,
                         'roles' => ['@']
                     ]
-                ],
+                ]
+            ],
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'index' => ['get'],
+                    'details' => ['get'],
+                    'save' => ['post']
+                ]
             ]
         ];
     }

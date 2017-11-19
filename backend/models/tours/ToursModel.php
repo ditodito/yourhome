@@ -43,25 +43,22 @@ class ToursModel extends Model {
     }
 
     public function save() {
-        if (!$this->validate()) {
+        if (!$this->validate())
             return false;
-        }
 
         $file_name = null;
 
         $uploaded_file = UploadedFile::getInstance($this, 'image');
         if ($uploaded_file) {
             $file_name = \Yii::$app->security->generateRandomString().'.'.$uploaded_file->getExtension();
-            if (!$uploaded_file->saveAs(\Yii::getAlias('@frontend_web/img/tours/'.$file_name))) {
+            if (!$uploaded_file->saveAs(\Yii::getAlias('@frontend_web/img/tours/'.$file_name)))
                 return false;
-            }
         }
 
         if ($this->id) {
             $tour = Tours::findOne(['id' => $this->id]);
-            if (!$tour) {
+            if (!$tour)
                 return false;
-            }
         } else {
             $tour = new Tours();
         }
@@ -74,9 +71,8 @@ class ToursModel extends Model {
         $tour->text_ru = $this->text_ru;
         if ($file_name)
             $tour->image = $file_name;
-        if ($tour->save()) {
+        if ($tour->save())
             return true;
-        }
 
         return false;
     }

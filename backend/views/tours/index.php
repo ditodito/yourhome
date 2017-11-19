@@ -30,7 +30,7 @@ $this->title = 'YourHomeHotel :: Admin Page';
                 'style' => 'width: 100%; height: 160px',
                 'alt' => $tour->title
             ])?>
-            <p class="text-center"><?=Html::a($tour->title, ['/tours/details', 'id' => $tour->id])?></p>
+            <p class="text-center"><?=Html::a($tour->title, ['tours/details', 'id' => $tour->id])?></p>
         </div>
     <?php endforeach; ?>
 </div>
