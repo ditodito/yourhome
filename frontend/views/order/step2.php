@@ -121,9 +121,6 @@ $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
                                 'prompt' => \Yii::t('order', 'Select number of passengers'),
                             ])?>
                     </div>
-                    <div class="col-md-8">
-                        <br /><?=\Yii::t('order', 'Only with availability')?>. <?=\Yii::t('order', 'Hotel confirmation mail is needed')?>
-                    </div>
                 </div>
                 <div class="row">
                     <div class="col-md-3">
@@ -131,10 +128,17 @@ $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
                     </div>
                 </div>
                 <div class="row">
+                    <div class="col-md-12 form-group">
+                        <?=\Yii::t('order', 'Only with availability')?>. <?=\Yii::t('order', 'Hotel confirmation mail is needed')?>
+                    </div>
+                </div>
+                <!--
+                <div class="row">
                     <div class="col-md-3">
                         <?=$form->field($model, 'breakfast')->checkbox()?>
                     </div>
                 </div>
+                -->
             </div>
 
             <h4><?=\Yii::t('order', 'Enter your address')?></h4>
