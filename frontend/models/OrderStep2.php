@@ -94,7 +94,7 @@ class OrderStep2 extends Model {
                 if ($this->airport_transfer_price_id)
                     $order->airport_transfer_price_id = $this->airport_transfer_price_id;
                 $order->parking_reservation = $this->parking_reservation;
-                $order->breakfast = $this->breakfast;
+                $order->breakfast = 0; // $this->breakfast;
                 $order->start_date = $this->start_date;
                 $order->end_date = $this->end_date;
                 $order->created = $time;
