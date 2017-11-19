@@ -110,7 +110,7 @@ $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
                                 <select class="room-quantity" name="quantities[]">
                                     <option value="0" data-price="0"></option>
                                     <?php for($i = 1; $i <= $room->available_rooms; $i++): ?>
-                                        <option value="<?=$i?>" data-price="<?=$room->price?>"><?=$i.' ('.$room->price.' GEL)'?></option>
+                                        <option value="<?=$i?>" data-price="<?=$room->price?>"><?=$i.' ('.$room->price*$i.' GEL)'?></option>
                                     <?php endfor; ?>
                                 </select>
                             </td>
