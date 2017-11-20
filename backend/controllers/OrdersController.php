@@ -1,10 +1,13 @@
 <?php
 namespace backend\controllers;
 
+use backend\models\orders\OrdersModel;
 use common\api\actions\OrderActions;
+use common\api\models\database\Countries;
 use common\api\models\database\Orders;
 use yii\data\Pagination;
 use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
@@ -19,7 +22,15 @@ class OrdersController extends Controller {
                         'allow' => true,
                         'roles' => ['@']
                     ]
-                ],
+                ]
+            ],
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'index' => ['get'],
+                    'details1' => ['get'],
+                    'save' => ['post']
+                ]
             ]
         ];
     }
@@ -27,12 +38,13 @@ class OrdersController extends Controller {
     public function actions() {
         return [
             'error' => [
-                'class' => 'yii\web\ErrorAction',
-            ],
+                'class' => 'yii\web\ErrorAction'
+            ]
         ];
     }
 
     public function actionIndex($status = null, $id = null) {
+        \Yii::$app->language = 'ka-GE';
         $query = Orders::find();
         if ($status)
             $query->andWhere(['status' => $status]);
@@ -53,6 +65,63 @@ class OrdersController extends Controller {
         ]);
     }
 
+    public function actionDetails1($id = null) {
+        \Yii::$app->language = 'ka-GE';
+        $formatter = \Yii::$app->formatter;
+        $model = new OrdersModel();
+
+        if ($id) {
+            $order = Orders::findOne(['id' => $id]);
+            if (!$order)
+                return $this->redirect(['orders/']);
+
+            $model->id = $order->id;
+            $model->first_name = $order->first_name;
+            $model->last_name = $order->last_name;
+            $model->email = $order->email;
+            $model->country = $order->country_id;
+            $model->city = $order->city;
+            $model->address = $order->address;
+            $model->zip_code = $order->zip_code;
+            $model->mobile = $order->mobile;
+            $model->comment = $order->comment;
+            $model->arrival_time = $order->arrival_time;
+            $model->airport_transfer_price_id = $order->airport_transfer_price_id;
+            $model->parking_reservation = $order->parking_reservation;
+            $model->start_date = $formatter->asDate($order->start_date, 'php:m/d/Y');
+            $model->end_date = $formatter->asDate($order->end_date, 'php:m/d/Y');
+            $model->status = $order->status;
+        } else {
+            $model->first_name = 'Admin';
+            $model->last_name = 'Admin';
+            $model->email = \Yii::$app->params['infoEmail'];
+            $model->country = Countries::findOne(['country_code' => 'GE'])->id;
+            $model->city = 'Tbilisi';
+            $model->address = \Yii::t('contacts', '{0} Mikheili Tsinamdzghvrishvili Street, {1} Tbilisi, Georgia', ['95', '0164']);
+            $model->mobile = '000 00 00 00';
+        }
+
+        return $this->render('details1', [
+            'model' => $model,
+            'countries' => Countries::find()->all(),
+            'airportTransferPrices' => OrderActions::getAirportTransferPrices()
+        ]);
+    }
+
+    public function actionSave() {
+        $model = new OrdersModel();
+
+        if ($model->load(\Yii::$app->request->post()) && $model->save())
+            \Yii::$app->session->setFlash('success', 'ოპერაცია წარმატებით შესრულდა');
+        else
+            \Yii::$app->session->setFlash('error', 'დაფიქსირდა შეცდომა');
+
+        return $this->redirect(['orders/']);
+    }
+
+
+
+
     public function actionDetails($id) {
         $order = Orders::findOne(['id' => $id]);
         if (!$order)
@@ -66,7 +135,7 @@ class OrdersController extends Controller {
     public function actionCancelOrder($id) {
         $order = Orders::findOne(['id' => $id]);
         if (!$order)
-            throw new NotFoundHttpException('Data not found');;
+            throw new NotFoundHttpException('Data not found');
 
         if (OrderActions::removeOrder($id, $order->order_key))
             \Yii::$app->session->setFlash('success', 'ოპერაცია წარმატებით შესრულდა');

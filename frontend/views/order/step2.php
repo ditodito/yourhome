@@ -132,13 +132,6 @@ $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
                         <?=\Yii::t('order', 'Only with availability')?>. <?=\Yii::t('order', 'Hotel confirmation mail is needed')?>
                     </div>
                 </div>
-                <!--
-                <div class="row">
-                    <div class="col-md-3">
-                        <?=$form->field($model, 'breakfast')->checkbox()?>
-                    </div>
-                </div>
-                -->
             </div>
 
             <h4><?=\Yii::t('order', 'Enter your address')?></h4>
@@ -176,12 +169,11 @@ $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
             <div class="form-block">
                 <div class="row">
                     <div class="col-md-6">
-                        <?=$form->field($model, 'comment')->textarea(['rows' => 5])->error(false)?>
+                        <?=$form->field($model, 'comment')->textarea(['rows' => 5])?>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
-                        <?php  //$form->field($model, 'arrival_time')->textInput(['class' => 'form-control input-sm']) ?>
                         <?=$form->field($model, 'arrival_time')->widget(TimePicker::classname(), [
                             'size' => 'xs',
                             'pluginOptions' => [

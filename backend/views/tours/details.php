@@ -9,7 +9,7 @@ $this->title = 'YourHomeHotel :: Admin Page';
 
 <div class="row">
     <div class="col-md-1 form-group">
-        <?=Html::a(\Yii::t('main', 'Back'), ['tours/'], ['class' => 'btn btn-primary'])?>
+        <?=Html::a('&laquo; '.\Yii::t('main', 'Back'), ['tours/'], ['class' => 'btn btn-primary'])?>
     </div>
 </div>
 <div class="row">
@@ -17,7 +17,7 @@ $this->title = 'YourHomeHotel :: Admin Page';
         <?php $form = ActiveForm::begin([
             'action' => ['tours/save'],
             'options' => [
-                'enctype' => 'multipart/form-data', 'class' => 'inline'
+                'enctype' => 'multipart/form-data'
             ]
         ]); ?>
         <?=Html::activeHiddenInput($model, 'id')?>

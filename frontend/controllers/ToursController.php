@@ -21,9 +21,8 @@ class ToursController extends YourHomeController {
         $this->view->params['tours_durations'] = ToursActions::getToursDurationsNav(); // send data from controller to tours layout
 
         $tour = ToursActions::getTour($id);
-        if (!$tour) {
+        if (!$tour)
             throw new NotFoundHttpException('Data not found');
-        }
 
         return $this->render('details', [
             'tour' => $tour

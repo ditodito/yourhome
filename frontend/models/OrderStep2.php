@@ -25,7 +25,6 @@ class OrderStep2 extends Model {
     public $arrival_time;
     public $airport_transfer_price_id;
     public $parking_reservation;
-    public $breakfast;
     public $start_date;
     public $end_date;
     public $room_services;
@@ -34,7 +33,7 @@ class OrderStep2 extends Model {
         return [
             [['rooms', 'quantities', 'first_name', 'last_name', 'email', 'email_confirm',
                 'country', 'city', 'address', 'mobile', 'start_date', 'end_date'], 'required'],
-            [['zip_code', 'comment', 'arrival_time', 'airport_transfer_price_id', 'parking_reservation', 'breakfast', 'room_services'], 'safe'],
+            [['zip_code', 'comment', 'arrival_time', 'airport_transfer_price_id', 'parking_reservation', 'room_services'], 'safe'],
             [['first_name', 'last_name', 'email', 'email_confirm', 'city', 'address', 'zip_code', 'mobile', 'comment', 'arrival_time'], 'trim'],
             ['email', 'email'],
             ['email_confirm', 'compare', 'compareAttribute' => 'email'],
@@ -62,8 +61,7 @@ class OrderStep2 extends Model {
             'comment' => \Yii::t('order', 'Special request'),
             'arrival_time' => \Yii::t('order', 'Approximate arrival time'),
             'airport_transfer_price_id' => \Yii::t('services', 'Airport transfer'),
-            'parking_reservation' => \Yii::t('services', 'Free private parking'),
-            'breakfast' => \Yii::t('services', 'Breakfast')
+            'parking_reservation' => \Yii::t('services', 'Free private parking')
         ];
     }
 
@@ -94,7 +92,6 @@ class OrderStep2 extends Model {
                 if ($this->airport_transfer_price_id)
                     $order->airport_transfer_price_id = $this->airport_transfer_price_id;
                 $order->parking_reservation = $this->parking_reservation;
-                $order->breakfast = 0; // $this->breakfast;
                 $order->start_date = $this->start_date;
                 $order->end_date = $this->end_date;
                 $order->created = $time;

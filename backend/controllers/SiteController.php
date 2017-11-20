@@ -16,29 +16,29 @@ class SiteController extends Controller {
                 'rules' => [
                     [
                         'actions' => ['login', 'error'],
-                        'allow' => true,
+                        'allow' => true
                     ],
                     [
                         'actions' => ['logout', 'index'],
                         'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
+                        'roles' => ['@']
+                    ]
+                ]
             ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post'],
-                ],
-            ],
+                    'logout' => ['post']
+                ]
+            ]
         ];
     }
 
     public function actions() {
         return [
             'error' => [
-                'class' => 'yii\web\ErrorAction',
-            ],
+                'class' => 'yii\web\ErrorAction'
+            ]
         ];
     }
 

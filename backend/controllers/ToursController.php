@@ -36,8 +36,8 @@ class ToursController extends Controller {
     public function actions() {
         return [
             'error' => [
-                'class' => 'yii\web\ErrorAction',
-            ],
+                'class' => 'yii\web\ErrorAction'
+            ]
         ];
     }
 
@@ -52,7 +52,7 @@ class ToursController extends Controller {
 
         $tour = Tours::findOne(['id' => $id]);
         if (!$tour)
-            throw new NotFoundHttpException('Data not found');
+            return $this->redirect(['tours/']);
 
         $model->id = $tour->id;
         $model->duration_id = $tour->duration_id;

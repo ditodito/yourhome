@@ -30,14 +30,15 @@ $formatter = \Yii::$app->formatter;
         <?=Html::beginForm(['orders/index'], 'get', ['class' => 'form-inline'])?>
             <?=Html::dropDownList('status', $status, [1 => 'აქტიური', 2 => 'გაუქმებული'], ['prompt' => 'სტატუსი', 'class' => 'form-control'])?> &nbsp;
             <?=Html::input('text', 'id', $id, ['placeholder' => \Yii::t('order', 'Reservation number'), 'class' => 'form-control'])?> &nbsp;
-            <?=Html::submitButton(\Yii::t('main', 'Search'), ['class' => 'btn btn-primary'])?>
+            <?=Html::submitButton(\Yii::t('main', 'Search'), ['class' => 'btn btn-primary'])?> &nbsp;
+            <?=Html::a('New order', ['orders/details1'], ['class' => 'btn btn-success'])?>
         <?=Html::endForm()?>
     </div>
 </div>
 <div class="row">
     <div class="col-md-12">
         <div class="table-responsive">
-            <table class="table table-striped table-hover" style="margin-bottom: 0;">
+            <table class="table table-hover" style="margin-bottom: 0;">
                 <thead>
                     <tr>
                         <th>N</th>
@@ -46,7 +47,6 @@ $formatter = \Yii::$app->formatter;
                         <th><?=\Yii::t('contacts', 'E-mail')?></th>
                         <th><?=\Yii::t('order', 'Country')?></th>
                         <th><?=\Yii::t('order', 'City')?></th>
-                        <th><?=\Yii::t('contacts', 'Address')?></th>
                         <th><?=\Yii::t('order', 'Mobile')?></th>
                         <th><?=\Yii::t('order', 'Check in')?></th>
                         <th><?=\Yii::t('order', 'Check out')?></th>
@@ -55,14 +55,13 @@ $formatter = \Yii::$app->formatter;
                 </thead>
                 <tbody>
                 <?php foreach($orders as $order): ?>
-                    <tr class="<?=($order->status == 1) ? 'active' : 'danger'?>">
+                    <tr class="<?=($order->status == 1) ? 'default' : 'danger'?>">
                         <td><?=$order->id?></td>
-                        <td><?=Html::a($order->first_name, ['orders/details', 'id' => $order->id])?></td>
+                        <td><?=Html::a($order->first_name, ['orders/details1', 'id' => $order->id])?></td>
                         <td><?=$order->last_name?></td>
                         <td><?=$order->email?></td>
                         <td><?=$order->country->country_name?></td>
                         <td><?=$order->city?></td>
-                        <td><?=$order->address?></td>
                         <td><?=$order->mobile?></td>
                         <td><?=$formatter->asDate($order->start_date, 'php:d/m/Y')?></td>
                         <td><?=$formatter->asDate($order->end_date, 'php:d/m/Y')?></td>
