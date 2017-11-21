@@ -164,8 +164,9 @@ class OrderController extends YourHomeController {
         $model = new OrderStep2();
 
         if ($model->load(\Yii::$app->request->post())) {
-            if ($model->saveOrder())
-                return $this->redirect(['order/result', 'status' => 1]);
+            $reservation_number = $model->saveOrder();
+            if ($reservation_number > 0)
+                return $this->redirect(['order/result', 'status' => 1, 'reservation_number' => $reservation_number, 'email' => $model->email]);
             else
                 return $this->redirect(['order/result', 'status' => 2]);
         }
@@ -173,24 +174,28 @@ class OrderController extends YourHomeController {
         return $this->redirect(['site/']);
     }
 
-    public function actionResult($status) {
-        return $this->render('result', [
-           'status' => $status
-        ]);
-    }
-
     public function actionRemoveOrder($id, $order_key) {
-        if (OrderActions::removeOrder($id, $order_key))
-            return $this->redirect(['order/result', 'status' => 3]);
+        $reservation_number = OrderActions::removeOrder($id, $order_key);
+        if ($reservation_number > 0)
+            return $this->redirect(['order/result', 'status' => 3, 'reservation_number' => $reservation_number]);
         else
             return $this->redirect(['order/result', 'status' => 4]);
     }
 
     public function actionRemoveOrderRoom($id, $order_key) {
-        if (OrderActions::removeOrderRoom($id, $order_key))
-            return $this->redirect(['order/result', 'status' => 3]);
+        $reservation_number = OrderActions::removeOrderRoom($id, $order_key);
+        if ($reservation_number > 0)
+            return $this->redirect(['order/result', 'status' => 3, 'reservation_number' => $reservation_number]);
         else
             return $this->redirect(['order/result', 'status' => 4]);
+    }
+
+    public function actionResult($status, $reservation_number = null, $email = null) {
+        return $this->render('result', [
+            'status' => $status,
+            'reservation_number' => $reservation_number,
+            'email' => $email
+        ]);
     }
 
 }

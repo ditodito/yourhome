@@ -195,7 +195,7 @@ $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
                         </div>
                         <div class="col-md-4">
                             <label class="control-label">&nbsp;</label>
-                            <?=Html::submitButton('Book Now')?>
+                            <?=Html::submitButton(\Yii::t('order', 'Book'))?>
                         </div>
                     </div>
                 <?php ActiveForm::end(); ?>

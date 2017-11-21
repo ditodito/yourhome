@@ -4,8 +4,6 @@ use dosamigos\google\maps\Map;
 use dosamigos\google\maps\overlays\Marker;
 use frontend\assets\ContactAsset;
 use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
-use yii\captcha\Captcha;
 
 ContactAsset::register($this);
 

@@ -141,7 +141,7 @@ class OrderStep2 extends Model {
                     throw new Exception('Order confirm email was not send');
 
                 $transaction->commit();
-                return true;
+                return $order->id;
             } catch(Exception $ex) {
                 $transaction->rollBack();
                 \Yii::error('Add order: '.$ex->getMessage().'; Line: '.$ex->getLine());

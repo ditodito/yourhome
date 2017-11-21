@@ -50,7 +50,7 @@ class OrderActions {
                 throw new Exception('Order cancel confirm email was not send');
 
             $transaction->commit();
-            return true;
+            return $order->id;
         } catch(Exception $ex) {
             $transaction->rollBack();
             \Yii::error('Remove order: '.$ex->getMessage().' '.$ex->getLine());
@@ -93,7 +93,7 @@ class OrderActions {
                 throw new Exception('Order room cancel confirm email was not send');
 
             $transaction->commit();
-            return true;
+            return $order->id;
         } catch(Exception $ex) {
             $transaction->rollBack();
             \Yii::error('Remove order room: '.$ex->getMessage().' '.$ex->getLine());
