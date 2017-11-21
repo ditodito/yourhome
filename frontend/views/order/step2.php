@@ -43,7 +43,7 @@ $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
             </div>
         </div>
 
-        You selected:
+        <div style="font-weight: bold; margin-bottom: 5px;"><?=\Yii::t('order', 'You selected')?>:</div>
         <?php $index = -1; ?>
         <?php foreach($selectedRooms as $key => $room): ?>
             <div class="booking-extra">
@@ -187,7 +187,7 @@ $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
                 </div>
             </div>
 
-            <?=Html::submitButton('Book Now')?>
+            <?=Html::submitButton(\Yii::t('order', 'Book'))?>
         <?php ActiveForm::end(); ?>
     </div>
 </div>

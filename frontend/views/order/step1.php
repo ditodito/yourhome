@@ -63,6 +63,7 @@ $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
     </div>
     <div class="col-md-9 form-group">
         <div class="date-block">
+            <p><?=\Yii::t('order', 'For these dates the following rooms are available')?></p>
             <div class="row">
                 <div class="col-md-3 form-group">
                     <span><?=\Yii::t('order', 'Check in date')?>:</span><br />
@@ -120,7 +121,7 @@ $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
                         <td></td>
                         <td></td>
                         <td>
-                            <button type="submit" id="submitBtn" disabled>Book</button>
+                            <?=Html::submitButton(\Yii::t('order', 'Book'), ['id' => 'submitBtn', 'disabled' => true])?>
                         </td>
                     </tr>
                 </tbody>

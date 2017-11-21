@@ -53,6 +53,7 @@ class OrderStep2 extends Model {
             'first_name' => \Yii::t('order', 'First name').' *',
             'last_name' => \Yii::t('order', 'Last name').' *',
             'email' => \Yii::t('contacts', 'E-mail').' *',
+            'email_confirm' => \Yii::t('contacts', 'Confirm email'),
             'country' => \Yii::t('order', 'Country').' *',
             'city' => \Yii::t('order', 'City').' *',
             'address' => \Yii::t('contacts', 'Address').' *',
