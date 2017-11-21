@@ -14,7 +14,12 @@ $this->title = 'YourHomeHotel :: Admin Page';
     </div>
 </div>
 <div class="row">
-    <?php $form = ActiveForm::begin(['action' => ['orders/save'], /*'layout' => 'horizontal'*/]); ?>
+    <div class="col-md-12">
+        <div class="well well-sm"><?=\Yii::t('order', 'Reservation number')?>: <?=$model->id?></div>
+    </div>
+</div>
+<div class="row">
+    <?php $form = ActiveForm::begin(['action' => ['orders/save']]); ?>
     <?=Html::activeHiddenInput($model, 'id')?>
     <div class="col-md-6">
         <?=$form->field($model, 'first_name')->error(false)?>
