@@ -62,7 +62,7 @@ $this->title = 'YourHomeHotel :: '.\Yii::t('menu', 'Rooms & Rates');
                 <div class="room-capacity"><?=\Yii::t('main', 'Max')?>: <?=$room->capacity?></div>
                 <div class="room-description"><?=$room->description?></div>
                 <div class="room-capacity"><?=$room->price?> GEL</div>
-                <div class="room-capacity">Included 10% VAT</div>
+                <div class="room-capacity"><?=\Yii::t('order', 'Included')?> 18 % <?=\Yii::t('order', 'VAT')?></div>
 
                 <div class="room-exclude">Not included</div>
                 <div class="room-exclude">* Towlers (extra free)</div>

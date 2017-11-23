@@ -1,23 +1,25 @@
 <?php
-namespace backend\assets;
+namespace backend\assets\orders;
 
 use yii\web\AssetBundle;
 
-class AppAsset extends AssetBundle {
+class DetailsAsset extends AssetBundle {
 
     public $basePath = '@webroot';
     public $baseUrl = '@web';
 
     public $css = [
-        'css/site.css'
+        'css/orders/details.css'
     ];
 
     public $js = [
+        'js/orders/details.js'
     ];
 
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset'
     ];
+
 
 }

@@ -6,7 +6,9 @@ class RoomsRow implements \JsonSerializable {
     protected $name;
     protected $description;
     protected $image;
+    protected $quantity;
     protected $capacity;
+    protected $is_hostel;
     protected $price;
     protected $free_wifi;
     protected $tv;
@@ -28,7 +30,9 @@ class RoomsRow implements \JsonSerializable {
         $this->name = self::resolveName($row, true);
         $this->description = self::resolveName($row, false);
         $this->image = $row['image'];
+        $this->quantity = $row['quantity'];
         $this->capacity = $row['capacity'];
+        $this->is_hostel = $row['is_hostel'];
         $this->price = $row['price'];
         $this->free_wifi = $row['free_wifi'];
         $this->tv = $row['tv'];
@@ -74,8 +78,14 @@ class RoomsRow implements \JsonSerializable {
             case 'image':
                 return $this->image;
                 break;
+            case 'quantity':
+                return $this->quantity;
+                break;
             case 'capacity':
                 return $this->capacity;
+                break;
+            case 'is_hostel':
+                return $this->is_hostel;
                 break;
             case 'price':
                 return $this->price;

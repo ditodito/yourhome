@@ -32,9 +32,6 @@ $total_price = 0;
         <?php foreach($order->ordersRoom as $order_room): ?>
             <?php
             $room = Rooms::findOne(['id' => $order_room->room_id]);
-            $price = $room->price * $total_days;
-            $total_price += $price;
-
             switch(\Yii::$app->language) {
                 case 'ka-GE':
                     $room_name = $room->name_ge;
@@ -67,7 +64,7 @@ $total_price = 0;
                     <?=\Yii::t('order', 'Until 12:00 (noon)')?>
                 </div>
                 <div style="text-align: right; margin-bottom: 10px;">
-                    <strong><?=$price?> GEL</strong><br />
+                    <strong><?=$order_room->price * $total_days?> GEL</strong><br />
                     (<?=\Yii::t('order', 'taxes included')?>)
                 </div>
                 <div style="margin-bottom: 10px;">
@@ -75,7 +72,7 @@ $total_price = 0;
                 </div>
             </div>
         <?php endforeach; ?>
-        <div style="padding: 0 15px; margin-bottom: 30px;"><strong><?=\Yii::t('order', 'Total amount')?>: <?=$total_price?> GEL</strong></div>
+        <div style="padding: 0 15px; margin-bottom: 30px;"><strong><?=\Yii::t('order', 'Total amount')?>: <?=$order->price?> GEL</strong></div>
         <div style="height: 15px; background-color: #8b7d72; margin: 15px 0;"></div>
 
         <div style="margin-bottom: 10px;"><strong><?=\Yii::t('order', 'Cancel reservation')?></strong></div>

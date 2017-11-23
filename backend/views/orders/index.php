@@ -50,6 +50,7 @@ $formatter = \Yii::$app->formatter;
                         <th><?=\Yii::t('order', 'Mobile')?></th>
                         <th><?=\Yii::t('order', 'Check in')?></th>
                         <th><?=\Yii::t('order', 'Check out')?></th>
+                        <th><?=\Yii::t('order', 'Price')?> GEL</th>
                         <th><?=\Yii::t('order', 'Order date')?></th>
                     </tr>
                 </thead>
@@ -65,6 +66,7 @@ $formatter = \Yii::$app->formatter;
                         <td><?=$order->mobile?></td>
                         <td><?=$formatter->asDate($order->start_date, 'php:d/m/Y')?></td>
                         <td><?=$formatter->asDate($order->end_date, 'php:d/m/Y')?></td>
+                        <td><?=$order->price?></td>
                         <td><?=$formatter->asDatetime($order->created, 'php:d/m/Y H:i')?></td>
                     </tr>
                 <?php endforeach; ?>

@@ -1,6 +1,7 @@
 <?php
 namespace frontend\models;
 
+use common\api\models\database\AirportTransferPrices;
 use common\api\models\database\Orders;
 use common\api\models\database\OrdersRoom;
 use common\api\models\database\OrdersRoomServices;
@@ -72,6 +73,8 @@ class OrderStep2 extends Model {
             $quantities = explode(',', $this->quantities);
             $room_services = $this->room_services ? explode(',', $this->room_services) : [];
             $time = time();
+            $total_days = floor((strtotime($this->end_date) - strtotime($this->start_date)) / 86400);
+            $total_price = 0;
 
             $transaction = \Yii::$app->db->beginTransaction();
             try {
@@ -104,11 +107,14 @@ class OrderStep2 extends Model {
                         throw new Exception('Invalid room id');
 
                     for($i = 0; $i < $quantities[$key]; $i++) {
-                        $order_rooms = new OrdersRoom();
-                        $order_rooms->order_id = $order->id;
-                        $order_rooms->room_id = $room_id;
-                        $order_rooms->created = $time;
-                        $order_rooms->save();
+                        $orders_room = new OrdersRoom();
+                        $orders_room->order_id = $order->id;
+                        $orders_room->room_id = $room_id;
+                        $orders_room->price = $room->price;
+                        $orders_room->created = $time;
+                        $orders_room->save();
+
+                        $total_price += $room->price * $total_days;
 
                         foreach($room_services as $service) {
                             $r = explode('-', $service);
@@ -122,13 +128,22 @@ class OrderStep2 extends Model {
 
                             if ($room_id == $rid && $i == $ind) {
                                 $order_room_service = new OrdersRoomServices();
-                                $order_room_service->order_room_id = $order_rooms->id;
+                                $order_room_service->order_room_id = $orders_room->id;
                                 $order_room_service->room_service_id = $sid;
+                                $order_room_service->price = $room_service->price;
+                                $order_room_service->per_night = $room_service->per_night;
                                 $order_room_service->save();
+
+                                $total_price += ($room_service->per_night) ? ($room_service->price * $total_days) : $room_service->price;
                             }
                         }
                     }
                 }
+
+                if ($this->airport_transfer_price_id)
+                    $total_price += AirportTransferPrices::findOne(['id' => $this->airport_transfer_price_id])->price;
+                $order->price = $total_price;
+                $order->save();
 
                 $mail = \Yii::$app->mailer->compose(['html' => 'orderConfirmation-html'/*, 'text' => 'orderConfirmation-text'*/], [
                     'logo' => \Yii::getAlias('@common/mail/img/logo.png'),

@@ -55,10 +55,10 @@ class OrderController extends YourHomeController {
 
     public function actionStep2() {
         if (\Yii::$app->request->post()) {
-             $start_date = strtotime(\Yii::$app->request->post('start_date'));
-             $end_date = strtotime(\Yii::$app->request->post('end_date'));
-             $rooms = \Yii::$app->request->post('rooms');
-             $quantities = \Yii::$app->request->post('quantities');
+            $start_date = strtotime(\Yii::$app->request->post('start_date'));
+            $end_date = strtotime(\Yii::$app->request->post('end_date'));
+            $rooms = \Yii::$app->request->post('rooms');
+            $quantities = \Yii::$app->request->post('quantities');
 
             $total_days = floor(($end_date - $start_date) / 86400);
             $room_price = 0;

@@ -10,6 +10,8 @@ use yii\db\ActiveRecord;
  *
  * @property integer $order_room_id
  * @property integer $room_service_id
+ * @property integer $price
+ * @property integer $per_night
  */
 class OrdersRoomServices extends ActiveRecord {
 

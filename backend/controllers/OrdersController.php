@@ -3,6 +3,7 @@ namespace backend\controllers;
 
 use backend\models\orders\OrdersModel;
 use common\api\actions\OrderActions;
+use common\api\actions\RoomsActions;
 use common\api\models\database\Countries;
 use common\api\models\database\Orders;
 use yii\data\Pagination;
@@ -36,6 +37,7 @@ class OrdersController extends Controller {
     }
 
     public function actions() {
+        \Yii::$app->language = 'ka-GE';
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction'
@@ -44,7 +46,6 @@ class OrdersController extends Controller {
     }
 
     public function actionIndex($status = null, $id = null) {
-        \Yii::$app->language = 'ka-GE';
         $query = Orders::find();
         if ($status)
             $query->andWhere(['status' => $status]);
@@ -66,7 +67,6 @@ class OrdersController extends Controller {
     }
 
     public function actionDetails1($id = null) {
-        \Yii::$app->language = 'ka-GE';
         $formatter = \Yii::$app->formatter;
         $model = new OrdersModel();
 
@@ -75,7 +75,19 @@ class OrdersController extends Controller {
             if (!$order)
                 return $this->redirect(['orders/']);
 
+            $sql = "SELECT [[room_id]], COUNT([[room_id]]) [[quantity]]
+                    FROM {{orders_room}}
+                    WHERE [[order_id]] = :order_id AND [[status]] = 1
+                    GROUP BY [[room_id]]";
+            $rows = \YII::$app->db->createCommand($sql, [':order_id' => $id])->queryAll(\PDO::FETCH_OBJ);
+
+            $selected_rooms = [];
+            foreach($rows as $row) {
+                array_push($selected_rooms, $row->room_id.'-'.$row->quantity);
+            }
+
             $model->id = $order->id;
+            $model->rooms = implode(',', $selected_rooms);
             $model->first_name = $order->first_name;
             $model->last_name = $order->last_name;
             $model->email = $order->email;
@@ -91,6 +103,7 @@ class OrdersController extends Controller {
             $model->start_date = $formatter->asDate($order->start_date, 'php:m/d/Y');
             $model->end_date = $formatter->asDate($order->end_date, 'php:m/d/Y');
             $model->status = $order->status;
+            $order_price = $order->price;
         } else {
             $model->first_name = 'Admin';
             $model->last_name = 'Admin';
@@ -99,19 +112,22 @@ class OrdersController extends Controller {
             $model->city = 'Tbilisi';
             $model->address = \Yii::t('contacts', '{0} Mikheili Tsinamdzghvrishvili Street, {1} Tbilisi, Georgia', ['95', '0164']);
             $model->mobile = '000 00 00 00';
+            $order_price = '';
         }
 
         return $this->render('details1', [
+            'order_price' => $order_price,
             'model' => $model,
             'countries' => Countries::find()->all(),
-            'airportTransferPrices' => OrderActions::getAirportTransferPrices()
+            'airportTransferPrices' => OrderActions::getAirportTransferPrices(),
+            'rooms' => RoomsActions::getAvailableRoomsAll()
         ]);
     }
 
     public function actionSave() {
         $model = new OrdersModel();
 
-        if ($model->load(\Yii::$app->request->post()) && $model->save())
+        if ($model->load(\Yii::$app->request->post()) && $model->save() > 0)
             \Yii::$app->session->setFlash('success', 'ოპერაცია წარმატებით შესრულდა');
         else
             \Yii::$app->session->setFlash('error', 'დაფიქსირდა შეცდომა');

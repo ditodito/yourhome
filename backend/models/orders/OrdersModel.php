@@ -1,12 +1,16 @@
 <?php
 namespace backend\models\orders;
 
+use common\api\models\database\AirportTransferPrices;
 use common\api\models\database\Orders;
+use common\api\models\database\OrdersRoom;
+use common\api\models\database\Rooms;
 use yii\base\Model;
 use yii\db\Exception;
 
 class OrdersModel extends Model {
     public $id;
+    public $rooms;
     public $first_name;
     public $last_name;
     public $email;
@@ -25,7 +29,7 @@ class OrdersModel extends Model {
 
     public function rules() {
         return [
-            [['first_name', 'last_name', 'email', 'country', 'city', 'address', 'mobile', 'start_date', 'end_date', 'status'], 'required'],
+            [['rooms', 'first_name', 'last_name', 'email', 'country', 'city', 'address', 'mobile', 'start_date', 'end_date', 'status'], 'required'],
             [['id', 'zip_code', 'comment', 'arrival_time', 'airport_transfer_price_id', 'parking_reservation'], 'safe'],
             [['first_name', 'last_name', 'email', 'city', 'address', 'zip_code', 'mobile', 'comment', 'arrival_time'], 'trim'],
             ['email', 'email'],
@@ -33,10 +37,6 @@ class OrdersModel extends Model {
             ['airport_transfer_price_id', 'exist', 'targetClass' => 'common\api\models\database\AirportTransferPrices', 'targetAttribute' => 'id'],
             ['start_date', 'date', 'format' => 'php:m/d/Y'],
             ['start_date', function($attribute, $params, $validator) {
-                // $formatter = \Yii::$app->formatter;
-                // \Yii::error($formatter->asDate($this->start_date, 'php:Y-m-d'));
-                // \Yii::error($this->start_date.' : '.strtotime($this->start_date).' : '.$formatter->asTimestamp($this->start_date));
-                // \Yii::error($this->end_date.' : '.strtotime($this->end_date)).' : '.$formatter->asTimestamp($this->end_date);
                 if (strtotime($this->end_date) - strtotime($this->start_date) < 86400) {
                     $this->addError($attribute, 'Incorrect date');
                 }
@@ -66,8 +66,15 @@ class OrdersModel extends Model {
 
     public function save() {
         $formatter = \Yii::$app->formatter;
+        $time = time();
+        $total_days = floor((strtotime($this->end_date) - strtotime($this->start_date)) / 86400);
+        $total_price = 0;
 
         if (!$this->validate())
+            return false;
+
+        $rooms = explode(',', $this->rooms);
+        if (count($rooms) == 0)
             return false;
 
         $transaction = \Yii::$app->db->beginTransaction();
@@ -79,7 +86,7 @@ class OrdersModel extends Model {
             } else {
                 $order = new Orders();
                 $order->order_key = \Yii::$app->security->generateRandomString();
-                $order->created = time();
+                $order->created = $time;
             }
 
             $order->first_name = $this->first_name;
@@ -96,17 +103,50 @@ class OrdersModel extends Model {
             $order->parking_reservation = $this->parking_reservation;
             $order->start_date = $formatter->asDate($this->start_date, 'php:Y-m-d');
             $order->end_date = $formatter->asDate($this->end_date, 'php:Y-m-d');
-            $order->canceled = ($this->status == 1) ? null : time();
+            $order->canceled = ($this->status == 1) ? null : $time;
             $order->status = $this->status;
             $order->save();
 
+            if (!$this->id) {
+                foreach($rooms as $room) {
+                    $room = explode('-', $room);
+                    $room_id = $room[0];
+                    $quantity = $room[1];
+
+                    $room = Rooms::findOne(['id' => $room_id]);
+                    if (!$room)
+                        throw new Exception('Invalid room id');
+
+                    $error = ($room->is_hostel) ? ($room->capacity < $quantity) : ($room->quantity < $quantity);
+                    if ($error)
+                        throw new Exception('Invalid parameter for order room');
+
+                    for($i = 0; $i < $quantity; $i++) {
+                        $orders_room = new OrdersRoom();
+                        $orders_room->order_id = $order->id;
+                        $orders_room->room_id = $room_id;
+                        $orders_room->price = $room->price;
+                        $orders_room->created = $time;
+                        $orders_room->canceled = ($this->status == 1) ? null : $time;
+                        $orders_room->save();
+
+                        $total_price += $room->price * $total_days;
+                    }
+                }
+
+                if ($this->airport_transfer_price_id)
+                    $total_price += AirportTransferPrices::findOne(['id' => $this->airport_transfer_price_id])->price;
+                $order->price = $total_price;
+                $order->save();
+            }
+
             $transaction->commit();
-            return true;
+            return $order->id;
         } catch(Exception $ex) {
             $transaction->rollBack();
             \Yii::error('Add order from admin: '.$ex->getMessage().'; Line: '.$ex->getLine());
         }
-        return true;
+        return false;
     }
 
 }

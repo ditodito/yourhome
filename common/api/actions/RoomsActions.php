@@ -100,4 +100,21 @@ class RoomsActions {
         return $result;
     }
 
+    public static function getAvailableRoomsAll() {
+        $sql = "SELECT [[id]], [[name_us]], [[name_ge]], [[name_ru]], [[price]],
+                CASE
+                  WHEN [[is_hostel]] = 0 THEN [[quantity]]
+                  ELSE [[capacity]]
+                END [[available_rooms]]
+                FROM {{rooms}}";
+        $rows = \Yii::$app->db->createCommand($sql)->queryAll();
+        $result = [];
+
+        foreach($rows as $row) {
+            $result[] = new RoomsAvailableRow($row);
+        }
+
+        return $result;
+    }
+
 }

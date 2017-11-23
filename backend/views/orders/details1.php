@@ -1,9 +1,12 @@
 <?php
+use backend\assets\orders\DetailsAsset;
 use kartik\date\DatePicker;
 use kartik\time\TimePicker;
 use yii\bootstrap\ActiveForm;
 use yii\bootstrap\Html;
 use yii\helpers\ArrayHelper;
+
+DetailsAsset::register($this);
 
 $this->title = 'YourHomeHotel :: Admin Page';
 ?>
@@ -15,12 +18,16 @@ $this->title = 'YourHomeHotel :: Admin Page';
 </div>
 <div class="row">
     <div class="col-md-12">
-        <div class="well well-sm"><?=\Yii::t('order', 'Reservation number')?>: <?=$model->id?></div>
+        <div class="well well-sm">
+            <?=\Yii::t('order', 'Reservation number')?>: <?=$model->id?>
+            <span class="pull-right"><?=\Yii::t('order', 'Price')?>: <?=$order_price?></span>
+        </div>
     </div>
 </div>
 <div class="row">
     <?php $form = ActiveForm::begin(['action' => ['orders/save']]); ?>
     <?=Html::activeHiddenInput($model, 'id')?>
+    <?=Html::activeHiddenInput($model, 'rooms')?>
     <div class="col-md-6">
         <?=$form->field($model, 'first_name')->error(false)?>
         <?=$form->field($model, 'last_name')->error(false)?>
@@ -86,9 +93,37 @@ $this->title = 'YourHomeHotel :: Admin Page';
                 ])->error(false)?>
             </div>
         </div>
+
+        <table class="table table-bordered table-condensed available-rooms">
+            <thead>
+                <tr>
+                    <th><?=\Yii::t('rooms', 'Room')?></th>
+                    <th><?=\Yii::t('order', 'Price')?></th>
+                    <th><?=\Yii::t('order', 'Select rooms')?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach($rooms as $room): ?>
+                    <tr>
+                        <td><?=$room->name?></td>
+                        <td><?=$room->price?> GEL</td>
+                        <td>
+                            <select class="form-control input-sm rooms" id="rooms<?=$room->id?>" name="rooms">
+                                <option value=""></option>
+                                <?php for($i = 1; $i <= $room->available_rooms; $i++): ?>
+                                    <option value="<?=$room->id.'-'.$i?>"><?=$i.' ('.$room->price*$i.' GEL)'?></option>
+                                <?php endfor; ?>
+                            </select>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+
+
         <?=$form->field($model, 'status')->dropDownList([1 => 'აქტიური', 2 => 'გაუქმებული'])->error(false)?>
 
-        <?=Html::submitButton('Save', ['class' => 'btn btn-primary'])?>
+        <?=Html::submitButton(\Yii::t('order', 'Save'), ['class' => 'btn btn-primary', 'id' => 'submitBtn', 'disabled' => true])?>
     </div>
     <?php ActiveForm::end(); ?>
 </div>
