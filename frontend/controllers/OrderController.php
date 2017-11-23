@@ -3,15 +3,12 @@ namespace frontend\controllers;
 
 use common\api\actions\OrderActions;
 use common\api\actions\RoomsActions;
-use common\api\models\database\Orders;
 use common\api\models\database\Rooms;
 use common\api\models\response\RoomServiceRow;
 use common\api\models\response\RoomsWithServicesRow;
 use common\controllers\YourHomeController;
-use DateTime;
 use frontend\models\OrderForm;
 use frontend\models\OrderStep2;
-use yii\filters\AccessControl;
 
 class OrderController extends YourHomeController {
 
