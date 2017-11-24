@@ -70,14 +70,14 @@ table.available-rooms tbody tr:not(:last-child) td:nth-child(2) {
     border-left: 1px solid #8bc652;
 }
 
-select.room-quantity {
+select.rooms {
     width: 100px;
     outline: none;
     border: none;
     background-color: #aed786;
     padding: 4px;
 }
-select.room-quantity > option {
+select.rooms > option {
     background-color: #fff;
 }
 

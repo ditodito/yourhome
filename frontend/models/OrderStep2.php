@@ -12,7 +12,6 @@ use yii\base\Exception;
 
 class OrderStep2 extends Model {
     public $rooms;
-    public $quantities;
     public $first_name;
     public $last_name;
     public $email;
@@ -32,7 +31,7 @@ class OrderStep2 extends Model {
 
     public function rules() {
         return [
-            [['rooms', 'quantities', 'first_name', 'last_name', 'email', 'email_confirm',
+            [['rooms', 'first_name', 'last_name', 'email', 'email_confirm',
                 'country', 'city', 'address', 'mobile', 'start_date', 'end_date'], 'required'],
             [['zip_code', 'comment', 'arrival_time', 'airport_transfer_price_id', 'parking_reservation', 'room_services'], 'safe'],
             [['first_name', 'last_name', 'email', 'email_confirm', 'city', 'address', 'zip_code', 'mobile', 'comment', 'arrival_time'], 'trim'],
@@ -70,7 +69,6 @@ class OrderStep2 extends Model {
     public function saveOrder() {
         if ($this->validate()) {
             $rooms = explode(',', $this->rooms);
-            $quantities = explode(',', $this->quantities);
             $room_services = $this->room_services ? explode(',', $this->room_services) : [];
             $time = time();
             $total_days = floor((strtotime($this->end_date) - strtotime($this->start_date)) / 86400);
@@ -101,26 +99,30 @@ class OrderStep2 extends Model {
                 $order->created = $time;
                 $order->save();
 
-                foreach($rooms as $key => $room_id) {
-                    $room = Rooms::findOne(['id' => $room_id]);
-                    if (!$room)
+                foreach($rooms as $room) {
+                    $params = explode('-', $room);
+                    $room_id = $params[0];
+                    $quantity = $params[1];
+
+                    $r = Rooms::findOne(['id' => $room_id]);
+                    if (!$r)
                         throw new Exception('Invalid room id');
 
-                    for($i = 0; $i < $quantities[$key]; $i++) {
+                    for($i = 0; $i < $quantity; $i++) {
                         $orders_room = new OrdersRoom();
                         $orders_room->order_id = $order->id;
                         $orders_room->room_id = $room_id;
-                        $orders_room->price = $room->price;
+                        $orders_room->price = $r->price;
                         $orders_room->created = $time;
                         $orders_room->save();
 
-                        $total_price += $room->price * $total_days;
+                        $total_price += $r->price * $total_days;
 
                         foreach($room_services as $service) {
-                            $r = explode('-', $service);
-                            $ind = $r[0];
-                            $rid = $r[1];
-                            $sid = $r[2];
+                            $rs = explode('-', $service);
+                            $ind = $rs[0];
+                            $rid = $rs[1];
+                            $sid = $rs[2];
 
                             $room_service = RoomsServices::findOne(['id' => $sid, 'room_id' => $rid]);
                             if (!$room_service)

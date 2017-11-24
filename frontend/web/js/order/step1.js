@@ -4,17 +4,16 @@ $(document).ready(function() {
         $("#changeDateModal").modal();
     });
 
-    $(".room-quantity").on("change", function() {
+    $(".rooms").on("change", function() {
         var totalPrice = 0;
 
-        $(".room-quantity").each(function(i, element) {
-            var id = $(element).data("id");
+        $(".rooms").each(function(i, element) {
             var price = $(element).find("option:selected").data("price");
-            totalPrice += $(element).val() * price * totalDays;
+            totalPrice += price * totalDays;
         });
 
         $("#price").text(totalPrice);
-        $("#submitBtn").prop("disabled", (totalPrice == 0) ? true : false);
+        $("#submitBtn").prop("disabled", (totalPrice == 0));
     });
 
 });

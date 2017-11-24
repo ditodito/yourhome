@@ -103,15 +103,14 @@ $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
                 </thead>
                 <tbody>
                     <?php foreach($available_rooms as $room): ?>
-                        <?=Html::hiddenInput('rooms[]', $room->id)?>
                         <tr>
                             <td><?=$room->name?></td>
                             <td><?=$room->price?> GEL</td>
                             <td>
-                                <select class="room-quantity" name="quantities[]">
-                                    <option value="0" data-price="0"></option>
+                                <select class="rooms" name="rooms[]">
+                                    <option value="0-0" data-price="0"></option>
                                     <?php for($i = 1; $i <= $room->available_rooms; $i++): ?>
-                                        <option value="<?=$i?>" data-price="<?=$room->price?>"><?=$i.' ('.$room->price*$i.' GEL)'?></option>
+                                        <option value="<?=$room->id.'-'.$i?>" data-price="<?=$room->price*$i?>"><?=$i.' ('.$room->price*$i.' GEL)'?></option>
                                     <?php endfor; ?>
                                 </select>
                             </td>

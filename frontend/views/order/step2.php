@@ -87,7 +87,6 @@ $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
             <?=Html::activeHiddenInput($model, 'start_date')?>
             <?=Html::activeHiddenInput($model, 'end_date')?>
             <?=Html::activeHiddenInput($model, 'rooms')?>
-            <?=Html::activeHiddenInput($model, 'quantities')?>
             <?=Html::activeHiddenInput($model, 'room_services')?>
 
             <div class="form-block">
