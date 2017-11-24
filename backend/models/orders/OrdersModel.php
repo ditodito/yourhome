@@ -95,11 +95,15 @@ class OrdersModel extends Model {
             $order->country_id = $this->country;
             $order->city = $this->city;
             $order->address = $this->address;
-            $order->zip_code = ($this->zip_code) ? $this->zip_code : null;
+            if ($this->zip_code)
+                $order->zip_code = $this->zip_code;
             $order->mobile = $this->mobile;
-            $order->comment = ($this->comment) ? $this->comment : null;
-            $order->arrival_time = ($this->arrival_time) ? $this->arrival_time : null;
-            $order->airport_transfer_price_id = ($this->airport_transfer_price_id) ? $this->airport_transfer_price_id : null;
+            if ($this->comment)
+                $order->comment = $this->comment;
+            if ($this->arrival_time)
+                $order->arrival_time = $this->arrival_time;
+            if ($this->airport_transfer_price_id)
+                $order->airport_transfer_price_id = $this->airport_transfer_price_id;
             $order->parking_reservation = $this->parking_reservation;
             $order->start_date = $formatter->asDate($this->start_date, 'php:Y-m-d');
             $order->end_date = $formatter->asDate($this->end_date, 'php:Y-m-d');
@@ -109,15 +113,15 @@ class OrdersModel extends Model {
 
             if (!$this->id) {
                 foreach($rooms as $room) {
-                    $room = explode('-', $room);
-                    $room_id = $room[0];
-                    $quantity = $room[1];
+                    $params = explode('-', $room);
+                    $room_id = $params[0];
+                    $quantity = $params[1];
 
-                    $room = Rooms::findOne(['id' => $room_id]);
-                    if (!$room)
+                    $r = Rooms::findOne(['id' => $room_id]);
+                    if (!$r)
                         throw new Exception('Invalid room id');
 
-                    $error = ($room->is_hostel) ? ($room->capacity < $quantity) : ($room->quantity < $quantity);
+                    $error = ($r->is_hostel) ? ($r->capacity < $quantity) : ($r->quantity < $quantity);
                     if ($error)
                         throw new Exception('Invalid parameter for order room');
 
@@ -125,12 +129,12 @@ class OrdersModel extends Model {
                         $orders_room = new OrdersRoom();
                         $orders_room->order_id = $order->id;
                         $orders_room->room_id = $room_id;
-                        $orders_room->price = $room->price;
+                        $orders_room->price = $r->price;
                         $orders_room->created = $time;
                         $orders_room->canceled = ($this->status == 1) ? null : $time;
                         $orders_room->save();
 
-                        $total_price += $room->price * $total_days;
+                        $total_price += $r->price * $total_days;
                     }
                 }
 

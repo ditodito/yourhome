@@ -103,7 +103,6 @@ class OrdersController extends Controller {
             $model->start_date = $formatter->asDate($order->start_date, 'php:m/d/Y');
             $model->end_date = $formatter->asDate($order->end_date, 'php:m/d/Y');
             $model->status = $order->status;
-            $order_price = $order->price;
         } else {
             $model->first_name = 'Admin';
             $model->last_name = 'Admin';
@@ -112,11 +111,10 @@ class OrdersController extends Controller {
             $model->city = 'Tbilisi';
             $model->address = \Yii::t('contacts', '{0} Mikheili Tsinamdzghvrishvili Street, {1} Tbilisi, Georgia', ['95', '0164']);
             $model->mobile = '000 00 00 00';
-            $order_price = '';
         }
 
         return $this->render('details1', [
-            'order_price' => $order_price,
+            'order_price' => ($id) ? $order->price : '',
             'model' => $model,
             'countries' => Countries::find()->all(),
             'airportTransferPrices' => OrderActions::getAirportTransferPrices(),
