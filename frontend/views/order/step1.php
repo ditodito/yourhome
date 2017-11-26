@@ -28,11 +28,11 @@ $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
 
         <div class="check-block">
             <div>
-                <?=\Yii::t('order', 'Check in')?>:<br />
+                <?=\Yii::t('order', 'Check-in')?>:<br />
                 - <?=\Yii::t('order', 'From 14:00 (2:00 PM)')?>
             </div>
             <div>
-                <?=\Yii::t('order', 'Check out')?>:<br />
+                <?=\Yii::t('order', 'Check-out')?>:<br />
                 - <?=\Yii::t('order', 'Until 12:00 (noon)')?>
             </div>
         </div>
@@ -66,7 +66,7 @@ $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
             <p><?=\Yii::t('order', 'For these dates the following rooms are available')?></p>
             <div class="row">
                 <div class="col-md-3 form-group">
-                    <span><?=\Yii::t('order', 'Check in date')?>:</span><br />
+                    <span><?=\Yii::t('order', 'Check-in date')?>:</span><br />
                     <span style="color: #8bc652;">
                         <?=\Yii::t('day', date('D', $start_date))?>,
                         <?=\Yii::t('month', date('M', $start_date))?> <?=date('d', $start_date)?>,
@@ -74,7 +74,7 @@ $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
                     </span>
                 </div>
                 <div class="col-md-3 form-group">
-                    <span><?=\Yii::t('order', 'Check out date')?>:</span><br />
+                    <span><?=\Yii::t('order', 'Check-out date')?>:</span><br />
                     <span style="color: #8bc652">
                         <?=\Yii::t('day', date('D', $end_date))?>,
                         <?=\Yii::t('month', date('M', $end_date))?> <?=date('d', $end_date)?>,
@@ -142,7 +142,7 @@ $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
                 <?php $form = ActiveForm::begin(['action' => ['order/step1']]); ?>
                     <div class="row">
                         <div class="col-md-4">
-                            <label class="control-label"><?=\Yii::t('order', 'Check in')?></label>
+                            <label class="control-label"><?=\Yii::t('order', 'Check-in')?></label>
                             <?=$form->field($model, 'start_date')->widget(DatePicker::classname(), [
                                 'type' => DatePicker::TYPE_COMPONENT_PREPEND,
                                 'size' => 'sm',
@@ -173,7 +173,7 @@ $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
                             ])->label(false)->error(false)?>
                         </div>
                         <div class="col-md-4">
-                            <label class="control-label"><?=\Yii::t('order', 'Check out')?></label>
+                            <label class="control-label"><?=\Yii::t('order', 'Check-out')?></label>
                             <?=$form->field($model, 'end_date')->widget(DatePicker::classname(), [
                                 'type' => DatePicker::TYPE_COMPONENT_PREPEND,
                                 'size' => 'sm',

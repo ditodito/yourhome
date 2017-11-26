@@ -1,5 +1,4 @@
 .title {
-    font-size: 14px;
     font-weight: bold;
     margin-top: 0;
 }
@@ -31,4 +30,8 @@ div.about {
 div.more a {
     color: #3399ff;
     text-decoration: underline;
+}
+
+.img-responsive {
+    margin-bottom: 5px;
 }

@@ -38,11 +38,6 @@
 </div>
 
 <div class="side-info">
-    <h5><?=\Yii::t('contacts', 'E-mail')?>:</h5>
-    <div>yourhometbilisi@yahoo.com</div>
-</div>
-
-<div class="side-info">
     <h5><?=\Yii::t('services', 'Our additional services and facilities')?></h5>
     <div>- <?=\Yii::t('main', 'Free')?> WiFi</div>
     <div>- <?=\Yii::t('services', 'Free private parking')?></div>

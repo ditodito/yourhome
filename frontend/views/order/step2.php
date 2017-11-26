@@ -20,7 +20,7 @@ $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
         <div class="booking-header"><?=\Yii::t('order', 'Your booking details')?></div>
         <div class="booking-details">
             <div>
-                <div><strong><?=\Yii::t('order', 'Check in')?></strong></div>
+                <div><strong><?=\Yii::t('order', 'Check-in')?></strong></div>
                 <div>
                     <?=\Yii::t('day', date('l', $start_date))?>,
                     <?=\Yii::t('month', date('F', $start_date))?> <?=date('d', $start_date)?>,
@@ -29,7 +29,7 @@ $this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
                 </div>
             </div>
             <div>
-                <div><strong><?=\Yii::t('order', 'Check out')?></strong></div>
+                <div><strong><?=\Yii::t('order', 'Check-out')?></strong></div>
                 <div>
                     <?=\Yii::t('day', date('l', $end_date))?>,
                     <?=\Yii::t('month', date('F', $end_date))?> <?=date('d', $end_date)?>,

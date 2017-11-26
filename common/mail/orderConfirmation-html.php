@@ -48,7 +48,7 @@ $total_price = 0;
                     <strong><?=$room_name?></strong>
                 </div>
                 <div style="margin-bottom: 10px;">
-                    <strong><?=\Yii::t('order', 'Check in')?>:</strong>
+                    <strong><?=\Yii::t('order', 'Check-in')?>:</strong>
                     <?=\Yii::t('day', date('l', $start_date))?>
                     <?=date('d', $start_date)?>
                     <?=\Yii::t('month', date('F', $start_date))?>
@@ -56,7 +56,7 @@ $total_price = 0;
                     <?=\Yii::t('order', 'From 14:00 (2:00 PM)')?>
                 </div>
                 <div style="border-bottom: 1px solid #999; padding-bottom: 10px; margin-bottom: 10px;">
-                    <strong><?=\Yii::t('order', 'Check out')?>:</strong>
+                    <strong><?=\Yii::t('order', 'Check-out')?>:</strong>
                     <?=\Yii::t('day', date('l', $end_date))?>
                     <?=date('d', $end_date)?>
                     <?=\Yii::t('month', date('F', $end_date))?>

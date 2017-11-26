@@ -5,56 +5,43 @@ use yii\bootstrap\Html;
 IndexAsset::register($this);
 
 $this->title = 'YourHomeHotel :: '.\Yii::t('menu', 'Home');
-
-/*$order = \common\api\models\database\Orders::findOne(['id' => 27]);
-$mail = \Yii::$app->mailer->compose(['html' => 'orderConfirmation-html', 'text' => 'orderConfirmation-text'], [
-    'logo' => \Yii::getAlias('@common/mail/img/logo.png'),
-    'order' => $order
-])->setFrom(\Yii::$app->params['infoEmail'])
-    ->setTo([$order->email, 'dito_1987@mail.ru'])
-    ->setSubject(\Yii::t('order', 'Reservation confirmation').'. '.\Yii::t('main', 'Hotel').' YOUR HOME');
-if ($mail->send()) {
-    echo "yes";
-} else {
-    echo "no";
-}*/
 ?>
 
 <div class="row">
     <div class="col-md-4 form-group">
-        <h4 class="title"><?=\Yii::t('contacts', 'Access Map')?></h4>
+        <h5 class="title"><?=\Yii::t('contacts', 'Access Map')?></h5>
         <div id="map"></div>
 
         <div class="contact-info">
-            <h4 class="title"><?=\Yii::t('contacts', 'Address')?>:</h4>
+            <h5 class="title"><?=\Yii::t('contacts', 'Address')?>:</h5>
             <div><?=\Yii::t('contacts', '{0} Mikheili Tsinamdzghvrishvili Street, {1} Tbilisi, Georgia', ['95', '0164'])?></div>
 
-            <h4 class="title"><?=\Yii::t('contacts', 'Metro')?>:</h4>
+            <h5 class="title"><?=\Yii::t('contacts', 'Metro')?>:</h5>
             <div>
                 <?=\Yii::t('contacts', 'Line {0}', ['I'])?>, <?=\Yii::t('contacts', 'Station Marjanishvili')?>
                 <br /><?=\Yii::t('contacts', 'Open hours - {0} (6am-12am)', ['06:00-24:00'])?>
             </div>
 
-            <h4 class="title"><?=\Yii::t('contacts', 'Bus')?>:</h4>
+            <h5 class="title"><?=\Yii::t('contacts', 'Bus')?>:</h5>
             <div>N122, <?=\Yii::t('contacts', 'Station Tsinamdzghvrishvili')?></div>
 
-            <h4 class="title"><?=\Yii::t('contacts', 'How to reach the hotel from airport')?>:</h4>
+            <h5 class="title text-uppercase"><?=\Yii::t('contacts', 'How to reach the hotel from airport')?>:</h5>
             <div>
                 <div>- <?=\Yii::t('contacts', 'Hotel-airport shuttle')?> (<?=Html::a(\Yii::t('contacts', 'upon request'), ['/site/services'])?>)</div>
                 <div>- <?=\Yii::t('contacts', 'Taxi')?></div>
                 <div>- <?=\Yii::t('contacts', 'Bus')?>: <?=\Yii::t('contacts', 'Public Transport N{0}, Station Queen Tamar Ave.', ['37'])?></div>
             </div>
 
-            <h4 class="title"><?=\Yii::t('menu', 'Contacts')?>:</h4>
+            <h5 class="title"><?=\Yii::t('menu', 'Contacts')?>:</h5>
             <div>
                 <div><?=\Yii::t('contacts', 'Tel')?> / <?=\Yii::t('contacts', 'Fax')?>: (+995 32) 221 00 00</div>
-                <div><?=\Yii::t('contacts', 'Cell')?>: (+995) 558 48 28 88 (<?=\Yii::t('contacts', 'Manager')?>)</div>
-                <div><?=\Yii::t('contacts', 'E-mail')?>: yourhometbilisi@yahoo.com</div>
+                <div><?=\Yii::t('contacts', 'Cell')?>: (+995) 558 48 28 88 (<?=\Yii::t('contacts', 'Chief manager')?>)</div>
+                <div><?=\Yii::t('contacts', 'E-mail')?>: <?=\Yii::$app->params['infoEmail']?></div>
             </div>
         </div>
     </div>
     <div class="col-md-5 form-group about">
-        <h4 class="title" style="margin-bottom: 25px;"><?=\Yii::t('main', 'About Hotel')?></h4>
+        <h5 class="title" style="margin-bottom: 25px;"><?=\Yii::t('main', 'About Hotel')?></h5>
 
         <?php if (\Yii::$app->language == 'ka-GE'): ?>
             <p>სასტუმრო "შენი სახლი" მდებარეობს თბილისის უძველეს და უმშვენიერეს რაიონში ჩუღურეთში. ქუჩა ცალმხრივია და მშვიდი.</p>
@@ -87,31 +74,35 @@ if ($mail->send()) {
         <?php else: ?>
             <p>Hotel "Your Home" is located in a charming old district Chugureti. The street is one-way and quiet.</p>
             <p>Hotel is within only 4-minute walk from Aghmashenebeli Avenue - an old lively avenue full of traditional restaurants,
-                supermarkets and shops. Metro Station Marjanishvili is only 700 m away. Tbilisi center (Rustaveliavenue) is within 24-minute walk.
+                supermarkets and shops. Metro Station Marjanishvili is only 700 m away. Tbilisi center (Rustaveli avenue) is within 24-minute walk.
                 Central railway station is within 13-minute walk - this is also the bus terminal to the airport.</p>
             <p>Hotel features: Free WiFi, shared Kitchenette with Refrigerator, Microwave and Stovetop.
                 Free private parking is just in front of the hotel (only with reservation based on availability).</p>
-            <p>All our rooms and hotel area are non-smoking,very quiet. The beds are large and comfortable. Some of our rooms have the private kitchenette.</p>
+            <p>All our rooms and hotel area are non-smoking, very quiet. The beds are large and comfortable. Some of our rooms have the private kitchenette.</p>
             <p>Front desk offers luggage storage. Open 24/7.</p>
             <p>
-                <b>- Check In:</b> From 14:00 (2:00 PM)<br />
-                <b>- Check Out:</b> From 14:00 (2:00 PM)<br />
+                <b>- Check-in:</b> From 14:00 (2:00 PM)<br />
+                <b>- Check-out:</b> Until 12:00 (noon)<br />
             </p>
             <p>The Hotel "Your Home" welcomes you!</p>
         <?php endif; ?>
     </div>
     <div class="col-md-3 form-group">
-        <h4 class="title"><?=\Yii::t('main', 'Facilities')?></h4>
-        <div><?=\Yii::t('main', 'Free')?> WiFi</div>
-        <div><?=\Yii::t('services', 'Free private parking')?> (<?=Html::a(\Yii::t('contacts', 'upon request'), ['/site/services'])?>)</div>
-        <div><?=\Yii::t('services', '24-hour front desk')?></div>
-        <div><?=\Yii::t('services', 'Luggage storage')?></div>
-        <div><?=\Yii::t('main', 'Kitchenette')?></div>
-        <div><?=\Yii::t('services', 'Airport transfer')?> (<?=Html::a(\Yii::t('contacts', 'upon request'), ['/site/services'])?>)</div>
-        <div class="more"><?=Html::a(\Yii::t('main', 'More').'...', ['/site/services'])?></div>
+        <h5 class="title"><?=\Yii::t('main', 'Facilities')?></h5>
+        <div>- <?=\Yii::t('main', 'Free')?> WiFi</div>
+        <div>- <?=\Yii::t('services', 'Free private parking')?> (<?=Html::a(\Yii::t('contacts', 'upon request'), ['site/services'])?>)</div>
+        <div>- <?=\Yii::t('services', '24-hour front desk')?></div>
+        <div>- <?=\Yii::t('services', 'Luggage storage')?></div>
+        <div>- <?=\Yii::t('main', 'Kitchenette')?></div>
+        <div>- <?=\Yii::t('services', 'Airport transfer')?> (<?=Html::a(\Yii::t('contacts', 'upon request'), ['site/services'])?>)</div>
+        <div class="more"><?=Html::a(\Yii::t('main', 'More').'...', ['site/services'])?></div>
 
-        <h4 class="title" style="margin-top: 20px;"><?=\Yii::t('menu', 'Our Tours')?></h4>
+        <h5 class="title" style="margin-top: 20px;"><?=\Yii::t('menu', 'Our Tours')?></h5>
+        <?=Html::img(\Yii::getAlias('@web/img/our_tours.jpg'), [
+            'class' => 'img-rounded img-responsive',
+            'alt' => \Yii::t('menu', 'Our Tours')
+        ])?>
         <div><?=\Yii::t('tours', 'Discover Georgia with us, we organize the different excursions')?></div>
-        <div class="more"><?=Html::a(\Yii::t('main', 'More').'...', ['/tours/'])?></div>
+        <div class="more"><?=Html::a(\Yii::t('main', 'More').'...', ['tours/'])?></div>
     </div>
 </div>

@@ -42,7 +42,7 @@ $order_form = new OrderForm();
                             'action' => ['/order/step1']
                         ]); ?>
                         <div class="reservation-input">
-                            <label class="control-label"><?=\Yii::t('order', 'Check in')?></label>
+                            <label class="control-label"><?=\Yii::t('order', 'Check-in')?></label>
                             <?=$form->field($order_form, 'start_date')->widget(DatePicker::classname(), [
                                 'type' => DatePicker::TYPE_COMPONENT_APPEND,
                                 'size' => 'sm',
@@ -74,7 +74,7 @@ $order_form = new OrderForm();
                             ])->label(false)->error(false)?>
                         </div>
                         <div class="reservation-input">
-                            <label class="control-label"><?=\Yii::t('order', 'Check out')?></label>
+                            <label class="control-label"><?=\Yii::t('order', 'Check-out')?></label>
                             <?=$form->field($order_form, 'end_date')->widget(DatePicker::classname(), [
                                 'type' => DatePicker::TYPE_COMPONENT_APPEND,
                                 'size' => 'sm',
