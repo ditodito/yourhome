@@ -34,7 +34,7 @@
     <h5><?=\Yii::t('menu', 'Contacts')?>:</h5>
     <div><?=\Yii::t('contacts', 'Tel')?> / <?=\Yii::t('contacts', 'Fax')?>: (+995 32) 221 00 00</div>
     <div><?=\Yii::t('contacts', 'Cell')?>: (+995) 558 48 28 88 (<?=\Yii::t('contacts', 'Manager')?>)</div>
-    <div><?=\Yii::t('contacts', 'E-mail')?>: yourhometbilisi@yahoo.com</div>
+    <div><?=\Yii::t('contacts', 'E-mail')?>: <?=\Yii::$app->params['infoEmail']?></div>
 </div>
 
 <div class="side-info">
@@ -42,12 +42,12 @@
     <div>- <?=\Yii::t('main', 'Free')?> WiFi</div>
     <div>- <?=\Yii::t('services', 'Free private parking')?></div>
     <div>- <?=\Yii::t('services', 'Luggage storage')?></div>
-    <div>- <?=\Yii::t('services', 'Airport transfer')?> (<?=Html::a(\Yii::t('contacts', 'upon request'), ['/site/services'])?>)</div>
+    <div>- <?=\Yii::t('services', 'Airport transfer')?> (<?=Html::a(\Yii::t('contacts', 'upon request'), ['site/services'])?>)</div>
     <div>- <?=\Yii::t('services', '24-hour front desk')?></div>
     <div>- <?=\Yii::t('rooms', 'Toiletries')?></div>
     <div>- <?=\Yii::t('rooms', 'Towels')?></div>
     <div>- <?=\Yii::t('main', 'Kitchenette')?></div>
-    <?=Html::a(\Yii::t('main', 'More').'...', ['/site/services'], ['class' => 'more'])?>
+    <?=Html::a(\Yii::t('main', 'More').'...', ['site/services'], ['class' => 'more'])?>
 </div>
 
 <div class="side-info">
@@ -56,5 +56,5 @@
         <?=Html::img(\Yii::getAlias('@web/img/tours.png'), ['height' => 30, 'alt' => \Yii::t('menu', 'Our Tours')])?>
         <?=\Yii::t('tours', 'Discover Georgia with us, we organize the different excursions')?>
     </div>
-    <?=Html::a(\Yii::t('main', 'More').'...', ['/tours/'], ['class' => 'more'])?>
+    <?=Html::a(\Yii::t('main', 'More').'...', ['tours/'], ['class' => 'more'])?>
 </div>
