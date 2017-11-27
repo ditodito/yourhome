@@ -51,14 +51,14 @@ $act = \Yii::$app->controller->action->id;
     <div class="side-info">
         <h5><?=\Yii::t('services', 'Our additional services and facilities')?></h5>
         <div>
-            - <?=\Yii::t('main', 'Free')?> WiFi<br />
+            <!-- - <?=\Yii::t('main', 'Free')?> WiFi<br /> -->
             - <?=\Yii::t('services', 'Free private parking')?><br />
             - <?=\Yii::t('services', 'Luggage storage')?><br />
             - <?=\Yii::t('services', 'Airport transfer')?> (<?=Html::a(\Yii::t('contacts', 'upon request'), ['site/services'])?>)<br />
             - <?=\Yii::t('services', '24-hour front desk')?><br />
-            - <?=\Yii::t('rooms', 'Toiletries')?><br />
+            <!-- - <?=\Yii::t('rooms', 'Toiletries')?><br />
             - <?=\Yii::t('rooms', 'Towels')?><br />
-            - <?=\Yii::t('main', 'Kitchenette')?>
+            - <?=\Yii::t('main', 'Kitchenette')?> -->
         </div>
         <?=Html::a(\Yii::t('main', 'More').'...', ['site/services'], ['class' => 'more'])?>
     </div>

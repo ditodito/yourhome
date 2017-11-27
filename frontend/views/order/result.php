@@ -20,13 +20,13 @@ $this->title = 'YourHomeHotel :: '.$title;
     <div class="col-md-12">
         <?php if ($status == 1 || $status == 3): ?>
             <h4 class="text-center"><strong><?=$title?></strong></h4>
-            <p class="text-center"><?=\Yii::t('order', 'Reservation number')?>: <strong><?=$reservation_number?></strong></p>
+            <p class="text-center" style="margin-bottom: 30px;"><?=\Yii::t('order', 'Reservation number')?>: <strong><?=$reservation_number?></strong></p>
             <?php if ($status == 1): ?>
-                <p><?=\Yii::t('order', 'We send a confirmation mail to')?> <strong><?=$email?></strong></p>
+                <p style="margin-bottom: 30px;"><?=\Yii::t('order', 'We send a confirmation mail to')?> <strong><?=$email?></strong></p>
             <?php endif; ?>
             <p>
                 <strong><?=\Yii::t('order', 'Cancellation policy')?></strong><br/>
-                <?=\Yii::t('order', 'Reservation failed')?>.
+                <?=\Yii::t('order', 'Cancellation is free 24h before arrival')?>.
                 <?=\Yii::t('order', 'The guest will be charged the first night if they cancel within 24h before arrival')?>.
             </p>
         <?php elseif ($status == 2 || $status == 4): ?>

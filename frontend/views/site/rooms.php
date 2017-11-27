@@ -98,3 +98,6 @@ $this->title = 'YourHomeHotel :: '.\Yii::t('menu', 'Rooms & Rates');
         </div>
     </div>
 <?php endforeach; ?>
+
+* <?=\Yii::t('order', 'Cancellation is free 24h before arrival')?>. <?=\Yii::t('order', 'The guest will be charged the first night if they cancel within 24h before arrival')?>.
+

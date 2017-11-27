@@ -10,17 +10,17 @@ $this->title = 'YourHomeHotel :: '.\Yii::t('menu', 'Service');
 
 <div class="service-wrapper">
     <div class="service-title"><?=\Yii::t('services', 'Hotel airport transfer (one way)')?>:</div>
-    <div class="service-item">- <?=\Yii::t('services', 'by comfortable minivan')?> .... 80 ₾</div>
-    <div class="service-item">- <?=\Yii::t('services', 'by car')?> .... 40 ₾</div>
+    <div class="service-item">- <?=\Yii::t('services', 'by comfortable minivan')?> .... 80 GEL</div>
+    <div class="service-item">- <?=\Yii::t('services', 'by car')?> .... 40 GEL</div>
 </div>
 <div class="service-wrapper">
-    <div class="service-title"><?=\Yii::t('services', 'Extra towel')?>: ..... 3 ₾</div>
+    <div class="service-title"><?=\Yii::t('services', 'Extra towel')?>: ..... 3 GEL</div>
 </div>
 <div class="service-wrapper">
-    <div class="service-title"><?=\Yii::t('services', 'Extra sofa bed per night')?>: ..... 25 ₾</div>
+    <div class="service-title"><?=\Yii::t('services', 'Extra sofa bed per night')?>: ..... 25 GEL</div>
 </div>
 <div class="service-wrapper">
-    <div class="service-title"><?=\Yii::t('services', 'Toiletries (slippers, shampoo, toothpaste, toothbrush, shower gel)')?>: ..... 3 ₾</div>
+    <div class="service-title"><?=\Yii::t('services', 'Toiletries (slippers, shampoo, toothpaste, toothbrush, shower gel)')?>: ..... 3 GEL</div>
 </div>
 
 <ul class="service-list">
