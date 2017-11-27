@@ -1,13 +1,23 @@
-$(document).ready(function() {
+var $changeDate = null;
+var $rooms = null;
+var $changeDateModal = null;
 
-    $("#changeDate").on("click", function() {
-        $("#changeDateModal").modal();
+$(document).ready(function() {
+    $changeDate = $("#changeDate");
+    $rooms = $(".rooms");
+    $changeDateModal = $("#changeDateModal");
+
+    if (showForm == 1)
+        $changeDateModal.modal();
+
+    $changeDate.on("click", function() {
+        $changeDateModal.modal();
     });
 
-    $(".rooms").on("change", function() {
+    $rooms.on("change", function() {
         var totalPrice = 0;
 
-        $(".rooms").each(function(i, element) {
+        $rooms.each(function(i, element) {
             var price = $(element).find("option:selected").data("price");
             totalPrice += price * totalDays;
         });
@@ -15,5 +25,4 @@ $(document).ready(function() {
         $("#price").text(totalPrice);
         $("#submitBtn").prop("disabled", (totalPrice == 0));
     });
-
 });

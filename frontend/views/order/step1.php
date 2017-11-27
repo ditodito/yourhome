@@ -9,7 +9,7 @@ Step1Asset::register($this);
 
 $this->title = 'YourHomeHotel :: Order Step 1';
 
-$this->registerJs("var totalDays = ".$total_days.";", View::POS_HEAD);
+$this->registerJs("var totalDays = ".$total_days."; var showForm = ".$show_form.";", View::POS_HEAD);
 ?>
 
 <div class="row">

@@ -25,7 +25,7 @@ $this->title = 'YourHomeHotel :: '.\Yii::t('menu', 'Home');
             <h5 class="title"><?=\Yii::t('contacts', 'Bus')?>:</h5>
             <div>N122, <?=\Yii::t('contacts', 'Station Tsinamdzghvrishvili')?></div>
 
-            <h5 class="title text-uppercase"><?=\Yii::t('contacts', 'How to reach the hotel from airport')?>:</h5>
+            <h5 class="title text-capitalize"><?=\Yii::t('contacts', 'How to reach the hotel from airport')?>:</h5>
             <div>
                 <div>- <?=\Yii::t('contacts', 'Hotel-airport shuttle')?> (<?=Html::a(\Yii::t('contacts', 'upon request'), ['/site/services'])?>)</div>
                 <div>- <?=\Yii::t('contacts', 'Taxi')?></div>

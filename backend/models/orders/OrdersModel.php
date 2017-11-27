@@ -58,8 +58,8 @@ class OrdersModel extends Model {
             'arrival_time' => \Yii::t('order', 'Approximate arrival time'),
             'airport_transfer_price_id' => \Yii::t('services', 'Airport transfer'),
             'parking_reservation' => \Yii::t('services', 'Free private parking'),
-            'start_date' => \Yii::t('order', 'Check in'),
-            'end_date' => \Yii::t('order', 'Check out'),
+            'start_date' => \Yii::t('order', 'Check-in'),
+            'end_date' => \Yii::t('order', 'Check-out'),
             'status' => \Yii::t('order', 'Status')
         ];
     }

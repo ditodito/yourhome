@@ -4,6 +4,7 @@ namespace frontend\controllers;
 use common\api\actions\GalleryActions;
 use common\api\actions\RoomsActions;
 use common\controllers\YourHomeController;
+use frontend\models\OrderForm;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\helpers\FileHelper;
@@ -64,8 +65,13 @@ class SiteController extends YourHomeController {
     public function actionRooms() {
         $this->layout = 'room';
 
+        $model = new OrderForm();
+        $model->start_date = date('m/d/Y', time());
+        $model->end_date = date('m/d/Y', strtotime('+1 days'));
+
         return $this->render('rooms', [
-            'rooms' => RoomsActions::getRooms()
+            'rooms' => RoomsActions::getRooms(),
+            'model' => $model
         ]);
     }
 

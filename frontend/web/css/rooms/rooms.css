@@ -1,24 +1,33 @@
-div.room-image {
+div.room-container {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 50px;
+}
+
+img.img-responsive {
     margin-bottom: 20px;
 }
 
-div.room-image > img {
-    width: 100%;
-}
-
 ul.room-include {
-    list-style-position: inside;
     font-weight: bold;
+    list-style-position: inside;
     padding: 0 0 0 5px;
 }
 
-.step1_btn {
-    color: #000;
-    border: 1px solid #ccc;
-    display: inline-block;
-    padding: 10px 15px;
+.room-description {
+    margin-bottom: 25px;
 }
 
-.step1_btn:hover {
+#roomForm {
+    text-align: right;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+#roomForm button[type='submit'] {
     color: #000;
+    outline: none;
+    border: 1px solid #ccc;
+    background: transparent;
+    padding: 10px 15px;
 }

@@ -1,5 +1,6 @@
 <?php
 use frontend\assets\RoomsAsset;
+use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 
 RoomsAsset::register($this);
@@ -8,12 +9,11 @@ $this->title = 'YourHomeHotel :: '.\Yii::t('menu', 'Rooms & Rates');
 ?>
 
 <?php foreach($rooms as $room): ?>
-    <div style="border: 1px solid #ccc; padding: 15px; margin-bottom: 50px;">
+    <div class="room-container">
         <div class="row">
-            <div class="col-md-5">
-                <div class="room-image">
-                    <?=Html::img(\Yii::getAlias('@web/img/rooms/'.$room->image), ['alt' => $room->name])?>
-                </div>
+            <div class="col-sm-5">
+                <?=Html::img(\Yii::getAlias('@web/img/rooms/'.$room->image), ['class' => 'img-responsive', 'alt' => $room->name])?>
+
                 <div class="row">
                     <div class="col-xs-6">
                         <ul class="room-include small">
@@ -67,30 +67,33 @@ $this->title = 'YourHomeHotel :: '.\Yii::t('menu', 'Rooms & Rates');
                     </div>
                 </div>
             </div>
-            <div class="col-md-7">
+            <div class="col-sm-7">
                 <h5><strong><?=$room->name?></strong></h5>
                 <p class="text-right"><strong><?=\Yii::t('main', 'Max')?>: <?=$room->capacity?></strong></p>
-                <p style="margin-bottom: 25px;"><?=$room->description?></p>
+                <p class="room-description"><?=$room->description?></p>
+
                 <p class="small"><strong><?=\Yii::t('order', 'Not included')?></strong></p>
                 <ul class="room-include small" style="margin-bottom: 40px;">
                     <?php if ($room->id == 1): ?>
                         <li>Extra sofa bed - 25 GEL (per night, upon request)</li>
                     <?php else: ?>
-                    <li>Towlers (<?=Html::a(\Yii::t('contacts', 'extra free'), ['site/services'])?>)</li>
-
-                    <li>Toiletries (<?=Html::a(\Yii::t('contacts', 'extra free'), ['site/services'])?>)</li>
+                        <li><?=\Yii::t('rooms', 'Towels')?> <?=Html::a('('.\Yii::t('rooms', 'extra free').')', ['site/services'])?></li>
+                        <li><?=\Yii::t('rooms', 'Toiletries')?> <?=Html::a('('.\Yii::t('rooms', 'extra free').')', ['site/services'])?></li>
                     <?php endif; ?>
                 </ul>
 
-                <p class="text-right" style="margin-bottom: 25px;">
+                <p class="text-right">
                     <strong><?=$room->price?> GEL</strong><br />
                     <?=\Yii::t('order', 'Included: {0} VAT', ['18%'])?><br />
                     <?=\Yii::t('order', 'Free cancellation 24h before arrival')?><br />
                     <?=\Yii::t('order', 'Payment at the hotel')?>
                 </p>
-                <p class="text-right">
-                    <?=Html::a('Check availability and book', ['order/step1'], ['class' => 'step1_btn'])?>
-                </p>
+
+                <?php $form = ActiveForm::begin(['action' => ['order/step1', 'show_form' => true], 'id' => 'roomForm'])?>
+                    <?=Html::activeHiddenInput($model, 'start_date')?>
+                    <?=Html::activeHiddenInput($model, 'end_date')?>
+                    <?=Html::submitButton(\Yii::t('order', 'Check availability and book').' &raquo;', ['order/step1'], ['class' => 'step1_btn'])?>
+                <?php ActiveForm::end(); ?>
             </div>
         </div>
     </div>

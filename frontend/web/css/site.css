@@ -104,7 +104,7 @@ div.header-reservation > div:first-child {
     font-weight: bold;
     text-align: right;
     line-height: 80px;
-    text-transform: uppercase;
+    text-transform: capitalize;
     background-color: #8b7d72;
     padding-right: 15px;
 }
