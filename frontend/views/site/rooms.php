@@ -40,7 +40,7 @@ $this->title = 'YourHomeHotel :: '.\Yii::t('menu', 'Rooms & Rates');
                             <?php endif; ?>
                         </ul>
                     </div>
-                    <div class="col-xs-6">
+                    <div class="col-xs-6" style="padding: 0;">
                         <ul class="room-include small">
                             <?php if ($room->linen): ?>
                                 <li><?=\Yii::t('rooms', 'Linen')?></li>

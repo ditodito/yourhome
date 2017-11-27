@@ -1,6 +1,22 @@
-.title {
+div.index-info {
+    margin-bottom: 15px;
+}
+
+div.index-info > h5 {
     font-weight: bold;
-    margin-top: 0;
+}
+
+div.index-info img.img-responsive {
+    margin-bottom: 5px;
+}
+
+div.index-info a.more {
+    display: inline-block;
+    margin-top: 5px;
+}
+
+div.index-info a.more:hover {
+    text-decoration: none;
 }
 
 #map {
@@ -10,28 +26,10 @@
 div.contact-info {
     border-left: 1px solid #81669d;
     padding-left: 15px;
-    margin-top: 15px;
-}
-
-div.contact-info > div {
-    margin-bottom: 20px;
-}
-
-div.contact-info > div > div:not(:last-child) {
-    margin-bottom: 5px;
 }
 
 div.about {
     font-size: 16px;
     border-left: 1px solid #81669d;
     border-right: 1px solid #81669d;
-}
-
-div.more a {
-    color: #3399ff;
-    text-decoration: underline;
-}
-
-.img-responsive {
-    margin-bottom: 5px;
 }

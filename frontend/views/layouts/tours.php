@@ -29,7 +29,7 @@ $tour_id = array_key_exists('id', $query_params) ? $query_params['id'] : '0';
 
             <div class="container">
                 <div class="row">
-                    <div class="col-md-3 form-group">
+                    <div class="col-sm-3 form-group">
                         <div class="tours-nav">
                             <h4><?=\Yii::t('menu', 'Our Tours')?></h4>
                             <?php foreach($this->params['tours_durations'] as $duration): ?>
@@ -87,7 +87,7 @@ $tour_id = array_key_exists('id', $query_params) ? $query_params['id'] : '0';
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-9 form-group">
+                    <div class="col-sm-9 form-group">
                         <?=$content?>
                     </div>
                 </div>

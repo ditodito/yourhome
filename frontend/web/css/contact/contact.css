@@ -5,12 +5,11 @@
 }
 
 div.info-wrapper {
-    margin-bottom: 30px;
+    margin-bottom: 15px;
 }
 
-h5.info-title {
+div.info-wrapper > h5 {
     font-weight: bold;
     display: inline-block;
     border-bottom: 1px solid #a3a3a3;
-    margin: 0 0 10px 0;
 }

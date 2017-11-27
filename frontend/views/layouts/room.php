@@ -33,10 +33,10 @@ AppAsset::register($this);
 
         <div class="container">
             <div class="row">
-                <div class="col-md-9 form-group">
+                <div class="col-sm-9 form-group">
                     <?=$content?>
                 </div>
-                <div class="col-md-3 form-group">
+                <div class="col-sm-3 form-group">
                     <?php include('blocks/side.php'); ?>
                 </div>
             </div>

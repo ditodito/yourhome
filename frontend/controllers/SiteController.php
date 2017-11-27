@@ -90,6 +90,8 @@ class SiteController extends YourHomeController {
     }
 
     public function actionContact() {
+        $this->layout = 'side';
+
         return $this->render('contact');
     }
 
