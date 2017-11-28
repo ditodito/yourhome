@@ -38,7 +38,8 @@ $this->title = 'YourHomeHotel :: '.\Yii::t('menu', 'Home');
                 <div>
                     - <?=\Yii::t('contacts', 'Hotel-airport shuttle')?> (<?=Html::a(\Yii::t('contacts', 'upon request'), ['/site/services'])?>)<br />
                     - <?=\Yii::t('contacts', 'Taxi')?><br />
-                    - <?=\Yii::t('contacts', 'Bus')?>: <?=\Yii::t('contacts', 'Public Transport N{0}, Station Queen Tamar Ave', ['37'])?>
+                    - <?=\Yii::t('contacts', 'Bus')?>: <?=\Yii::t('contacts', 'Public Transport N{0}, Station Queen Tamar Ave', ['37'])?>.
+                    <?=\Yii::t('contacts', 'Open hours - {0}H', ['24'])?>
                 </div>
             </div>
 
