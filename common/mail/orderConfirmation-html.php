@@ -67,18 +67,6 @@ $total_price = 0;
                 </div>
                 <div style="text-align: right; margin-bottom: 10px;">
                     <strong><?=$order_room->price * $total_days?> GEL</strong><br />
-                    (<?=\Yii::t('order', 'taxes included')?>)
-                </div>
-                <div style="margin-bottom: 10px;">
-                    <a href="<?=\Yii::$app->urlManager->createAbsoluteUrl(['order/remove-order-room', 'id' => $order_room->id, 'order_key' => $order->order_key])?>"><?=\Yii::t('order', 'Cancel this reservation')?></a>
-                </div>
-            </div>
-        <?php endforeach; ?>
-
-        <div style="padding: 0 15px; margin-bottom: 30px;">
-            <strong><?=\Yii::t('services', 'Services')?>:</strong>
-            <ul style="font-weight: bold;">
-                <?php foreach($order->ordersRoom as $order_room): ?>
                     <?php foreach($order_room->services as $room_service): ?>
                         <?php
                         $service = RoomsServices::findOne(['id' => $room_service->room_service_id]);
@@ -94,19 +82,29 @@ $total_price = 0;
                         }
                         $service_price = ($room_service->per_night == 1) ? $room_service->price * $total_days : $room_service->price;
                         ?>
-                        <li><?=$service_name?> = <?=$service_price?> GEL</li>
+                        <strong><?=$service_name?> = <?=$service_price?> GEL</strong><br />
                     <?php endforeach; ?>
-                <?php endforeach; ?>
+                    (<?=\Yii::t('order', 'taxes included')?>)
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <a href="<?=\Yii::$app->urlManager->createAbsoluteUrl(['order/remove-order-room', 'id' => $order_room->id, 'order_key' => $order->order_key])?>"><?=\Yii::t('order', 'Cancel this reservation')?></a>
+                </div>
+            </div>
+        <?php endforeach; ?>
+
+        <div style="padding: 0 15px; margin-bottom: 30px;">
+            <strong><?=\Yii::t('services', 'Services')?>:</strong>
+            <div style="font-weight: bold; padding: 15px; margin-bottom: 30px;">
                 <?php if ($order->parking_reservation): ?>
-                    <li><?=\Yii::t('services', 'Free private parking')?></li>
+                    <?=\Yii::t('services', 'Free private parking')?><br />
                 <?php endif; ?>
                 <?php if ($order->airport_transfer_price_id): ?>
                     <?php $ap = $order->airportTransferPrice; ?>
-                    <li><?=\Yii::t('services', 'Airport transfer')?> <?=$ap->persons?> p = <?=$order->airportTransferPrice->price?> GEL</li>
+                    <?=\Yii::t('services', 'Airport transfer')?> <?=$ap->persons?> p = <?=$order->airportTransferPrice->price?> GEL
                 <?php endif; ?>
-            </ul>
+            </div>
 
-            <strong><?=\Yii::t('order', 'Total amount')?>: <?=$order->price?> GEL</strong><br />
+            <strong style="font-size: 18px;"><?=\Yii::t('order', 'Total amount')?>: <?=$order->price?> GEL</strong><br />
             <?=\Yii::t('order', 'Included: {0} VAT', ['18%'])?>
         </div>
 
