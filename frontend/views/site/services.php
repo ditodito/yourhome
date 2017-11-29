@@ -1,5 +1,6 @@
 <?php
 use frontend\assets\ServicesAsset;
+use yii\bootstrap\Html;
 
 ServicesAsset::register($this);
 
@@ -37,5 +38,15 @@ $this->title = 'YourHomeHotel :: '.\Yii::t('menu', 'Service');
 
 <h5 class="other-info-title"><?=\Yii::t('services', 'Other information available at the reception')?>:</h5>
 <p><?=\Yii::t('services', 'Medical service, taxi, shops, souvenirs, hairdresser, restaurant, excursions...')?></p>
+
+<div class="our-tours">
+    <h4><?=\Yii::t('menu', 'Our Tours')?></h4>
+    <p><?=Html::a(\Yii::t('tours', 'Discover Georgia with us, we organize the different excursions'), ['tours/'])?></p>
+    <?=Html::img(\Yii::getAlias('@web/img/our_tours.jpg'), [
+        'class' => 'img-rounded img-responsive',
+        'alt' => \Yii::t('menu', 'Our Tours')
+    ])?>
+</div>
+
 
 <div class="dgg"><?=\Yii::t('main', 'All prices Include {0}% VAT', [18])?></div>

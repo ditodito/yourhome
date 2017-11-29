@@ -62,13 +62,16 @@ $act = \Yii::$app->controller->action->id;
         </div>
         <?=Html::a(\Yii::t('main', 'More').'...', ['site/services'], ['class' => 'more'])?>
     </div>
-<?php endif; ?>
 
-<div class="side-info">
-    <h5><?=\Yii::t('menu', 'Our Tours')?></h5>
-    <div>
-        <?=Html::img(\Yii::getAlias('@web/img/tours.png'), ['height' => 30, 'alt' => \Yii::t('menu', 'Our Tours')])?>
-        <?=\Yii::t('tours', 'Discover Georgia with us, we organize the different excursions')?>
+    <div class="side-info">
+        <h5><?=\Yii::t('menu', 'Our Tours')?></h5>
+        <div>
+            <?=Html::img(\Yii::getAlias('@web/img/our_tours.jpg'), [
+                'class' => 'img-rounded img-responsive',
+                'alt' => \Yii::t('menu', 'Our Tours')
+            ])?>
+            <?=\Yii::t('tours', 'Discover Georgia with us, we organize the different excursions')?>
+        </div>
+        <?=Html::a(\Yii::t('main', 'More').'...', ['tours/'], ['class' => 'more'])?>
     </div>
-    <?=Html::a(\Yii::t('main', 'More').'...', ['tours/'], ['class' => 'more'])?>
-</div>
+<?php endif; ?>
