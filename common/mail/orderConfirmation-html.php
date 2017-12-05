@@ -82,7 +82,7 @@ $total_price = 0;
                         }
                         $service_price = ($room_service->per_night == 1) ? $room_service->price * $total_days : $room_service->price;
                         ?>
-                        <strong><?=$service_name?> = <?=$service_price?> GEL</strong><br />
+                        <strong>&#10004; &nbsp; <?=$service_name?> = <?=$service_price?> GEL</strong><br />
                     <?php endforeach; ?>
                     (<?=\Yii::t('order', 'taxes included')?>)
                 </div>
@@ -94,13 +94,13 @@ $total_price = 0;
 
         <div style="padding: 0 15px; margin-bottom: 30px;">
             <strong><?=\Yii::t('services', 'Services')?>:</strong>
-            <div style="font-weight: bold; padding: 15px; margin-bottom: 30px;">
+            <div style="font-weight: bold; padding-top: 10px; margin-bottom: 30px;">
                 <?php if ($order->parking_reservation): ?>
-                    <?=\Yii::t('services', 'Free private parking')?><br />
+                    &#10004; &nbsp; <?=\Yii::t('services', 'Free private parking')?><br />
                 <?php endif; ?>
                 <?php if ($order->airport_transfer_price_id): ?>
                     <?php $ap = $order->airportTransferPrice; ?>
-                    <?=\Yii::t('services', 'Airport transfer')?> <?=$ap->persons?> p = <?=$order->airportTransferPrice->price?> GEL
+                    &#10004; &nbsp; <?=\Yii::t('services', 'Airport transfer')?> <?=$ap->persons?> p = <?=$order->airportTransferPrice->price?> GEL
                 <?php endif; ?>
             </div>
 

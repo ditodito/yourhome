@@ -41,7 +41,7 @@ $act = \Yii::$app->controller->action->id;
         <h5><?=\Yii::t('menu', 'Contacts')?>:</h5>
         <div>
             <?=\Yii::t('contacts', 'Tel')?> / <?=\Yii::t('contacts', 'Fax')?>: (+995 32) 221 00 00<br />
-            <?=\Yii::t('contacts', 'Cell')?>: (+995) 558 48 28 88 (<?=\Yii::t('contacts', 'Manager')?>)<br />
+            <?=\Yii::t('contacts', 'Cell')?>: (+995) 558 48 28 88 (<?=\Yii::t('contacts', 'Chief manager')?>)<br />
             <?=\Yii::t('contacts', 'E-mail')?>: <?=\Yii::$app->params['infoEmail']?>
         </div>
     </div>
@@ -52,7 +52,7 @@ $act = \Yii::$app->controller->action->id;
         <h5><?=\Yii::t('services', 'Our additional services and facilities')?></h5>
         <div>
             <!-- - <?=\Yii::t('main', 'Free')?> WiFi<br /> -->
-            - <?=\Yii::t('services', 'Free private parking')?><br />
+            - <?=\Yii::t('services', 'Free private parking')?> (<?=\Yii::t('contacts', 'upon request')?>)<br />
             - <?=\Yii::t('services', 'Luggage storage')?><br />
             - <?=\Yii::t('services', 'Airport transfer')?> (<?=Html::a(\Yii::t('contacts', 'upon request'), ['site/services'])?>)<br />
             - <?=\Yii::t('services', '24-hour front desk')?><br />

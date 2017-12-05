@@ -56,8 +56,8 @@ $this->registerJs("var totalDays = ".$total_days."; var showForm = ".$show_form.
             <span><?=\Yii::t('menu', 'Contacts')?>:</span>
             <div>
                 <div><?=\Yii::t('contacts', 'Tel')?> / <?=\Yii::t('contacts', 'Fax')?>: (+995 32) 221 00 00</div>
-                <div><?=\Yii::t('contacts', 'Cell')?>: (+995) 558 48 28 88 (<?=\Yii::t('contacts', 'Manager')?>)</div>
-                <div><?=\Yii::t('contacts', 'E-mail')?>: yourhometbilisi@yahoo.com</div>
+                <div><?=\Yii::t('contacts', 'Cell')?>: (+995) 558 48 28 88 (<?=\Yii::t('contacts', 'Chief manager')?>)</div>
+                <div><?=\Yii::t('contacts', 'E-mail')?>: <?=\Yii::$app->params['infoEmail']?></div>
             </div>
         </div>
     </div>

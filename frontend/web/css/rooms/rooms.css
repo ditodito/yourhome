@@ -9,7 +9,6 @@ img.img-responsive {
 }
 
 ul.room-include {
-    font-weight: bold;
     list-style-position: inside;
     padding: 0 0 0 5px;
 }
@@ -26,6 +25,7 @@ ul.room-include {
 
 #roomForm button[type='submit'] {
     color: #000;
+    font-weight: bold;
     outline: none;
     border: 1px solid #ccc;
     background: transparent;

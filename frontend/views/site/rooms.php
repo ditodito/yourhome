@@ -76,17 +76,20 @@ $this->title = 'YourHomeHotel :: '.\Yii::t('menu', 'Rooms & Rates');
                 <ul class="room-include small" style="margin-bottom: 40px;">
                     <?php if ($room->id == 1): ?>
                         <li>Extra sofa bed - 25 GEL (per night, upon request)</li>
-                    <?php else: ?>
+                    <?php endif; ?>
+                    <?php if (!$room->towels): ?>
                         <li><?=\Yii::t('rooms', 'Towels')?> <?=Html::a('('.\Yii::t('rooms', 'extra free').')', ['site/services'])?></li>
+                    <?php endif; ?>
+                    <?php if (!$room->toiletries): ?>
                         <li><?=\Yii::t('rooms', 'Toiletries')?> <?=Html::a('('.\Yii::t('rooms', 'extra free').')', ['site/services'])?></li>
                     <?php endif; ?>
                 </ul>
 
                 <p class="text-right">
                     <strong><?=$room->price?> GEL</strong><br />
-                    <?=\Yii::t('order', 'Included: {0} VAT', ['18%'])?><br />
-                    <?=\Yii::t('order', 'Free cancellation 24h before arrival')?><br />
-                    <?=\Yii::t('order', 'Payment at the hotel')?>
+                    <span class="small"><?=\Yii::t('order', 'Included: {0} VAT', ['18%'])?></span><br />
+                    <span class="small"><?=\Yii::t('order', 'Free cancellation 24h before arrival')?> *</span><br />
+                    <span class="small"><?=\Yii::t('order', 'Payment at the hotel')?></span>
                 </p>
 
                 <?php $form = ActiveForm::begin(['action' => ['order/step1', 'show_form' => true], 'id' => 'roomForm'])?>

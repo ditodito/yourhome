@@ -108,7 +108,7 @@ $this->title = 'YourHomeHotel :: '.\Yii::t('menu', 'Home');
             <h5><?=\Yii::t('main', 'Facilities')?></h5>
             <div>
                 - <?=\Yii::t('main', 'Free')?> WiFi<br />
-                - <?=\Yii::t('services', 'Free private parking')?> (<?=Html::a(\Yii::t('contacts', 'upon request'), ['site/services'])?>)<br />
+                - <?=\Yii::t('services', 'Free private parking')?> (<?=\Yii::t('contacts', 'upon request')?>)<br />
                 - <?=\Yii::t('services', '24-hour front desk')?><br />
                 - <?=\Yii::t('services', 'Luggage storage')?><br />
                 - <?=\Yii::t('main', 'Kitchenette')?><br />
@@ -116,7 +116,7 @@ $this->title = 'YourHomeHotel :: '.\Yii::t('menu', 'Home');
             </div>
             <?=Html::a(\Yii::t('main', 'More').'...', ['site/services'], ['class' => 'more'])?>
         </div>
-        <div class="index-info">
+        <div class="index-info" style="margin-top: 30px;">
             <h5><?=\Yii::t('menu', 'Our Tours')?></h5>
             <div>
                 <?=Html::img(\Yii::getAlias('@web/img/our_tours.jpg'), [
