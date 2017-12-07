@@ -62,8 +62,8 @@ $this->registerJs("var totalDays = ".$total_days."; var showForm = ".$show_form.
         </div>
     </div>
     <div class="col-md-9 form-group">
+        <h4 style="font-weight: bold; margin-top: 0;"><?=\Yii::t('order', 'For these dates the following rooms are available')?></h4>
         <div class="date-block">
-            <p><?=\Yii::t('order', 'For these dates the following rooms are available')?></p>
             <div class="row">
                 <div class="col-md-3 form-group">
                     <span><?=\Yii::t('order', 'Check-in date')?>:</span><br />
