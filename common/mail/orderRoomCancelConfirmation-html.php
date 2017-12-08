@@ -1,12 +1,13 @@
 <?php
 use common\api\models\database\Rooms;
+use common\api\models\database\RoomsServices;
 
 $start_date = strtotime($order->start_date);
 $end_date = strtotime($order->end_date);
 $total_days = floor(($end_date - $start_date) / 86400);
 
 $room = Rooms::findOne(['id' => $order_room->room_id]);
-$price = $room->price * $total_days;
+$price = $order_room->price * $total_days;
 
 switch(\Yii::$app->language) {
     case 'ka-GE':
@@ -25,7 +26,7 @@ switch(\Yii::$app->language) {
 </h4>
 
 <div style="text-align: center; font-weight: bold;">
-    <?=\Yii::t('order', 'Dear Mr. / Mrs. {0}, we confirm that the following reservation is canceled', [$order->first_name])?>:
+    <?=\Yii::t('order', 'Dear Mr. / Mrs. {0}, we confirm that the following reservation is canceled', [$order->first_name . ' ' .$order->last_name])?>:
 </div>
 <div style="width: 60%; border: 1px solid #999; padding: 15px; margin: 15px auto;">
     <div style="margin-bottom: 10px;">
@@ -49,6 +50,23 @@ switch(\Yii::$app->language) {
     </div>
     <div style="text-align: right;">
         <strong><?=$price?> GEL</strong><br />
+        <?php foreach($order_room->services as $room_service): ?>
+            <?php
+            $service = RoomsServices::findOne(['id' => $room_service->room_service_id]);
+            switch(\Yii::$app->language) {
+                case 'ka-GE':
+                    $service_name = $service->name_ge;
+                    break;
+                case 'ru-RU':
+                    $service_name = $service->name_ru;
+                    break;
+                default:
+                    $service_name = $service->name_us;
+            }
+            $service_price = ($room_service->per_night == 1) ? $room_service->price * $total_days : $room_service->price;
+            ?>
+            <strong>&#10004; &nbsp; <?=$service_name?> = <?=$service_price?> GEL</strong><br />
+        <?php endforeach; ?>
         (<?=\Yii::t('order', 'taxes included')?>)
     </div>
 </div>

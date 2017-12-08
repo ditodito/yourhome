@@ -19,7 +19,7 @@ $total_price = 0;
         <div style="width: 100px; margin: auto;">
             <img src="<?=$message->embed($logo)?>" width="100" />
         </div>
-        <h3 style="text-align: center; margin-bottom: 15px;"><?=\Yii::t('order', 'Thank you {0}, your reservation is confirmed', [$order->first_name])?></h3>
+        <h3 style="text-align: center; margin-bottom: 15px;"><?=\Yii::t('order', 'Thank you {0}, your reservation is confirmed', [$order->first_name . ' ' . $order->last_name])?></h3>
         <h3 style="text-align: center; margin-bottom: 30px;"><?=\Yii::t('order', 'Reservation number')?>: <?=$order->id?></h3>
         <div><strong><?=\Yii::t('main', 'Hotel')?> YOUR HOME</strong></div>
         <div style="margin-bottom: 10px;"><?=\Yii::t('contacts', '{0} Mikheili Tsinamdzghvrishvili Street, {1} Tbilisi, Georgia', ['95', '0164'])?></div>

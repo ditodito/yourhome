@@ -3,7 +3,7 @@
 </h4>
 
 <div style="text-align: center; font-weight: bold; margin-bottom: 15px;">
-    <?=\Yii::t('order', 'Dear Mr. / Mrs. {0}, we confirm that the reservation is canceled', [$order->first_name])?>.
+    <?=\Yii::t('order', 'Dear Mr. / Mrs. {0}, we confirm that the reservation is canceled', [$order->first_name . ' ' .$order->last_name])?>.
 </div>
 <div style="text-align: center; font-weight: bold; margin-bottom: 30px;">
     <?=\Yii::t('order', 'Reservation number')?>: <?=$order->id?>
