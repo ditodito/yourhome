@@ -1,4 +1,5 @@
 <?php
+use common\api\models\database\RoomsServices;
 use frontend\assets\RoomsAsset;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
@@ -75,7 +76,7 @@ $this->title = 'YourHomeHotel :: '.\Yii::t('menu', 'Rooms & Rates');
                 <p class="small"><strong><?=\Yii::t('order', 'Not included')?></strong></p>
                 <ul class="room-include small" style="margin-bottom: 40px;">
                     <?php if ($room->id == 1): ?>
-                        <li>Extra sofa bed - 25 GEL (per night, upon request)</li>
+                        <li><?=\Yii::t('rooms', 'Extra sofa bed - {0} GEL (per night, upon request)', ['25'])?></li>
                     <?php endif; ?>
                     <?php if (!$room->towels): ?>
                         <li><?=\Yii::t('rooms', 'Towels')?> <?=Html::a('('.\Yii::t('rooms', 'extra free').')', ['site/services'])?></li>

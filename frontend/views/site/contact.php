@@ -33,13 +33,13 @@ $this->title = 'YourHomeHotel :: '.\Yii::t('menu', 'Contacts');
                 <div class="col-sm-5">
                     <div>
                         <?=\Yii::t('contacts', 'Tel')?> / <?=\Yii::t('contacts', 'Fax')?>: (+995 32) 221 00 00<br />
-                        <?=\Yii::t('contacts', 'Cell')?>: (+995) 558 48 28 88 (<?=\Yii::t('contacts', 'Manager')?>)<br />
+                        <?=\Yii::t('contacts', 'Cell')?>: (+995) 558 48 28 88 (<?=\Yii::t('contacts', 'Chief manager')?>)<br />
                         <?=\Yii::t('contacts', 'E-mail')?>: <?=\Yii::$app->params['infoEmail']?><br />
                     </div>
                 </div>
                 <div class="col-sm-5">
                     <div>
-                        <?=\Yii::t('contacts', 'Cell')?>: (+995) 577 53 72 12 (<?=\Yii::t('contacts', 'Russian/Hebrew')?>)<br />
+                        <?=\Yii::t('contacts', 'Cell')?>: (+995) 577 53 72 12 (<?=\Yii::t('contacts', 'Russian')?>/<?=\Yii::t('contacts', 'Hebrew')?>)<br />
                         <?=\Yii::t('contacts', 'Cell')?>: (+995) 577 54 75 75 (<?=\Yii::t('contacts', 'German')?>)<br />
                     </div>
                 </div>
