@@ -24,7 +24,7 @@ $total_price = 0;
         <div><strong><?=\Yii::t('main', 'Hotel')?> YOUR HOME</strong></div>
         <div style="margin-bottom: 10px;"><?=\Yii::t('contacts', '{0} Mikheili Tsinamdzghvrishvili Street, {1} Tbilisi, Georgia', ['95', '0164'])?></div>
         <div><strong><?=\Yii::t('contacts', 'Tel')?> / <?=\Yii::t('contacts', 'Fax')?>:</strong> (+995 32) 221 00 00</div>
-        <div><strong><?=\Yii::t('contacts', 'Cell')?>:</strong> (+995) 558 48 28 88 (<?=\Yii::t('contacts', 'Manager')?>)</div>
+        <div><strong><?=\Yii::t('contacts', 'Cell')?>:</strong> (+995) 558 48 28 88 (<?=\Yii::t('contacts', 'Chief manager')?>)</div>
         <div><strong><?=\Yii::t('contacts', 'E-mail')?>:</strong> <?=\Yii::$app->params['infoEmail']?></div>
         <div>www.yourhomehotel.ge</div>
 
