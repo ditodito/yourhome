@@ -14,7 +14,7 @@ $this->title = 'YourHomeHotel :: '.\Yii::t('menu', 'Contacts');
     <div class="col-md-12">
         <div class="info-wrapper">
             <h5><?=\Yii::t('contacts', 'Address')?>:</h5>
-            <div><?=\Yii::t('contacts', '{0} Mikheili Tsinamdzghvrishvili Street, {1} Tbilisi, Georgia', ['95', '0164'])?></div>
+            <div><?=\Yii::t('contacts', '{0} Mikheili Tsinamdzghvrishvili Street, {1} Tbilisi, Georgia', ['93/95', '0164'])?></div>
         </div>
         <div class="info-wrapper">
             <h5><?=\Yii::t('contacts', 'Metro')?>:</h5>

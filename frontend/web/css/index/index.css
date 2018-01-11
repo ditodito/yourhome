@@ -8,6 +8,7 @@ div.index-info > h5 {
 }
 
 div.index-info img.img-responsive {
+    border: none;
     margin-bottom: 5px;
 }
 

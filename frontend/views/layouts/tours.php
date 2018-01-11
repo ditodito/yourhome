@@ -65,7 +65,7 @@ $tour_id = array_key_exists('id', $query_params) ? $query_params['id'] : '0';
 
                     <div class="tours-contact">
                         <span><?=\Yii::t('contacts', 'Address')?>:</span>
-                        <div><?=\Yii::t('contacts', '{0} Mikheili Tsinamdzghvrishvili Street, {1} Tbilisi, Georgia', ['95', '0164'])?></div>
+                        <div><?=\Yii::t('contacts', '{0} Mikheili Tsinamdzghvrishvili Street, {1} Tbilisi, Georgia', ['93/95', '0164'])?></div>
                     </div>
                     <div class="tours-contact">
                         <span><?=\Yii::t('contacts', 'Metro')?>:</span>

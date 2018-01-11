@@ -148,6 +148,7 @@ div.side-info > h5 {
 }
 
 div.side-info img.img-responsive {
+    border: none;
     margin-bottom: 5px;
 }
 

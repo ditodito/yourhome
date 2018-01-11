@@ -39,7 +39,7 @@ $this->registerJs("var totalDays = ".$total_days."; var showForm = ".$show_form.
 
         <div class="contact-info">
             <span><?=\Yii::t('contacts', 'Address')?>:</span>
-            <div><?=\Yii::t('contacts', '{0} Mikheili Tsinamdzghvrishvili Street, {1} Tbilisi, Georgia', ['95', '0164'])?></div>
+            <div><?=\Yii::t('contacts', '{0} Mikheili Tsinamdzghvrishvili Street, {1} Tbilisi, Georgia', ['93/95', '0164'])?></div>
         </div>
         <div class="contact-info">
             <span><?=\Yii::t('contacts', 'Metro')?>:</span>
@@ -62,7 +62,7 @@ $this->registerJs("var totalDays = ".$total_days."; var showForm = ".$show_form.
         </div>
     </div>
     <div class="col-md-9 form-group">
-        <h4 style="font-weight: bold; margin-top: 0;"><?=\Yii::t('order', 'For these dates the following rooms are available')?></h4>
+        <h4 style="font-weight: bold; margin: 0 0 25px;"><?=\Yii::t('order', 'For these dates the following rooms are available')?></h4>
         <div class="date-block">
             <div class="row">
                 <div class="col-md-3 form-group">

@@ -10,14 +10,14 @@ $this->title = 'YourHomeHotel :: '.\Yii::t('menu', 'Home');
 <div class="row">
     <div class="col-md-4">
         <div class="index-info">
-            <h5><?=\Yii::t('contacts', 'Access Map')?></h5>
+            <h5 style="margin-bottom: 25px;"><?=\Yii::t('contacts', 'Access Map')?></h5>
             <div id="map"></div>
         </div>
 
         <div class="contact-info">
             <div class="index-info">
                 <h5><?=\Yii::t('contacts', 'Address')?>:</h5>
-                <div><?=\Yii::t('contacts', '{0} Mikheili Tsinamdzghvrishvili Street, {1} Tbilisi, Georgia', ['95', '0164'])?></div>
+                <div><?=\Yii::t('contacts', '{0} Mikheili Tsinamdzghvrishvili Street, {1} Tbilisi, Georgia', ['93/95', '0164'])?></div>
             </div>
 
             <div class="index-info">
@@ -114,15 +114,14 @@ $this->title = 'YourHomeHotel :: '.\Yii::t('menu', 'Home');
                 - <?=\Yii::t('main', 'Kitchenette')?><br />
                 - <?=\Yii::t('services', 'Airport transfer')?> (<?=Html::a(\Yii::t('contacts', 'upon request'), ['site/services'])?>)
             </div>
-            <?=Html::a(\Yii::t('main', 'More').'...', ['site/services'], ['class' => 'more'])?>
         </div>
         <div class="index-info" style="margin-top: 30px;">
             <h5><?=\Yii::t('menu', 'Our Tours')?></h5>
             <div>
-                <?=Html::img(\Yii::getAlias('@web/img/our_tours.jpg'), [
+                <?=Html::a(Html::img(\Yii::getAlias('@web/img/our_tours.jpg'), [
                     'class' => 'img-rounded img-responsive',
                     'alt' => \Yii::t('menu', 'Our Tours')
-                ])?>
+                ]), ['tours/'])?>
                 <?=\Yii::t('tours', 'Discover Georgia with us, we organize the different excursions')?>
             </div>
             <?=Html::a(\Yii::t('main', 'More').'...', ['tours/'], ['class' => 'more'])?>

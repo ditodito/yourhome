@@ -46,7 +46,7 @@ $this->title = 'YourHomeHotel :: '.\Yii::t('menu', 'Service');
     <li><?=\Yii::t('services', 'Free linens')?></li>
     <li><?=\Yii::t('services', 'Shared kitchenette (Microwave, Stovetop, Refrigerator, Kettle)')?></li>
     <li><?=\Yii::t('services', 'Shared bathroom (Hairdryer)')?></li>
-    <li><?=\Yii::t('services', 'Free private parking')?> (<?=\Yii::t('contacts', 'upon request')?>)</li>
+    <li><?=\Yii::t('services', 'Free private parking')?> (<?=\Yii::t('contacts', 'upon request')?>, <?=\Yii::t('services', 'based on availability')?>)</li>
     <li><?=\Yii::t('services', 'Luggage storage')?></li>
     <li><?=\Yii::t('services', 'Daily housekeeping')?></li>
     <li><?=\Yii::t('services', 'Non-smoking rooms')?></li>
@@ -59,11 +59,10 @@ $this->title = 'YourHomeHotel :: '.\Yii::t('menu', 'Service');
 <div class="our-tours">
     <h4><?=\Yii::t('menu', 'Our Tours')?></h4>
     <p><?=Html::a(\Yii::t('tours', 'Discover Georgia with us, we organize the different excursions'), ['tours/'])?></p>
-    <?=Html::img(\Yii::getAlias('@web/img/our_tours.jpg'), [
+    <?=Html::a(Html::img(\Yii::getAlias('@web/img/our_tours.jpg'), [
         'class' => 'img-rounded img-responsive',
         'alt' => \Yii::t('menu', 'Our Tours')
-    ])?>
+    ]), ['tours/'])?>
 </div>
-
 
 <div class="dgg"><?=\Yii::t('main', 'All prices Include {0}% VAT', [18])?></div>
