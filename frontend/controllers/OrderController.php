@@ -12,7 +12,7 @@ use frontend\models\OrderStep2;
 
 class OrderController extends YourHomeController {
 
-    public function actionStep1($show_form = 0) {
+    public function actionStep1() {
         $model = new OrderForm();
 
         if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
@@ -21,7 +21,6 @@ class OrderController extends YourHomeController {
 
             return $this->render('step1', [
                 'total_days' => floor(($end_date - $start_date) / 86400),
-                'show_form' => $show_form,
                 'start_date' => $start_date,
                 'end_date' => $end_date,
                 'available_rooms' => RoomsActions::getAvailableRooms(date('Y-m-d', $start_date), date('Y-m-d', $end_date)),

@@ -7,9 +7,6 @@ $(document).ready(function() {
     $rooms = $(".rooms");
     $changeDateModal = $("#changeDateModal");
 
-    if (showForm == 1)
-        $changeDateModal.modal();
-
     $changeDate.on("click", function() {
         $changeDateModal.modal();
     });

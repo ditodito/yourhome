@@ -170,6 +170,24 @@ div.side-info a.more:hover {
 }
 /* Footer style end */
 
+/* Change date modal begin */
+#changeDateModal div.modal-content {
+    border-radius: 0;
+}
+#changeDateModal div.modal-header {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+#changeDateModal div.modal-body button[type='submit'] {
+    color: #fff;
+    display: block;
+    outline: none;
+    border: none;
+    background-color: #8b7d72;
+    padding: 5px 10px;
+}
+/* Change date modal end */
+
 .not-set {
     color: #c55;
     font-style: italic;

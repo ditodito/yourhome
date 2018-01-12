@@ -1,6 +1,6 @@
 <?php
-use common\api\models\database\RoomsServices;
 use frontend\assets\RoomsAsset;
+use kartik\date\DatePicker;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 
@@ -93,11 +93,9 @@ $this->title = 'YourHomeHotel :: '.\Yii::t('menu', 'Rooms & Rates');
                     <span class="small"><?=\Yii::t('order', 'Payment at the hotel')?></span>
                 </p>
 
-                <?php $form = ActiveForm::begin(['action' => ['order/step1', 'show_form' => true], 'id' => 'roomForm'])?>
-                    <?=Html::activeHiddenInput($model, 'start_date')?>
-                    <?=Html::activeHiddenInput($model, 'end_date')?>
-                    <?=Html::submitButton(\Yii::t('order', 'Check availability and book').' &raquo;', ['order/step1'], ['class' => 'step1_btn'])?>
-                <?php ActiveForm::end(); ?>
+                <div class="change-date-wrapper">
+                    <?=Html::button(\Yii::t('order', 'Check availability and book').' &raquo;', ['class' => 'change-date'])?>
+                </div>
             </div>
         </div>
     </div>
@@ -105,3 +103,74 @@ $this->title = 'YourHomeHotel :: '.\Yii::t('menu', 'Rooms & Rates');
 
 * <?=\Yii::t('order', 'Cancellation is free 24h before arrival')?>. <?=\Yii::t('order', 'The guest will be charged the first night if they cancel within 24h before arrival')?>.
 
+<div class="modal fade" tabindex="-1" role="dialog" id="changeDateModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><?=\Yii::t('order', 'Change date')?></h4>
+            </div>
+            <div class="modal-body">
+                <?php $form = ActiveForm::begin(['action' => ['order/step1']]); ?>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="control-label"><?=\Yii::t('order', 'Check-in')?></label>
+                        <?=$form->field($model, 'start_date')->widget(DatePicker::classname(), [
+                            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                            'size' => 'sm',
+                            'pickerButton' => [
+                                'title' => false,
+                                'style' => 'background-color: #fff; border-right: none; border-radius: 0;'
+                            ],
+                            'removeButton' => false,
+                            'options' => [
+                                'style' => 'border-left: none; border-radius: 0;'
+                            ],
+                            'pluginOptions' => [
+                                'autoclose' => true,
+                                'format' => 'mm/dd/yyyy',
+                                'startDate' => date('m/d/Y', time()),
+                            ],
+                            'pluginEvents' => [
+                                "clearDate" => "function(e) {
+                                        $('#orderform-end_date').kvDatepicker('clearDates');
+                                    }",
+                                "changeDate" => "function(e) {
+                                        $('#orderform-end_date').kvDatepicker('clearDates');
+                                        var start_day = new Date($('#orderform-start_date').val());
+                                        var next_day = new Date(start_day.getTime() + 86400000);
+                                        $('#orderform-end_date').kvDatepicker('setStartDate', next_day.toLocaleDateString());
+                                    }"
+                            ]
+                        ])->label(false)->error(false)?>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="control-label"><?=\Yii::t('order', 'Check-out')?></label>
+                        <?=$form->field($model, 'end_date')->widget(DatePicker::classname(), [
+                            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                            'size' => 'sm',
+                            'pickerButton' => [
+                                'title' => false,
+                                'style' => 'background-color: #fff; border-right: none; border-radius: 0;'
+                            ],
+                            'removeButton' => false,
+                            'options' => [
+                                'style' => 'border-left: none; border-radius: 0;'
+                            ],
+                            'pluginOptions' => [
+                                'autoclose' => true,
+                                'format' => 'mm/dd/yyyy',
+                                'startDate' => date('m/d/Y', time() + 86400),
+                            ]
+                        ])->label(false)->error(false)?>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="control-label">&nbsp;</label>
+                        <?=Html::submitButton(\Yii::t('order', 'Book'))?>
+                    </div>
+                </div>
+                <?php ActiveForm::end(); ?>
+            </div>
+        </div>
+    </div>
+</div>

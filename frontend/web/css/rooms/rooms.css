@@ -17,13 +17,13 @@ ul.room-include {
     margin-bottom: 25px;
 }
 
-#roomForm {
+div.change-date-wrapper {
     text-align: right;
     margin-top: 25px;
     margin-bottom: 10px;
 }
 
-#roomForm button[type='submit'] {
+button.change-date {
     color: #000;
     font-weight: bold;
     outline: none;

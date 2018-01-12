@@ -12,6 +12,10 @@ class RoomsAsset extends AssetBundle {
         'css/rooms/rooms.css'
     ];
 
+    public $js = [
+        'js/rooms/rooms.js'
+    ];
+
     public $depends = [
         'frontend\assets\AppAsset'
     ];

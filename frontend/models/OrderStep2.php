@@ -151,7 +151,7 @@ class OrderStep2 extends Model {
                     'logo' => \Yii::getAlias('@common/mail/img/logo.png'),
                     'order' => $order
                 ])->setFrom(\Yii::$app->params['infoEmail'])
-                  ->setTo($order->email)
+                  ->setTo([$order->email, 'yourhometbilisi@yahoo.com'])
                   ->setSubject(\Yii::t('order', 'Reservation confirmation').'. '.\Yii::t('main', 'Hotel').' YOUR HOME');
 
                 if (!$mail->send())
