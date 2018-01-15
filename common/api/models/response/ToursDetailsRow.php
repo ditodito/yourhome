@@ -4,8 +4,8 @@ namespace common\api\models\response;
 class ToursDetailsRow extends ToursRow implements \JsonSerializable {
     protected $text;
 
-    public function __construct($id, $title, $text, $image) {
-        parent::__construct($id, $title, $image);
+    public function __construct($id, $title, $text, $image, $image_large) {
+        parent::__construct($id, $title, $image, $image_large);
         $this->text = $text;
     }
 
@@ -22,6 +22,9 @@ class ToursDetailsRow extends ToursRow implements \JsonSerializable {
                 break;
             case 'image':
                 return $this->image;
+                break;
+            case 'image_large':
+                return $this->image_large;
                 break;
             default:
                 throw new \Exception("Invalid property: '" . $field . "'");

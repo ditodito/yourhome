@@ -25,7 +25,7 @@ class ToursActions {
                 default:
                     $title = $row['title_us'];
             }
-            $tour = new ToursRow($row['id'], $title, $row['image']);
+            $tour = new ToursRow($row['id'], $title, $row['image'], $row['image_large']);
             $tour->setDuration(\Yii::t('tours', $row->duration->name));
             $result[] = $tour;
         }
@@ -52,7 +52,7 @@ class ToursActions {
                 $text = $row['text_us'];
         }
 
-        return new ToursDetailsRow($row['id'], $title, $text, $row['image']);
+        return new ToursDetailsRow($row['id'], $title, $text, $row['image'], $row['image_large']);
     }
 
     public static function getToursDurations() {
@@ -88,7 +88,7 @@ class ToursActions {
                     default:
                         $tour_name = $tour->title_us;
                 }
-                $idn = new ToursRow($tour->id, $tour_name, $tour->image);
+                $idn = new ToursRow($tour->id, $tour_name, $tour->image, $tour->image, $tour->image_large);
                 $tours[] = $idn;
             }
 

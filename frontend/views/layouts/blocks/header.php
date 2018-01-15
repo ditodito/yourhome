@@ -105,27 +105,7 @@ $order_form = new OrderForm();
         <?php endif; ?>
 
         <?php if (!(\Yii::$app->controller->id === 'site' && \Yii::$app->controller->action->id === 'gallery')): ?>
-            <?php
-            $header_image = 'header.jpg';
-            switch(\Yii::$app->controller->id) {
-                case 'site':
-                    switch(\Yii::$app->controller->action->id) {
-                        case 'rooms':
-                            $header_image = 'header_rooms.jpg';
-                            break;
-                        case 'services':
-                            $header_image = 'header_services.jpg';
-                            break;
-                        case 'contact':
-                            $header_image = 'header_contact.jpg';
-                            break;
-                    }
-                    break;
-                case 'tours':
-                    $header_image = 'header_tours.jpg';
-                    break;
-            }
-            ?>
+            <?php $header_image = isset($this->params['header_image']) ? $this->params['header_image'] : 'header.jpg'; ?>
             <div class="header-img" style="background: url('<?=\Yii::getAlias('@web/img/'.$header_image)?>') center no-repeat;"></div>
         <?php else: ?>
             <div style="color: #fff; text-align: center; background-color: #8b7d72; padding: 15px; margin-top: 20px;">

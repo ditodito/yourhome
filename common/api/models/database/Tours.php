@@ -17,6 +17,7 @@ use yii\db\ActiveRecord;
  * @property string $text_ge
  * @property string $text_ru
  * @property string $image
+ * @property string $image_large
  */
 class Tours extends ActiveRecord {
 

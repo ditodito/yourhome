@@ -64,6 +64,7 @@ class SiteController extends YourHomeController {
 
     public function actionRooms() {
         $this->layout = 'room';
+        $this->view->params['header_image'] = 'header_rooms.jpg';
 
         $model = new OrderForm();
         $model->start_date = date('m/d/Y', time());
@@ -77,6 +78,7 @@ class SiteController extends YourHomeController {
 
     public function actionServices() {
         $this->layout = 'side';
+        $this->view->params['header_image'] = 'header_services.jpg';
 
         return $this->render('services');
     }
@@ -91,6 +93,7 @@ class SiteController extends YourHomeController {
 
     public function actionContact() {
         $this->layout = 'side';
+        $this->view->params['header_image'] = 'header_contact.jpg';
 
         return $this->render('contact');
     }

@@ -5,12 +5,14 @@ class ToursRow implements \JsonSerializable {
     protected $id;
     protected $title;
     protected $image;
+    protected $image_large;
     protected $duration;
 
-    public function __construct($id, $title, $image) {
+    public function __construct($id, $title, $image, $image_large) {
         $this->id = $id;
         $this->title = $title;
         $this->image = $image;
+        $this->image_large = $image_large;
     }
 
     public function setDuration($duration) {
@@ -27,6 +29,9 @@ class ToursRow implements \JsonSerializable {
                 break;
             case 'image':
                 return $this->image;
+                break;
+            case 'image_large':
+                return $this->image_large;
                 break;
             case 'duration':
                 return $this->duration;
