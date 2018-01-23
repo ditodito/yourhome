@@ -6,6 +6,9 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 
 $order_form = new OrderForm();
+
+$controller = \Yii::$app->controller->id;
+$action = \Yii::$app->controller->action->id;
 ?>
 
 <header class="header">
@@ -14,12 +17,12 @@ $order_form = new OrderForm();
 
         <div class="nav-wrapper">
             <nav class="nav">
-                <?=Html::a(\Yii::t('menu', 'Home'), ['/site'])?>
-                <?=Html::a(\Yii::t('menu', 'Rooms & Rates'), ['/site/rooms'])?>
-                <?=Html::a(\Yii::t('menu', 'Service'), ['/site/services'])?>
-                <?=Html::a(\Yii::t('menu', 'Photo Gallery'), ['/site/gallery'])?>
-                <?=Html::a(\Yii::t('menu', 'Contacts'), ['/site/contact'])?>
-                <?=Html::a(\Yii::t('menu', 'Our Tours'), ['/tours'], ['style' =>'float: right;'])?>
+                <?=Html::a(\Yii::t('menu', 'Home'), ['/site'], ['class' => ($controller == 'site' && $action == 'index') ? 'active' : ''])?>
+                <?=Html::a(\Yii::t('menu', 'Rooms & Rates'), ['/site/rooms'], ['class' => ($controller == 'site' && $action == 'rooms') ? 'active' : ''])?>
+                <?=Html::a(\Yii::t('menu', 'Service'), ['/site/services'], ['class' => ($controller == 'site' && $action == 'services') ? 'active' : ''])?>
+                <?=Html::a(\Yii::t('menu', 'Photo Gallery'), ['/site/gallery'], ['class' => ($controller == 'site' && $action == 'gallery') ? 'active' : ''])?>
+                <?=Html::a(\Yii::t('menu', 'Contacts'), ['/site/contact'], ['class' => ($controller == 'site' && $action == 'contact') ? 'active' : ''])?>
+                <?=Html::a(\Yii::t('menu', 'Our Tours'), ['/tours'], ['class' => ($controller == 'tours') ? 'active' : '', 'style' =>'float: right;'])?>
             </nav>
 
             <div id="languageWrapper">
@@ -32,7 +35,7 @@ $order_form = new OrderForm();
             </div>
         </div>
 
-        <?php if (\Yii::$app->controller->id === 'site' && \Yii::$app->controller->action->id === 'index'): ?>
+        <?php if ($controller == 'site' && $action == 'index'): ?>
             <div class="header-reservation">
                 <div><?=\Yii::t('order', 'Online reservation')?></div>
                 <div>
@@ -104,7 +107,7 @@ $order_form = new OrderForm();
             </div>
         <?php endif; ?>
 
-        <?php if (!(\Yii::$app->controller->id === 'site' && \Yii::$app->controller->action->id === 'gallery')): ?>
+        <?php if (!($controller === 'site' && $action === 'gallery')): ?>
             <?php $header_image = isset($this->params['header_image']) ? $this->params['header_image'] : 'header.jpg'; ?>
             <div class="header-img" style="background: url('<?=\Yii::getAlias('@web/img/'.$header_image)?>') center no-repeat;"></div>
         <?php else: ?>

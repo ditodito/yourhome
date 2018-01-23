@@ -72,6 +72,9 @@ html, body {
 .nav > a:first-child, .nav > a:last-child {
     border-left: none;
 }
+.nav > a.active {
+    color: #0083d6;
+}
 
 #languageWrapper {
     float: right;
